@@ -11,7 +11,6 @@ const router = express.Router();
 // POST /api/session (log in)
 router.post('/', asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
-
     const user = await User.login({ credential, password });
 
     if (!user) {
@@ -33,5 +32,18 @@ router.delete('/', (_req, res) => {
 
     return res.json({ message: 'Success' });
 });
+
+// GET /api/session (restore session user if session exists)
+router.get('/', restoreUser, (req, res) => {
+    const { user } = req;
+
+    if (user) {
+        return res.json({
+            user: user.toSafeObject()
+        });
+    } else {
+        return res.json({});
+    }
+})
 
 module.exports = router;
