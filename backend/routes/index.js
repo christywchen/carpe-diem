@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
         );
     });
 
-    // serve the static assets in the frontend build folder
+    // serve react static assets in the frontend build folder
     router.use(express.static(path.resolve("../frontend/build")));
 
     // server frontend index.html file at all other routes not starting with /api
