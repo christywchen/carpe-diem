@@ -31,7 +31,7 @@ app.use(helmet({
 }));
 
 // set the _csrf token and create req.csrfToken method
-// the _csrf cookie is hhtp-only and will be added to any server response
+// the _csrf cookie is http-only and will be added to any server response
 // it also adds a method on all requests that will be set to another cookie for csrf protection
 app.use(
     csurf({
