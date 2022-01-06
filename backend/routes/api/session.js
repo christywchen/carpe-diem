@@ -6,7 +6,9 @@ const { User } = require('../../db/models');
 
 const router = express.Router();
 
-// POST /api/session
+// route handlers for handling user login and logout
+
+// POST /api/session (log in)
 router.post('/', asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
 
@@ -23,6 +25,13 @@ router.post('/', asyncHandler(async (req, res, next) => {
     await setTokenCookie(res, user);
 
     return res.json({ user });
-}))
+}));
+
+// DELETE /api/session (log out)
+router.delete('/', (_req, res) => {
+    res.clearCookie('token');
+
+    return res.json({ message: 'Success' });
+});
 
 module.exports = router;
