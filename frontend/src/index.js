@@ -8,10 +8,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import configureStore from './store';
+import { restoreCSRF, csrfFetch } from './store/csrf';
 
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
+  restoreCSRF();
+
+  window.csrfFetch = csrfFetch; // attach the csrfFetch function onto the window
   window.store = store;
 }
 
