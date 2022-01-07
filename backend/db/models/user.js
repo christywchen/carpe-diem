@@ -23,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256]
       },
     },
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
+    },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false,
@@ -49,6 +55,13 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     // associations can be defined here
+    User.hasMany(models.Event, { foreignKey: 'userId' });
+
+    User.belongsToMany(models.Event, {
+      through: 'RegisteredEvent',
+      otherKey: 'eventId',
+      foreignKey: 'userId'
+    })
   };
 
   // class methods
