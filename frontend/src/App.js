@@ -7,7 +7,6 @@ import SignUpForm from './components/SignUpFormModal';
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -23,7 +22,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Routes>
-          {/* <Route path='/login' element={<LoginForm />} /> */}
+          <Route path='/login' element={<LoginForm />} />
           <Route path='/signup' element={<SignUpForm />} />
         </Routes >
       )}

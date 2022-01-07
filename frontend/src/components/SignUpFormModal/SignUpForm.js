@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 // import { Navigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 
@@ -79,7 +79,7 @@ function SignUpForm() {
                     required
                 />
             </label>
-            <button type="submit">Sign Up</button>
+            <button className="button button__submit--primary" type="submit">Sign Up</button>
         </form>
     );
 }
