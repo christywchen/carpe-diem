@@ -24,6 +24,9 @@
 #nav a:hover {
     color: var(--accent-color-1-light);
 }
+#nav a:focus {
+    outline: none;
+}
 
 .nav__link--center {
     text-align: center;
