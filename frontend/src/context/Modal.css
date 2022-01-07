@@ -4,21 +4,104 @@
     right: 0;
     left: 0;
     bottom: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#modal-background {
+#modal__background {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-#modal-content {
+#modal__container {
     position: absolute;
-    background-color: white;
+    width: 400px;
+    height: fit-content;
+
+    padding: 50px 70px;
+
+    text-align: center;
+    border-radius: 2px;
+    background-color: var(--modal-bg);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+#modal__container--heading {
+    margin: 0 0 10px 0;
+
+    color: var(--light-neutral);
+    font-family: var(--body-font);
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+#modal__container input {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 8px 0;
+
+    color: var(--light-neutral);
+    border: none;
+    border-bottom: 1px solid var(--light-neutral);
+    caret-color: var(--accent-color-2);
+    background: none;
+}
+
+#modal__container input:focus {
+    color: var(--accent-color-2);
+    border-bottom: 1px solid var(--accent-color-2);
+    outline: none;
+}
+
+#modal__container input:placeholder {
+    color: var(--medium-neutral);
+}
+
+#modal__container button {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 15px 0;
+
+    padding: 8px 10px;
+
+    color: white;
+    font-weight: 600;
+
+    border: none;
+    border-radius: 2px;
+    background-color: var(--accent-color-2);
+}
+
+#modal__container button:hover {
+    background-color: var(--accent-color-2-light);
+}
+
+#modal__container button:focus {
+    outline: none;
+
+    background-color: var(--accent-color-2);
+}
+
+ul.modal__container--form-errors {
+    margin: 14px 0;
+    padding: 10px 14px 5px 28px;
+
+    color: white;
+    font-size: 0.9em;
+    text-align: left;
+
+    border-radius: 2px;
+    border: 1px solid var(--accent-color-3);
+    background-color: rgba(var(--accent-color-triplet), 0.3);
+}
+
+ul.modal__container--form-errors li {
+    margin: 0 0 4px 0;
 }

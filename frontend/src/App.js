@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Routes } from 'react-router-dom';
 
 import LoginForm from './components/LoginFormModal';
-import SignUpForm from './components/SignUpForm';
+import SignUpForm from './components/SignUpFormModal';
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 

@@ -29,25 +29,29 @@ function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-            <label>
-                Username or Email
+        <form className='modal__container--formcontent' onSubmit={handleSubmit}>
+            {errors.length ?
+                <ul className='modal__container--form-errors'>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul> : null
+            }
+            <label htmlFor='username-or-email'>
                 <input
+                    id='username-or-email'
                     type="text"
                     value={credential}
                     onChange={(e) => setCredential(e.target.value)}
+                    placeholder='Username or Email'
                     required
                 />
             </label>
-            <label>
-                Password
+            <label htmlFor='password'>
                 <input
+                    id='password'
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    placeholder='Password'
                     required
                 />
             </label>
