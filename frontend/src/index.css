@@ -4,8 +4,8 @@
 :root {
   --body-font: "Inter", sans-serif;
   --heading-font: "Bebas Neue", sans-serif;
-  --background: #20192b;
-  --nav-bar: #120516;
+  --nav-bar: #1a0f23;
+  --background: #0e0516;
   --accent-color-1: #e7ca47;
   --accent-color-2: #5ebaca;
   --accent-color-2-light: #67cbdd;
@@ -14,10 +14,10 @@
   --accent-color-4: #603d80;
   --accent-color-4-light: #603d80;
   --light-neutral: #d2cfda;
-  --medium-neutral: #8a8a8a;
+  --medium-neutral: #999999;
   --card-background: #261f38;
   --body-text: #ffe4f3;
-  --modal-bg: #211b2b;
+  --modal-bg: #24192e;
 }
 
 *,
