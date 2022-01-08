@@ -2,11 +2,32 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Event } = require('../../db/models');
 
 const router = express.Router();
+
+// validate events
+const validateEvent = [
+    check('name')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide an event name.'),
+    check('name')
+        .isLength({ max: 75 })
+        .withMessage('Maximum length is 75 characters.'),
+    check('date')
+        .exists({ checkFalsy: true })
+        .withMessage('Choose a date for your event.'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a description about the event.'),
+    check('capacity')
+        .exists({ checkFalsy: true })
+        .isNumeric()
+        .withMessage('Please provide a number for your event\'s maximum capacity.'),
+    handleValidationErrors
+]
 
 // GET /api/events (get all events)
 router.get('/', asyncHandler(async (_req, res) => {
@@ -24,7 +45,7 @@ router.get('/:eventId', asyncHandler(async (req, res) => {
 }));
 
 // POST /api/events (create event)
-router.post('/', requireAuth, asyncHandler(async (req, res) => {
+router.post('/', requireAuth, validateEvent, asyncHandler(async (req, res) => {
     const { id } = req.user;
     const event = await Event.createEvent(id, req.body);
 
@@ -32,7 +53,7 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 // PATCH /api/events/:eventId (update an event)
-router.patch('/:eventId', requireAuth, asyncHandler(async (req, res, next) => {
+router.patch('/:eventId', requireAuth, validateEvent, asyncHandler(async (req, res, next) => {
     const { id } = req.user;
     const eventId = parseInt(req.params.eventId, 10);
     const event = await Event.getEvent(eventId);
