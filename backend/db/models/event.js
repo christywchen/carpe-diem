@@ -18,11 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    canceled: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    userId: {
+    hostId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -38,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   Event.associate = function (models) {
     // associations can be defined here
     Event.belongsTo(models.User, {
-      foreignKey: 'userId'
+      foreignKey: 'hostId'
     });
 
     Event.belongsTo(models.EventType, {
@@ -79,5 +75,63 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'eventId'
     });
   };
+
+  Event.getAllEvents = async function () {
+    return await Event.findAll();
+  }
+
+  Event.getEvent = async function (eventId) {
+    return await Event.findByPk(eventId);
+  }
+
+  Event.createEvent = async function (userId, requestBody) {
+    const {
+      name,
+      date,
+      description,
+      capacity,
+      secretLocation,
+      venueId,
+      eventTypeId
+    } = requestBody;
+
+    return await Event.create({
+      name,
+      date,
+      description,
+      capacity,
+      secretLocation,
+      hostId: userId,
+      venueId,
+      eventTypeId
+    });
+  }
+
+  Event.updateEvent = async function (event, requestBody) {
+    const {
+      name,
+      date,
+      description,
+      capacity,
+      secretLocation,
+      venueId,
+      eventTypeId
+    } = requestBody;
+
+    return await event.update({
+      name,
+      date,
+      description,
+      capacity,
+      secretLocation,
+      venueId,
+      eventTypeId
+    })
+  };
+
+  Event.deleteEvent = async function (event) {
+    return await event.destroy();
+  }
+
   return Event;
 };

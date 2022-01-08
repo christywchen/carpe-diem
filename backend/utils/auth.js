@@ -8,7 +8,6 @@ const { secret, expiresIn } = jwtConfig;
 // set the jwt cookie after a user logs in or signs up
 const setTokenCookie = (res, user) => {
     // create the token
-    console.log(user)
     const token = jwt.sign(
         { data: user.toSafeObject() },
         secret,

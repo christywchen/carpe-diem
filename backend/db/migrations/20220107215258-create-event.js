@@ -28,12 +28,7 @@ module.exports = {
         allowNull: false,
         defaultValue: false
       },
-      canceled: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-      },
-      userId: {
+      hostId: {
         type: Sequelize.INTEGER,
         references: { model: 'Users' },
         allowNull: false
