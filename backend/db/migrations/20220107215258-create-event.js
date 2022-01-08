@@ -28,6 +28,14 @@ module.exports = {
         allowNull: false,
         defaultValue: false
       },
+      virtualEvent: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      eventUrl: {
+        type: Sequelize.STRING
+      },
       hostId: {
         type: Sequelize.INTEGER,
         references: { model: 'Users' },
@@ -35,8 +43,7 @@ module.exports = {
       },
       venueId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Venues' },
-        allowNull: false
+        references: { model: 'Venues' }
       },
       eventTypeId: {
         type: Sequelize.INTEGER,

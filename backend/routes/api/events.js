@@ -12,8 +12,7 @@ const router = express.Router();
 const validateEvent = [
     check('name')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide an event name.'),
-    check('name')
+        .withMessage('Please provide an event name.')
         .isLength({ max: 75 })
         .withMessage('Maximum length is 75 characters.'),
     check('date')
@@ -26,6 +25,10 @@ const validateEvent = [
         .exists({ checkFalsy: true })
         .isNumeric()
         .withMessage('Please provide a number for your event\'s maximum capacity.'),
+    check('venueId')
+        .if((value, { req }) => !req.body.virtualEvent)
+        .notEmpty()
+        .withMessage('Physical events require a venue location.'),
     handleValidationErrors
 ]
 

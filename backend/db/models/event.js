@@ -18,13 +18,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
+    virtualEvent: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    eventUrl: {
+      type: DataTypes.STRING
+    },
     hostId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
     venueId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     eventTypeId: {
       type: DataTypes.INTEGER,
