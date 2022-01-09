@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     eventUrl: {
       type: DataTypes.STRING
     },
+    imageUrl: {
+      type: DataTypes.STRING
+    },
     hostId: {
       type: DataTypes.INTEGER,
       allowNull: false
