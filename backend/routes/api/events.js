@@ -36,7 +36,7 @@ const validateEvent = [
 router.get('/', asyncHandler(async (_req, res) => {
     const events = await Event.findAll();
 
-    res.json({ events });
+    res.json(events);
 }));
 
 // GET /api/events/:eventId (get an event)
@@ -44,7 +44,7 @@ router.get('/:eventId', asyncHandler(async (req, res) => {
     const eventId = parseInt(req.params.eventId, 10);
     const event = await Event.getEvent(eventId);
 
-    res.json({ event });
+    res.json(event);
 }));
 
 // POST /api/events (create event)
@@ -52,7 +52,7 @@ router.post('/', requireAuth, validateEvent, asyncHandler(async (req, res) => {
     const { id } = req.user;
     const event = await Event.createEvent(id, req.body);
 
-    res.json({ event });
+    res.json(event);
 }));
 
 // PATCH /api/events/:eventId (update an event)
