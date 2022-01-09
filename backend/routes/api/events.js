@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Event } = require('../../db/models');
+const eventService = require('../../db/services/event-service');
 
 const router = express.Router();
 
@@ -34,7 +34,7 @@ const validateEvent = [
 
 // GET /api/events (get all events)
 router.get('/', asyncHandler(async (_req, res) => {
-    const events = await Event.findAll();
+    const events = await eventService.getAllEvents();
 
     res.json(events);
 }));
@@ -42,7 +42,7 @@ router.get('/', asyncHandler(async (_req, res) => {
 // GET /api/events/:eventId (get an event)
 router.get('/:eventId', asyncHandler(async (req, res) => {
     const eventId = parseInt(req.params.eventId, 10);
-    const event = await Event.getEvent(eventId);
+    const event = await eventService.getEvent(eventId);
 
     res.json(event);
 }));
@@ -50,7 +50,7 @@ router.get('/:eventId', asyncHandler(async (req, res) => {
 // POST /api/events (create event)
 router.post('/', requireAuth, validateEvent, asyncHandler(async (req, res) => {
     const { id } = req.user;
-    const event = await Event.createEvent(id, req.body);
+    const event = await eventService.createEvent(id, req.body);
 
     res.json(event);
 }));
@@ -59,11 +59,11 @@ router.post('/', requireAuth, validateEvent, asyncHandler(async (req, res) => {
 router.patch('/:eventId', requireAuth, validateEvent, asyncHandler(async (req, res, next) => {
     const { id } = req.user;
     const eventId = parseInt(req.params.eventId, 10);
-    const event = await Event.getEvent(eventId);
+    const event = await eventService.getEvent(eventId);
     const hostId = event.hostId;
 
     if (hostId === id) {
-        const updatedEvent = await Event.updateEvent(event, req.body);
+        const updatedEvent = await eventService.updateEvent(event, req.body);
         res.json({ updatedEvent });
     } else {
         const err = new Error('Forbidden');
@@ -78,11 +78,11 @@ router.patch('/:eventId', requireAuth, validateEvent, asyncHandler(async (req, r
 router.delete('/:eventId', requireAuth, asyncHandler(async (req, res, next) => {
     const { id } = req.user;
     const eventId = parseInt(req.params.eventId, 10);
-    const event = await Event.getEvent(eventId);
+    const event = await eventService.getEvent(eventId);
     const hostId = event.hostId;
 
     if (hostId === id) {
-        await Event.deleteEvent(event);
+        await eventService.deleteEvent(event);
         res.json({ 'Success': 'Event deleted successfully' });
     } else {
         const err = new Error('Forbidden');;
