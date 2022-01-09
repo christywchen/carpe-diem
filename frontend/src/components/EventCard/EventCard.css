@@ -2,13 +2,13 @@
     width: 100%;
     background-color: var(--card-background);
     margin: 20px 0px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
     transition: all ease-in-out 0.3s;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .event__card--container:hover {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.8);
 }
 
 .event__card--image {
@@ -32,4 +32,8 @@
 
 .event__card--date {
     font-weight: 500;
+}
+
+.event__card--pin {
+    margin-right: 7px;
 }
