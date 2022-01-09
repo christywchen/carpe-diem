@@ -1,0 +1,35 @@
+.event__card--container {
+    width: 100%;
+    background-color: var(--card-background);
+    margin: 20px 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out 0.3s;
+    border-radius: 4px;
+}
+
+.event__card--container:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+}
+
+.event__card--image {
+    height: 150px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+
+.event__card--image img {
+    width: 100%;
+    /* height: auto; */
+}
+
+.event__card--body {
+    padding: 20px;
+}
+
+.event__card--body div {
+    margin: 10px 0;
+}
+
+.event__card--date {
+    font-weight: 500;
+}

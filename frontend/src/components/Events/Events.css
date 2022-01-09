@@ -1,0 +1,15 @@
+.events__container--items {
+    /* height: 200px; */
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 40px;
+}
+
+.events__container--categories {
+    margin: 15px 0 0 10px;
+}
+
+.events__container--category {
+    margin: 0 10px;
+}
