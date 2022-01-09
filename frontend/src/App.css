@@ -38,11 +38,11 @@
 }
 
 #main {
-  height: 1000px;
-  width: 80%;
-  margin: 40px auto 0;
+  width: 75%;
+  margin: 40px auto 200px;
 }
 
 #container {
+  overflow: auto;
   background: no-repeat bottom/100% var(--background) url("./assets/wallpaper-resize.jpg");
 }

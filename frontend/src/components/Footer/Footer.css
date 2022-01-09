@@ -1,13 +1,11 @@
 #footer {
-    margin: 20px 0 0;
+    margin: 10px 0 0;
     width: 100%;
     padding: 0 5vw;
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin-bottom: 0px;
 }
 
 #footer a {

@@ -11,7 +11,7 @@ function LoginFormModal({ button = false }) {
         <>
             {button ?
                 <button className='button button__submit--secondary' type="submit">Want to Log In?</button> :
-                <NavLink to='/' onClick={() => setShowModal(true)}>Sign Up</NavLink>
+                <NavLink to='/' onClick={() => setShowModal(true)}>Log In</NavLink>
             }
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
