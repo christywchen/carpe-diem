@@ -1,9 +1,8 @@
 @import url("../../index.css");
 
 #nav {
-    position: sticky;
     top: 0;
-    height: 80px;
+    height: 90px;
     width: 100%;
     display: grid;
     padding: 0 5vw;
