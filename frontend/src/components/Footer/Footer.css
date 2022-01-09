@@ -1,0 +1,22 @@
+#footer {
+    margin: 20px 0 0;
+    width: 100%;
+    padding: 0 5vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 0px;
+}
+
+#footer a {
+    margin: 5px;
+    padding: 10px 10px;
+
+    flex-basis: 80px;
+    flex-grow: 1;
+
+    color: var(--body-text);
+    text-align: center;
+}
