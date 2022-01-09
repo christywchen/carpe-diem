@@ -2,7 +2,7 @@
 
 #nav {
     top: 0;
-    height: 90px;
+    height: 95px;
     width: 100%;
     display: grid;
     padding: 0 5vw;
@@ -36,7 +36,7 @@
     background-image: url("../../assets/carpediem-mini.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 150px;
+    background-size: 160px;
 }
 
 .nav__link--left {
@@ -62,7 +62,7 @@ ul.profile__dropdown--list {
     list-style-type: none;
     width: fit-content;
     position: absolute;
-    margin: 73px -10px 0 0;
+    margin: 75px -10px 0 0;
     text-align: right;
     background-color: var(--nav-bar);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
