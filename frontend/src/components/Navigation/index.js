@@ -32,6 +32,7 @@ function Navigation({ isLoaded }) {
             </div>
             <NavLink className="nav__link--center" to="/">Home</NavLink>
             <div className='nav__link--right'>
+                <NavLink to="/">Liked Events</NavLink>
                 {isLoaded && sessionLinks}
             </div>
         </nav>
