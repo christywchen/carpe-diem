@@ -6,7 +6,7 @@ import LoginForm from './components/LoginFormModal';
 import SignUpForm from './components/SignUpFormModal';
 import Navigation from './components/Navigation';
 import Footer from "./components/Footer";
-import Events from './components/Events'
+import Events from './components/EventsPage'
 import * as sessionActions from "./store/session";
 
 import './App.css';

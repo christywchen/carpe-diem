@@ -1,8 +1,11 @@
 import './EventCard.css';
 
+import { useSelector } from 'react-redux';
+
 import eventCard from '../../assets/event-card.jpg';
 
-function EventCard({ event }) {
+function EventCard({ eventId }) {
+    const event = useSelector(state => state.event.events[eventId]);
     const { name, date, location, eventTypeId } = event;
     const { name: eventType } = event.EventType;
     const { city: venueCity, state: venueState } = event.Venue;
@@ -17,7 +20,7 @@ function EventCard({ event }) {
                 <h3 className='event__card--title'>{name}</h3>
                 <div className='event__card--date'>{date}</div>
                 <div className='event__card--location'>
-                    <i class="fas fa-map-marker-alt fa-sm event__card--pin" />
+                    <i className="fas fa-map-marker-alt fa-sm event__card--pin" />
                     {venueCity}, {venueState}</div>
                 <div className='event__card--headliners'>Headliner: Sakuraburst</div>
                 <div className='event__card--headliners'>Organizer: Sakuraburst</div>

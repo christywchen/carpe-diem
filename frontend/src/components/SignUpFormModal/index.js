@@ -17,7 +17,7 @@ function SignUpFormModal({ button = false }) {
                 <Modal onClose={() => setShowModal(false)}>
                     <div id='modal__container--form'>
                         <div id='modal__container--heading'>Sign Up</div>
-                        <div class='modal__container--text'>Join to start hosting and attending events!</div>
+                        <div className='modal__container--text'>Join to start hosting and attending events!</div>
                         <SignUpForm />
                         <hr />
                         <button className='button button__submit--primary' type="submit">Demo User</button>
