@@ -36,6 +36,9 @@ module.exports = {
       eventUrl: {
         type: Sequelize.STRING
       },
+      imageUrl: {
+        type: Sequelize.STRING
+      },
       hostId: {
         type: Sequelize.INTEGER,
         references: { model: 'Users' },
