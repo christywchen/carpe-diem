@@ -25,7 +25,7 @@ module.exports = {
         allowNull: false
       },
       zip: {
-        type: Sequelize.STRING(20),
+        type: Sequelize.STRING(10),
         allowNull: false
       },
       lat: {

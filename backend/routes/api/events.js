@@ -37,12 +37,6 @@ const validateEvent = [
         .exists({ checkFalsy: true })
         .isNumeric()
         .withMessage('Please provide a number for your event\'s maximum capacity.'),
-    check('capacity')
-        .if((value, { req }) => req.body.published)
-        .if((value, { req }) => !req.body.virtualEvent)
-        .exists({ checkFalsy: true })
-        .isNumeric()
-        .withMessage('Please provide a number for your event\'s maximum capacity.'),
     check('venueId')
         .if((value, { req }) => req.body.published)
         .if((value, { req }) => !req.body.virtualEvent)
