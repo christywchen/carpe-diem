@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button className='profile__button' onClick={openMenu}>
+            <button className='profile__button nav__button--link' onClick={openMenu}>
                 <i className="fas fa-user-circle fa-lg" />
             </button>
             {showMenu && (
@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
                     <li className='profile__dropdown--item'>Your Tickets</li>
                     <li className='profile__dropdown--item'>Your Events</li>
                     <li className='profile__dropdown--item'>
-                        <button className='profile__dropdown--button-link' onClick={logout}>Log Out</button>
+                        <button className='profile__dropdown--button-link nav__button--link' onClick={logout}>Log Out</button>
                     </li>
                 </ul>
             )}
