@@ -2,8 +2,11 @@
 module.exports = (sequelize, DataTypes) => {
   const Artist = sequelize.define('Artist', {
     name: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      validate: {
+        len: [1, 50]
+      }
     },
     bio: DataTypes.TEXT
   }, {});

@@ -2,7 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(50),
+      validate: {
+        len: [1, 50]
+      }
     },
     endTime: {
       type: DataTypes.DATE
@@ -14,7 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT
     },
     capacity: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: true
+      }
     },
     secretLocation: {
       type: DataTypes.BOOLEAN,

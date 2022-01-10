@@ -9,20 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(250),
-        allowNull: false
+        type: Sequelize.STRING(50),
+        allowNull: false,
       },
       address: {
-        type: Sequelize.STRING(250),
-        allowNull: false
+        type: Sequelize.STRING(100),
+        allowNull: false,
       },
       city: {
-        type: Sequelize.STRING(150),
-        allowNull: false
+        type: Sequelize.STRING(50),
+        allowNull: false,
       },
       state: {
         type: Sequelize.STRING(2),
-        allowNull: false
+        allowNull: false,
       },
       zip: {
         type: Sequelize.STRING(10),
