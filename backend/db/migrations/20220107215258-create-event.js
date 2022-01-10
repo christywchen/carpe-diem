@@ -24,7 +24,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       secretLocation: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       virtualEvent: {
         type: Sequelize.BOOLEAN
@@ -40,6 +41,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       hostId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Users' }
       },

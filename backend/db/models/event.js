@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     secretLocation: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     virtualEvent: {
       type: DataTypes.BOOLEAN
@@ -33,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN
     },
     hostId: {
+      allowNull: false,
       type: DataTypes.INTEGER
     },
     venueId: {
