@@ -1,4 +1,4 @@
-function EditEvent() {
+function EventEdit() {
     return (
         <>
             <p>Edit the Thing
@@ -8,4 +8,4 @@ function EditEvent() {
     )
 }
 
-export default EditEvent;
+export default EventEdit;

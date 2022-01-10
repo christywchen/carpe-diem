@@ -31,7 +31,7 @@ function Navigation({ isLoaded }) {
         <nav id='nav'>
             <div className='nav__link--left'>
                 <NavLink to="/">Browse Events</NavLink>
-                <NavLink to="/">Host an Event</NavLink>
+                <NavLink to="/events/new">Host an Event</NavLink>
             </div>
             <NavLink className="nav__link--center" to="/">Home</NavLink>
             <div className='nav__link--right'>

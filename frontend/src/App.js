@@ -8,7 +8,8 @@ import Navigation from './components/Navigation';
 import Footer from "./components/Footer";
 import Events from './components/EventsPage'
 import EventDetails from './components/EventDetails';
-import EditEvent from './components/EditEvent';
+import EventCreate from './components/EventCreate';
+import EventEdit from './components/EventEdit';
 import PageNotFound from './components/PageNotFound';
 
 import * as sessionActions from "./store/session";
@@ -33,8 +34,9 @@ function App() {
               <Route path='*' element={<Navigate to='/not-found' />} />
               <Route path='/' element={<Navigate to='/events' />} />
               <Route path='/events' element={<Events />} />
+              <Route path='/events/new' element={<EventCreate />} />
               <Route path='/events/:eventId' element={<EventDetails />} />
-              <Route path='/events/:eventId/edit' element={<EditEvent />} />
+              <Route path='/events/:eventId/edit' element={<EventEdit />} />
               <Route path='/login' element={<LoginForm />} />
               <Route path='/signup' element={<SignUpForm />} />
               <Route path='/not-found' element={<PageNotFound />} />
