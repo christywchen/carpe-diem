@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     venueId: {
       type: DataTypes.INTEGER
     },
-    eventTypeId: {
+    categoryId: {
       type: DataTypes.INTEGER
     },
   }, {});
@@ -50,8 +50,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'hostId'
     });
 
-    Event.belongsTo(models.EventType, {
-      foreignKey: 'eventTypeId'
+    Event.belongsTo(models.Category, {
+      foreignKey: 'categoryId'
     });
 
     Event.belongsTo(models.Venue, {

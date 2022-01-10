@@ -3,7 +3,7 @@ const db = require('../models');
 // GET ALL EVENTS (PUBLISHED)
 async function getAllPublishedEvents() {
     return await db.Event.findAll({
-        include: [db.Venue, db.EventType, db.User],
+        include: [db.Venue, db.Category, db.User],
         where: {
             published: true
         }
@@ -14,7 +14,7 @@ async function getAllPublishedEvents() {
 // GET AN EVENT (PUBLISHED)
 async function getEvent(eventId) {
     return await db.Event.findByPk(eventId, {
-        include: [db.Venue, db.EventType, db.User],
+        include: [db.Venue, db.Category, db.User],
         where: {
             published: true
         }
@@ -35,7 +35,7 @@ async function createEvent(userId, requestBody) {
         imageUrl,
         published,
         venueId,
-        eventTypeId
+        categoryId
     } = requestBody;
 
     return await db.Event.create({
@@ -51,7 +51,7 @@ async function createEvent(userId, requestBody) {
         published,
         hostId: userId,
         venueId,
-        eventTypeId
+        categoryId
     });
 }
 
@@ -69,7 +69,7 @@ async function updateEvent(event, requestBody) {
         imageUrl,
         published,
         venueId,
-        eventTypeId
+        categoryId
     } = requestBody;
 
     return await event.update({
@@ -84,7 +84,7 @@ async function updateEvent(event, requestBody) {
         imageUrl,
         published,
         venueId,
-        eventTypeId
+        categoryId
     })
 };
 

@@ -49,9 +49,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Venues' }
       },
-      eventTypeId: {
+      categoryId: {
         type: Sequelize.INTEGER,
-        references: { model: 'EventTypes' }
+        references: { model: 'Categories' }
       },
       createdAt: {
         allowNull: false,

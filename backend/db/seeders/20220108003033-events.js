@@ -19,7 +19,7 @@ module.exports = {
         published: true,
         hostId: 1,
         venueId: 1,
-        eventTypeId: 4
+        categoryId: 4
       }, {
         name: 'Daft Punk & Friends night',
         startTime: new Date(),
@@ -30,7 +30,7 @@ module.exports = {
         published: true,
         hostId: 1,
         venueId: 1,
-        eventTypeId: 4
+        categoryId: 4
       }, {
         name: 'Techno Takeover',
         startTime: new Date(),
@@ -41,7 +41,7 @@ module.exports = {
         published: false,
         hostId: 1,
         venueId: 1,
-        eventTypeId: 4
+        categoryId: 4
       }, {
         name: 'TCHAMI X AC SLATER',
         startTime: new Date(),
@@ -52,7 +52,7 @@ module.exports = {
         published: false,
         hostId: 1,
         venueId: 3,
-        eventTypeId: 3
+        categoryId: 3
       }, {
         name: 'Crush SF',
         startTime: new Date(),
@@ -63,7 +63,7 @@ module.exports = {
         published: true,
         hostId: 2,
         venueId: 1,
-        eventTypeId: 3
+        categoryId: 3
       }, {
         name: 'Polo & Pan SF',
         startTime: new Date(),
@@ -74,7 +74,7 @@ module.exports = {
         published: true,
         hostId: 1,
         venueId: 4,
-        eventTypeId: 3
+        categoryId: 3
       }, {
         name: 'Said the Sky',
         startTime: new Date(),
@@ -85,7 +85,7 @@ module.exports = {
         published: false,
         hostId: 1,
         venueId: 4,
-        eventTypeId: 3
+        categoryId: 3
       }, {
         name: 'Dabin\'s Between Broken @ NYC',
         startTime: new Date(),
@@ -96,7 +96,7 @@ module.exports = {
         published: true,
         hostId: 1,
         venueId: 6,
-        eventTypeId: 3
+        categoryId: 3
       }, {
         name: 'Beyond Wonderland',
         startTime: new Date(),
@@ -107,7 +107,7 @@ module.exports = {
         published: true,
         hostId: 2,
         venueId: 5,
-        eventTypeId: 1
+        categoryId: 1
       }, {
         name: 'Wasteland',
         startTime: new Date(),
@@ -118,7 +118,7 @@ module.exports = {
         published: true,
         hostId: 2,
         venueId: 5,
-        eventTypeId: 1
+        categoryId: 1
       }, {
         name: 'Electric Forest',
         startTime: new Date(),
@@ -129,7 +129,7 @@ module.exports = {
         published: true,
         hostId: 1,
         venueId: 4,
-        eventTypeId: 1
+        categoryId: 1
       }, {
         name: 'Lightning in a Bottle',
         startTime: new Date(),
@@ -140,7 +140,7 @@ module.exports = {
         published: false,
         hostId: 1,
         venueId: 4,
-        eventTypeId: 1
+        categoryId: 1
       },
     ], {});
   },

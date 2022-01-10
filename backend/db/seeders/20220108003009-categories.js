@@ -8,7 +8,7 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkInsert('EventTypes', [
+    return queryInterface.bulkInsert('Categories', [
       { name: 'Festival' },
       { name: 'Club' },
       { name: 'Concert' },
@@ -24,6 +24,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkDelete('EventTypes', null, {});
+    return queryInterface.bulkDelete('Categories', null, {});
   }
 };

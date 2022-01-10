@@ -19,7 +19,7 @@ function EventCreate() {
     const [eventUrl, setEventUrl] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [venueId, setVenueId] = useState('');
-    const [eventType, setEventType] = useState('');
+    const [category, setCategory] = useState('');
 
     const [venueName, setVenueName] = useState('');
     const [venueAddress, setVenueAddress] = useState('');
@@ -56,7 +56,7 @@ function EventCreate() {
         if (!startTime) errors.startTime = 'Please enter a start time.';
         if (!endTime) errors.endTime = 'Please enter an end time.';
         if (!description) errors.description = 'Please provide a short description about your event.';
-        if (!eventType.length) errors.eventType = 'Let us know what type of event you\'re hosting.'
+        if (!category.length) errors.category = 'Let us know what type of event you\'re hosting.'
 
         if (!virtualEvent) {
             errors.virtualEvent = 'Let us know if your event is virtual or in-person.';
@@ -327,14 +327,14 @@ function EventCreate() {
                     <label htmlFor='event-type'>
                         Event Type:
                     </label>
-                    {'eventType' in validateErrors && (
-                        <div className='form__submit--error'>{validateErrors.eventType}</div>
+                    {'category' in validateErrors && (
+                        <div className='form__submit--error'>{validateErrors.category}</div>
                     )}
                     <input
                         name='start-time'
                         type='text'
-                        value={eventType}
-                        onChange={(e) => setEventType(e.target.value)}
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
                     />
                 </div>
                 <div>

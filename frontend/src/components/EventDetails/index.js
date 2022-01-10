@@ -17,7 +17,7 @@ function EventDetails() {
         virtualEvent,
         eventUrl,
         imageUrl,
-        eventTypeId
+        categoryId
     } = event;
 
     const {
@@ -25,7 +25,7 @@ function EventDetails() {
 
     } = event.Venue;
 
-    const { name: eventType } = event.EventType;
+    const { name: category } = event.Category;
 
     console.log('event details', event)
     return (

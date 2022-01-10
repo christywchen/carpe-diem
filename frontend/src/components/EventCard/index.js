@@ -8,9 +8,9 @@ import eventCard from '../../assets/event-card.jpg';
 
 function EventCard({ eventId }) {
     const event = useSelector(state => state.event.events[eventId]);
-    const { name, date, eventTypeId } = event;
+    const { name, date, categoryId } = event;
     const { city: venueCity, state: venueState } = event.Venue;
-    const { name: eventType } = event.EventType;
+    const { name: category } = event.Category;
 
     return (
         <>
@@ -21,7 +21,7 @@ function EventCard({ eventId }) {
                     </Link>
                 </div>
                 <div className='event__card--body'>
-                    <div className={`event__card--flag event__card--flag-${eventTypeId}`}>{eventType}</div>
+                    <div className={`event__card--flag event__card--flag-${categoryId}`}>{category}</div>
                     <h3 className='event__card--title'>{name}
                     </h3>
                     <div className='event__card--date'>{date}</div>
