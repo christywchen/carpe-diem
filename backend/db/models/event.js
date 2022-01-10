@@ -36,12 +36,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     published: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
-      type: DataTypes.BOOLEAN
     },
     hostId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      type: DataTypes.INTEGER
     },
     venueId: {
       type: DataTypes.INTEGER
