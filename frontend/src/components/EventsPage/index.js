@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Routes, Route, Outlet, Router } from 'react-router-dom';
 
 import { getAllEvents } from '../../store/event';
+
+import EventDetails from '../EventDetails';
 import EventCard from '../EventCard';
 
 import './Events.css';
@@ -10,6 +13,7 @@ function Events() {
     const dispatch = useDispatch();
     const eventsObj = useSelector((state) => state.event.events);
     const events = Object.values(eventsObj)
+
 
     useEffect(() => {
         dispatch(getAllEvents());
@@ -21,7 +25,7 @@ function Events() {
 
             <div className='events__container--items'>
                 {events.map((event) =>
-                    (< EventCard eventId={event.id} />)
+                    (< EventCard key={event.id} eventId={event.id} />)
                 )}
             </div>
         </ >

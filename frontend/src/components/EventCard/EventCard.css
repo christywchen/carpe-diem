@@ -13,8 +13,39 @@
 
 .event__card--image {
     height: 150px;
+    display: flex;
     overflow: hidden;
     border-radius: 4px 4px 0 0;
+}
+
+.event__card--flag {
+    /* position: absolute; */
+    width: fit-content;
+    justify-self: flex-end;
+    /* margin: 6px; */
+    padding: 3px 5px;
+
+    color: white;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+}
+
+.event__card--flag-1 {
+    background-color: var(--event-flag-1);
+}
+
+.event__card--flag-2 {
+    background-color: var(--event-flag-2);
+}
+
+.event__card--flag-3 {
+    background-color: var(--event-flag-3);
+}
+
+.event__card--flag-4 {
+    background-color: var(--event-flag-4);
 }
 
 .event__card--image img {
@@ -23,7 +54,7 @@
 }
 
 .event__card--body {
-    padding: 20px;
+    padding: 5px 15px;
 }
 
 .event__card--body div {
