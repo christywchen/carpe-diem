@@ -13,38 +13,19 @@ function EventCreate() {
     const [description, setDescription] = useState('');
     const [capacity, setCapacity] = useState('');;
     const [virtualEvent, setVirtualEvent] = useState('');
-    const [secretLocation, setSecretLocation] = useState('');
+    const [secretLocation, setSecretLocation] = useState(false);
     const [eventUrl, setEventUrl] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [venueId, setVenueId] = useState('');
     const [eventType, setEventType] = useState('');
 
-    let locationInfo;
-    useEffect(() => {
-        console.log(virtualEvent)
-        if (virtualEvent === 'true') {
-            locationInfo = (
-                <>
-                    <div>
-                        <label htmlFor='name'>
-                            Event Name:
-                        </label>
-                        <input
-                            name='name'
-                            type='text'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
-                </>
-            )
-        } else {
-            locationInfo = (
-                <p>Get the address</p>
-            )
-        }
+    const [venueName, setVenueName] = useState('');
+    const [venueAddress, setVenueAddress] = useState('');
+    const [venueCity, setVenueCity] = useState('');
+    const [venueState, setVenueState] = useState('');
+    const [venueZip, setVenueZip] = useState('');
 
-        console.log(locationInfo)
+    useEffect(() => {
     }, [virtualEvent]);
 
     // if user is not authenticated
@@ -66,15 +47,129 @@ function EventCreate() {
         )
     }
 
-    // create event form for authenticated users
+    // otherwise, render form as normal
+
+    // render this subcomponent depending event
+    // being virtual or physical
+    let getLocationInfo;
+
+    if (virtualEvent) {
+        getLocationInfo = (
+            <>
+                <div>
+                    <label htmlFor='event-url'>
+                        Stream Url: The Stream url will be shared on the day of the event.
+                    </label>
+                    <input
+                        name='event-url'
+                        type='text'
+                        value={eventUrl}
+                        onChange={(e) => setEventUrl(e.target.value)}
+                    />
+                </div>
+            </>
+        );
+    } else {
+        getLocationInfo = (
+            <>
+                <div>
+                    <label htmlFor='venue-name'>
+                        Venue Name:
+                    </label>
+                    <input
+                        name='venue-name'
+                        type='text'
+                        value={venueName}
+                        onChange={(e) => setVenueName(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='venue-address'>
+                        Address:
+                    </label>
+                    <input
+                        name='venue-address'
+                        type='text'
+                        value={venueAddress}
+                        onChange={(e) => setVenueAddress(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='venue-city'>
+                        City:
+                    </label>
+                    <input
+                        name='venue-city'
+                        type='text'
+                        value={venueCity}
+                        onChange={(e) => setVenueCity(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='venue-state'>
+                        State:
+                    </label>
+                    <input
+                        name='venue-state'
+                        type='text'
+                        value={venueState}
+                        onChange={(e) => setVenueState(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='venue-zip'>
+                        Zip:
+                    </label>
+                    <input
+                        name='venue-zip'
+                        type='text'
+                        value={venueZip}
+                        onChange={(e) => setVenueZip(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='event-capacity'>
+                        Event Capacity:
+                    </label>
+                    <input
+                        name='event-capacity'
+                        type='number'
+                        value={capacity}
+                        onChange={(e) => setCapacity(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='secret-location'>
+                        Secret Location? The address specifics will be shared with attendees on the day of the event.
+                    </label>
+                    <input
+                        name='secret-location'
+                        type='checkbox'
+                        value='true'
+                        checked={secretLocation === true}
+                        onChange={(e) => setSecretLocation(!secretLocation)}
+                    /> Secret
+                </div>
+
+            </>
+
+        )
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        console.log('herro');
+    }
 
     return (
         <>
-
             <h1>Host an Event</h1>
             <p>Tell us about your event and give people a reason to come! Don't forget to share what makes your event unique.</p>
-            <form className='create__event--form'>
-
+            <form
+                onSubmit={handleSubmit}
+                className='create__event--form'
+            >
                 <div>
                     <label htmlFor='name'>
                         Event Name:
@@ -84,17 +179,6 @@ function EventCreate() {
                         type='text'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor='name'>
-                        Start Time:
-                    </label>
-                    <input
-                        name='start-time'
-                        type='datetime-local'
-                        value={startTime}
-                        onChange={(e) => setStartTime(e.target.value)}
                     />
                 </div>
                 <div>
@@ -108,18 +192,29 @@ function EventCreate() {
                     />
                 </div>
                 <div>
-                    <label htmlFor='name'>
-                        End Time:
+                    <label htmlFor='start-time'>
+                        Start Time:
                     </label>
                     <input
                         name='start-time'
                         type='datetime-local'
-                        value={endTime}
+                        value={startTime}
                         onChange={(e) => setStartTime(e.target.value)}
                     />
                 </div>
                 <div>
-                    <label htmlFor='name'>
+                    <label htmlFor='end-time'>
+                        End Time:
+                    </label>
+                    <input
+                        name='end-time'
+                        type='datetime-local'
+                        value={endTime}
+                        onChange={(e) => setEndTime(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='event-type'>
                         Event Type:
                     </label>
                     <input
@@ -137,29 +232,18 @@ function EventCreate() {
                         name='virtual-event'
                         type='radio'
                         value='true'
-                        checked={virtualEvent === 'true'}
-                        onChange={(e) => setVirtualEvent(e.target.value)}
+                        checked={virtualEvent === true}
+                        onChange={(e) => setVirtualEvent(true)}
                     /> Virtual
                     <input
                         name='virtual-event'
                         type='radio'
                         value='false'
-                        checked={virtualEvent === 'false'}
-                        onChange={(e) => setVirtualEvent(e.target.value)}
+                        checked={virtualEvent === false}
+                        onChange={(e) => setVirtualEvent(false)}
                     /> Physical
                 </div>
-                {locationInfo}
-                <div>
-                    <label htmlFor='event-capacity'>
-                        Event Capacity:
-                    </label>
-                    <input
-                        name='event-capacity'
-                        type='number'
-                        value={capacity}
-                        onChange={(e) => setCapacity(e.target.value)}
-                    />
-                </div>
+                {virtualEvent === true || virtualEvent === false ? getLocationInfo : null}
                 <button
                     type="submit"
                 >

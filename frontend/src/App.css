@@ -39,10 +39,14 @@
 
 #main {
   width: 75%;
+
+  overflow-y: auto;
   margin: 40px auto 220px;
 }
 
 #container {
   overflow: auto;
+
+  min-height: 100vh;
   background: no-repeat fixed bottom/100% var(--background) url("./assets/wallpaper-resize.jpg");
 }
