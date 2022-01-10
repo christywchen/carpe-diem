@@ -50,9 +50,6 @@ export const getAllEvents = () => async (dispatch) => {
 export const createEvent = (newEvent) => async (dispatch) => {
     const res = await csrfFetch('/api/events', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
         body: JSON.stringify(newEvent)
     });
 
@@ -69,9 +66,6 @@ export const updateEvent = (eventId, updatedEvent) => async (dispatch) => {
     console.log(eventId, updatedEvent)
     const res = await csrfFetch(`/api/events/${eventId}`, {
         method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
         body: JSON.stringify(updatedEvent)
     });
 
