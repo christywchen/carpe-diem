@@ -40,6 +40,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       hostId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Users' }
       },
