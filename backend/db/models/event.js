@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     published: {
+      allowNull: false,
       type: DataTypes.BOOLEAN
     },
     hostId: {
