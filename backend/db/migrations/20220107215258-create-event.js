@@ -24,7 +24,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       secretLocation: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       virtualEvent: {
         type: Sequelize.BOOLEAN
