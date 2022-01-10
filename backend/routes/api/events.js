@@ -10,6 +10,9 @@ const router = express.Router();
 
 // validate events
 const validateEvent = [
+    check('published')
+        .exists()
+        .withMessage('Event needs a status of published: true or false.'),
     check('name')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
@@ -17,6 +20,10 @@ const validateEvent = [
         .isLength({ max: 75 })
         .withMessage('Maximum length is 75 characters.'),
     check('startTime')
+        .if((value, { req }) => req.body.published)
+        .exists({ checkFalsy: true })
+        .withMessage('Choose a start time for your event.'),
+    check('endTime')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
         .withMessage('Choose a start time for your event.'),
@@ -30,6 +37,7 @@ const validateEvent = [
         .withMessage('Please provide a description about the event.'),
     check('capacity')
         .if((value, { req }) => req.body.published)
+        .if((value, { req }) => !req.body.virtualEvent)
         .exists({ checkFalsy: true })
         .isNumeric()
         .withMessage('Please provide a number for your event\'s maximum capacity.'),
