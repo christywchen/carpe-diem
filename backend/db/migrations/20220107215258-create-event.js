@@ -36,6 +36,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       published: {
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       hostId: {
