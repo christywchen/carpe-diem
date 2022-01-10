@@ -7,6 +7,8 @@ function EventCreate() {
     const sessionUser = useSelector(state => state.session.user);
     const navigate = useNavigate();
 
+    const [published, setPublished] = useState(true);
+
     const [name, setName] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
@@ -24,30 +26,106 @@ function EventCreate() {
     const [venueCity, setVenueCity] = useState('');
     const [venueState, setVenueState] = useState('');
     const [venueZip, setVenueZip] = useState('');
+    const [validateErrors, setValidateErrors] = useState({});
+    const [validateVenue, setValidateVenue] = useState({})
 
-    useEffect(() => {
-    }, [virtualEvent]);
-
-    // if user is not authenticated
-    // redirect to login page after showing a message
+    /* HOOKS */
+    // if user is not authenticated, redirect user to log in page
     useEffect(() => {
         if (!sessionUser) {
             setTimeout(() => {
                 navigate('/signup');
             }, 1500);
-
         } else {
             return null;
         }
     }, []);
 
+    // additional input fields depending on if the event is physical or virtual
+    useEffect(() => {
+    }, [validateForm, validateVenue, virtualEvent]);
+
+    /* HELPER FUNCTIONS */
+    function validateForm() {
+        const errors = {};
+        let venueErrors;
+
+        if (!name.length) errors.name = 'Please include a name for your event.';
+        else if (name.length > 75) errors.name = 'Maximum character length is 75 characters.';
+
+        if (!startTime) errors.startTime = 'Please enter a start time.';
+        if (!endTime) errors.endTime = 'Please enter an end time.';
+        if (!description) errors.description = 'Please provide a short description about your event.';
+        if (!eventType.length) errors.eventType = 'Let us know what type of event you\'re hosting.'
+
+        if (!virtualEvent) {
+            errors.virtualEvent = 'Let us know if your event is virtual or in-person.';
+
+            if (virtualEvent === false) {
+                venueErrors = validateVenueForm();
+
+                if (!capacity) errors.capacity = 'Please provide an attendee capacity for your event.';
+            }
+        }
+
+        return [errors, venueErrors];
+    }
+
+    function validateVenueForm() {
+        const errors = {};
+        const zipString = /^\d{5}(?:[-\s]?\d{4})?$/;
+        const venueStr = String(venueZip);
+
+        if (!venueName) errors.venueName = 'Please provide the name of the venue';
+        if (!venueAddress || !venueCity || !venueState || !venueZip) errors.venueAddress = 'Please provide location information for the venue.';
+        if (venueState.length > 2) errors.venueState = 'Please provide a two-letter abbreviation for the state.';
+        if (!zipString.test(venueStr)) errors.venueZip = 'Please provide zip code in the following formats: 12345, 12345-6789, or 123456789.'
+
+        return errors;
+    }
+
+    function createRecord() {
+        if (published) {
+            validateForm();
+        } else {
+            setPublished(false);
+        }
+
+        // CREATE THE RECORD WITH DISPATCH
+    }
+
+    function resetForm() {
+
+    }
+
+    /* HANDLE SUBMISSION */
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const errors = validateForm();
+        const [formErrors, venueErrors] = errors;
+
+        if (Object.keys(formErrors).length) {
+            if (venueErrors && Object.keys(venueErrors).length) {
+                setValidateVenue(venueErrors);
+            }
+
+            return setValidateErrors(formErrors);
+        }
+
+        createRecord();
+        resetForm()
+
+        console.log('herro');
+    }
+
+    /* OTHER THINGS */
+    // show unauthenticated user a message before redirecting
     if (!sessionUser) {
         return (
             <p>You must be logged in to create an event. Redirecting to the login page.</p>
         )
     }
-
-    // otherwise, render form as normal
 
     // render this subcomponent depending event
     // being virtual or physical
@@ -76,6 +154,9 @@ function EventCreate() {
                     <label htmlFor='venue-name'>
                         Venue Name:
                     </label>
+                    {'venueName' in validateVenue && (
+                        <div className='form__submit--error'>{validateVenue.venueName}</div>
+                    )}
                     <input
                         name='venue-name'
                         type='text'
@@ -84,6 +165,9 @@ function EventCreate() {
                     />
                 </div>
                 <div>
+                    {'venueAddress' in validateVenue && (
+                        <div className='form__submit--error'>{validateVenue.venueAddress}</div>
+                    )}
                     <label htmlFor='venue-address'>
                         Address:
                     </label>
@@ -109,6 +193,9 @@ function EventCreate() {
                     <label htmlFor='venue-state'>
                         State:
                     </label>
+                    {'venueState' in validateVenue && (
+                        <div className='form__submit--error'>{validateVenue.venueState}</div>
+                    )}
                     <input
                         name='venue-state'
                         type='text'
@@ -120,6 +207,9 @@ function EventCreate() {
                     <label htmlFor='venue-zip'>
                         Zip:
                     </label>
+                    {'venueZip' in validateVenue && (
+                        <div className='form__submit--error'>{validateVenue.venueZip}</div>
+                    )}
                     <input
                         name='venue-zip'
                         type='text'
@@ -127,6 +217,9 @@ function EventCreate() {
                         onChange={(e) => setVenueZip(e.target.value)}
                     />
                 </div>
+                {'capacity' in validateErrors && (
+                    <div className='form__submit--error'>{validateErrors.capacity}</div>
+                )}
                 <div>
                     <label htmlFor='event-capacity'>
                         Event Capacity:
@@ -156,12 +249,6 @@ function EventCreate() {
         )
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        console.log('herro');
-    }
-
     return (
         <>
             <h1>Host an Event</h1>
@@ -174,6 +261,9 @@ function EventCreate() {
                     <label htmlFor='name'>
                         Event Name:
                     </label>
+                    {'name' in validateErrors && (
+                        <div className='form__submit--error'>{validateErrors.name}</div>
+                    )}
                     <input
                         name='name'
                         type='text'
@@ -182,9 +272,23 @@ function EventCreate() {
                     />
                 </div>
                 <div>
+                    <label htmlFor='image'>
+                        Event Image:
+                    </label>
+                    <input
+                        name='image'
+                        type='text'
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
+                    />
+                </div>
+                <div>
                     <label htmlFor='description'>
                         Description:
                     </label>
+                    {'description' in validateErrors && (
+                        <div className='form__submit--error'>{validateErrors.description}</div>
+                    )}
                     <textarea
                         name='description'
                         value={description}
@@ -195,6 +299,9 @@ function EventCreate() {
                     <label htmlFor='start-time'>
                         Start Time:
                     </label>
+                    {'startTime' in validateErrors && (
+                        <div className='form__submit--error'>{validateErrors.startTime}</div>
+                    )}
                     <input
                         name='start-time'
                         type='datetime-local'
@@ -206,6 +313,9 @@ function EventCreate() {
                     <label htmlFor='end-time'>
                         End Time:
                     </label>
+                    {'endTime' in validateErrors && (
+                        <div className='form__submit--error'>{validateErrors.endTime}</div>
+                    )}
                     <input
                         name='end-time'
                         type='datetime-local'
@@ -217,6 +327,9 @@ function EventCreate() {
                     <label htmlFor='event-type'>
                         Event Type:
                     </label>
+                    {'eventType' in validateErrors && (
+                        <div className='form__submit--error'>{validateErrors.eventType}</div>
+                    )}
                     <input
                         name='start-time'
                         type='text'
@@ -228,6 +341,9 @@ function EventCreate() {
                     <label htmlFor='virtual-event'>
                         Virtual or Physical Event:
                     </label>
+                    {'virtualEvent' in validateErrors && (
+                        <div className='form__submit--error'>{validateErrors.virtualEvent}</div>
+                    )}
                     <input
                         name='virtual-event'
                         type='radio'
