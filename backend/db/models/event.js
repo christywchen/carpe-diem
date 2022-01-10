@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN
     },
     hostId: {
+      allowNull: false,
       type: DataTypes.INTEGER
     },
     venueId: {
