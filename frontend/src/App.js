@@ -8,6 +8,9 @@ import Navigation from './components/Navigation';
 import Footer from "./components/Footer";
 import Events from './components/EventsPage'
 import EventDetails from './components/EventDetails';
+import EditEvent from './components/EditEvent';
+import PageNotFound from './components/PageNotFound';
+
 import * as sessionActions from "./store/session";
 
 import './App.css';
@@ -27,13 +30,14 @@ function App() {
         {isLoaded && (
           <div id='main'>
             <Routes>
-              <Route path='/' element={<Navigate to="/events" />} />
-              <Route path='/events/*' element={<Events />} />
+              <Route path='*' element={<Navigate to='/not-found' />} />
+              <Route path='/' element={<Navigate to='/events' />} />
+              <Route path='/events' element={<Events />} />
+              <Route path='/events/:eventId' element={<EventDetails />} />
+              <Route path='/events/:eventId/edit' element={<EditEvent />} />
               <Route path='/login' element={<LoginForm />} />
               <Route path='/signup' element={<SignUpForm />} />
-              <Route element={<div>Page Not Found</div>} />
-              <Route path='/events/:eventId' element={<EventDetails />} />
-
+              <Route path='/not-found' element={<PageNotFound />} />
             </Routes >
 
             <Footer />

@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route, Outlet, Router } from 'react-router-dom';
 
 import { getAllEvents } from '../../store/event';
 
-import EventDetails from '../EventDetails';
 import EventCard from '../EventCard';
 
 import './Events.css';

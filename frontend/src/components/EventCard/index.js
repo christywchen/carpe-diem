@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './EventCard.css';
 
@@ -8,9 +8,9 @@ import eventCard from '../../assets/event-card.jpg';
 
 function EventCard({ eventId }) {
     const event = useSelector(state => state.event.events[eventId]);
-    const { name, date, location, eventTypeId } = event;
-    const { name: eventType } = event.EventType;
+    const { name, date, eventTypeId } = event;
     const { city: venueCity, state: venueState } = event.Venue;
+    const { name: eventType } = event.EventType;
 
     return (
         <>
