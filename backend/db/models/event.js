@@ -2,25 +2,25 @@
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     name: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false
+    endTime: {
+      type: DataTypes.DATE
+    },
+    endTime: {
+      type: DataTypes.DATE
     },
     description: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.TEXT
     },
-    capacity: DataTypes.INTEGER,
+    capacity: {
+      type: DataTypes.INTEGER
+    },
     secretLocation: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: DataTypes.BOOLEAN
     },
     virtualEvent: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: DataTypes.BOOLEAN
     },
     eventUrl: {
       type: DataTypes.STRING
@@ -28,16 +28,17 @@ module.exports = (sequelize, DataTypes) => {
     imageUrl: {
       type: DataTypes.STRING
     },
+    published: {
+      type: DataTypes.BOOLEAN
+    },
     hostId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     venueId: {
       type: DataTypes.INTEGER
     },
     eventTypeId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
   }, {});
   Event.associate = function (models) {

@@ -9,29 +9,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(75),
-        allowNull: false
+        type: Sequelize.STRING(75)
       },
-      date: {
-        type: Sequelize.DATE,
-        allowNull: false
+      startTime: {
+        type: Sequelize.DATE
+      },
+      endTime: {
+        type: Sequelize.DATE
       },
       description: {
-        type: Sequelize.TEXT,
-        allowNull: false
+        type: Sequelize.TEXT
       },
       capacity: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       secretLocation: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
+        type: Sequelize.BOOLEAN
       },
       virtualEvent: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
+        type: Sequelize.BOOLEAN
       },
       eventUrl: {
         type: Sequelize.STRING
@@ -39,10 +35,12 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING
       },
+      published: {
+        type: Sequelize.BOOLEAN
+      },
       hostId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Users' },
-        allowNull: false
+        references: { model: 'Users' }
       },
       venueId: {
         type: Sequelize.INTEGER,
@@ -50,8 +48,7 @@ module.exports = {
       },
       eventTypeId: {
         type: Sequelize.INTEGER,
-        references: { model: 'EventTypes' },
-        allowNull: false
+        references: { model: 'EventTypes' }
       },
       createdAt: {
         allowNull: false,
