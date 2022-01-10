@@ -27,10 +27,6 @@ const validateEvent = [
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
         .withMessage('Choose a start time for your event.'),
-    check('startTime')
-        .if((value, { req }) => req.body.published)
-        .exists({ checkFalsy: true })
-        .withMessage('Choose a end time for your event.'),
     check('description')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
