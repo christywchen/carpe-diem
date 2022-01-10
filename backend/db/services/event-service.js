@@ -1,16 +1,23 @@
 const db = require('../models');
 
-// GET ALL EVENTS
-async function getAllEvents() {
+// GET ALL EVENTS (PUBLISHED)
+async function getAllPublishedEvents() {
     return await db.Event.findAll({
-        include: [db.Venue, db.EventType, db.User]
+        include: [db.Venue, db.EventType, db.User],
+        where: {
+            published: true
+        }
+
     });
 }
 
-// GET AN EVENT
+// GET AN EVENT (PUBLISHED)
 async function getEvent(eventId) {
     return await db.Event.findByPk(eventId, {
-        include: [db.Venue, db.EventType, db.User]
+        include: [db.Venue, db.EventType, db.User],
+        where: {
+            published: true
+        }
     });
 }
 
@@ -18,20 +25,30 @@ async function getEvent(eventId) {
 async function createEvent(userId, requestBody) {
     const {
         name,
-        date,
+        startTime,
+        endTime,
         description,
         capacity,
         secretLocation,
+        virtualEvent,
+        eventUrl,
+        imageUrl,
+        published,
         venueId,
         eventTypeId
     } = requestBody;
 
     return await db.Event.create({
         name,
-        date,
+        startTime,
+        endTime,
         description,
         capacity,
         secretLocation,
+        virtualEvent,
+        eventUrl,
+        imageUrl,
+        published,
         hostId: userId,
         venueId,
         eventTypeId
@@ -42,20 +59,30 @@ async function createEvent(userId, requestBody) {
 async function updateEvent(event, requestBody) {
     const {
         name,
-        date,
+        startTime,
+        endTime,
         description,
         capacity,
         secretLocation,
+        virtualEvent,
+        eventUrl,
+        imageUrl,
+        published,
         venueId,
         eventTypeId
     } = requestBody;
 
     return await event.update({
         name,
-        date,
+        startTime,
+        endTime,
         description,
         capacity,
         secretLocation,
+        virtualEvent,
+        eventUrl,
+        imageUrl,
+        published,
         venueId,
         eventTypeId
     })
@@ -67,7 +94,7 @@ async function deleteEvent(event) {
 }
 
 module.exports = {
-    getAllEvents,
+    getAllPublishedEvents,
     getEvent,
     createEvent,
     updateEvent,

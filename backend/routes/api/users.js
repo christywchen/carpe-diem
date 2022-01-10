@@ -5,6 +5,7 @@ const { check } = require('express-validator');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { User } = require('../../db/models');
+const userService = require('../../db/services/user-service');
 
 const router = express.Router();
 
@@ -37,6 +38,32 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
     await setTokenCookie(res, user);
 
     return res.json({ user });
+}));
+
+// GET /api/users/:userId/events/published (get a user's published events)
+router.get('/:userId/events/published', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId);
+    const events = await userService.getAllPublishedEvents(userId);
+
+    res.json(events);
+}));
+
+// GET /api/users/:userId/events/drafts (get a user's draft events)
+router.get('/:userId/events/drafts', requireAuth, asyncHandler(async (req, res, next) => {
+    const { id } = req.user;
+    const userId = parseInt(req.params.userId);
+
+    if (id === userId) {
+        const events = await userService.getAllDraftEvents(userId);
+        res.json(events);
+    } else {
+        const err = new Error('Forbidden');
+        err.status = 403;
+        err.title = 'User is not authorized';
+        err.errors = ['You do not have permission to access this resource.'];
+        return next(err);
+    }
+
 }));
 
 module.exports = router;

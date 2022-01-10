@@ -11,30 +11,39 @@ const router = express.Router();
 // validate events
 const validateEvent = [
     check('name')
+        .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
         .withMessage('Please provide an event name.')
         .isLength({ max: 75 })
         .withMessage('Maximum length is 75 characters.'),
-    check('date')
+    check('startTime')
+        .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
-        .withMessage('Choose a date for your event.'),
+        .withMessage('Choose a start time for your event.'),
+    check('startTime')
+        .if((value, { req }) => req.body.published)
+        .exists({ checkFalsy: true })
+        .withMessage('Choose a end time for your event.'),
     check('description')
+        .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
         .withMessage('Please provide a description about the event.'),
     check('capacity')
+        .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
         .isNumeric()
         .withMessage('Please provide a number for your event\'s maximum capacity.'),
     check('venueId')
+        .if((value, { req }) => req.body.published)
         .if((value, { req }) => !req.body.virtualEvent)
         .notEmpty()
         .withMessage('Physical events require a venue location.'),
     handleValidationErrors
 ]
 
-// GET /api/events (get all events)
+// GET /api/events (get all published events)
 router.get('/', asyncHandler(async (_req, res) => {
-    const events = await eventService.getAllEvents();
+    const events = await eventService.getAllPublishedEvents();
 
     res.json(events);
 }));
@@ -92,6 +101,5 @@ router.delete('/:eventId', requireAuth, asyncHandler(async (req, res, next) => {
         return next(err);
     }
 }));
-
 
 module.exports = router;
