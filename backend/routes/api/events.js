@@ -17,8 +17,8 @@ const validateEvent = [
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
         .withMessage('Please provide an event name.')
-        .isLength({ max: 75 })
-        .withMessage('Maximum length is 75 characters.'),
+        .isLength({ max: 50 })
+        .withMessage('Maximum length is 50 characters.'),
     check('startTime')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
@@ -77,7 +77,7 @@ router.patch('/:eventId', requireAuth, validateEvent, asyncHandler(async (req, r
 
     if (hostId === id) {
         const updatedEvent = await eventService.updateEvent(event, req.body);
-        res.json({ updatedEvent });
+        res.json(updatedEvent);
     } else {
         const err = new Error('Forbidden');
         err.status = 403;
