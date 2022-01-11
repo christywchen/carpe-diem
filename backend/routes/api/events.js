@@ -26,7 +26,7 @@ const validateEvent = [
     check('endTime')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
-        .withMessage('Choose a start time for your event.'),
+        .withMessage('Choose a end time for the event.'),
     check('description')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
@@ -36,12 +36,16 @@ const validateEvent = [
         .if((value, { req }) => !req.body.virtualEvent)
         .exists({ checkFalsy: true })
         .isNumeric()
-        .withMessage('Please provide a number for your event\'s maximum capacity.'),
+        .withMessage('Please provide a number for the event\'s maximum capacity.'),
     check('venueId')
         .if((value, { req }) => req.body.published)
         .if((value, { req }) => !req.body.virtualEvent)
         .notEmpty()
         .withMessage('Physical events require a venue location.'),
+    check('categoryId')
+        .if((value, { req }) => req.body.published)
+        .notEmpty()
+        .withMessage('Events require a category.'),
     handleValidationErrors
 ]
 
