@@ -69,7 +69,7 @@ function EventCreate() {
                 venueZip,
                 published
             };
-            const venueRecord = await dispatch(createVenue(newVenue));
+            const venueRecord = await dispatch(createVenue(published, newVenue));
             venueId = venueRecord.id;
         } else {
             setCapacity('')
@@ -89,7 +89,7 @@ function EventCreate() {
             venueId: venueId ? venueId : null
         }
 
-        const eventRecord = await dispatch(createEvent(newEvent));
+        const eventRecord = await dispatch(createEvent(published, newEvent));
         const eventId = eventRecord.id;
 
         return eventId;

@@ -12,7 +12,6 @@ function Events() {
     const eventsObj = useSelector((state) => state.event.events);
     const events = Object.values(eventsObj)
 
-
     useEffect(() => {
         dispatch(getAllEvents());
     }, [dispatch]);

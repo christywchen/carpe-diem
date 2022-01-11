@@ -35,14 +35,14 @@ export const getVenue = () => async (dispatch) => {
     dispatch(loadVenues(data));
 };
 
-export const createVenue = (newVenue) => async (dispatch) => {
+export const createVenue = (published, newVenue) => async (dispatch) => {
     const res = await csrfFetch('/api/venues', {
         method: 'POST',
         body: JSON.stringify(newVenue)
     });
 
     const data = await res.json();
-    dispatch(addVenue(data));
+    if (published) dispatch(addVenue(data));
     return data;
 };
 
