@@ -51,6 +51,5 @@ export function validateVenueForm(venueName, venueAddress, venueCity, venueState
     if (!stateString.test(venueState)) errors.venueState = 'Please provide a two-letter abbreviation for the state.';
     if (!zipString.test(venueStr)) errors.venueZip = 'Please provide zip code in the following formats: 12345, 12345-6789, or 123456789.'
 
-
     return errors;
 }

@@ -44,20 +44,13 @@ function EventCreate() {
         }
     }, []);
 
-    // additional input fields depending on if the event is physical or virtual
+    // show additional input fields depending on if the event is physical or virtual
     useEffect(() => {
     }, [validateEvent, validateVenue, virtualEvent]);
 
     /* HELPER FUNCTIONS */
     function createRecord() {
-        // const validationItems = {
-        //     name, startTime, endTime, description, category, virtualEvent, capacity,
-        //     venueName, venueAddress, venueCity, venueState, venueZip
-        // };
-
-        // if (published) {
-        //     validateEventForm({ validationItems });
-        // } else {
+        // if (!published) {
         //     setPublished(false);
         // }
 
@@ -77,10 +70,8 @@ function EventCreate() {
         };
 
         const errors = validateEventForm({ validationItems });
-
         const [eventErrors, venueErrors] = errors;
 
-        console.log(venueErrors)
         if (Object.keys(eventErrors).length) {
             if (venueErrors && Object.keys(venueErrors).length) {
                 setValidateVenue(venueErrors);
