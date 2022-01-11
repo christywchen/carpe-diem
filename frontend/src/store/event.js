@@ -39,12 +39,8 @@ export const removeEvent = (eventId) => {
 export const getAllEvents = () => async (dispatch) => {
     const res = await csrfFetch('/api/events');
 
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(loadEvents(data));
-    } else {
-        throw res;
-    }
+    const data = await res.json();
+    dispatch(loadEvents(data));
 };
 
 export const createEvent = (newEvent) => async (dispatch) => {
@@ -53,13 +49,9 @@ export const createEvent = (newEvent) => async (dispatch) => {
         body: JSON.stringify(newEvent)
     });
 
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(addEvent(data));
-        return data;
-    } else {
-        throw res;
-    }
+    const data = await res.json();
+    dispatch(addEvent(data));
+    return data;
 };
 
 export const updateEvent = (eventId, updatedEvent) => async (dispatch) => {
@@ -68,13 +60,9 @@ export const updateEvent = (eventId, updatedEvent) => async (dispatch) => {
         body: JSON.stringify(updatedEvent)
     });
 
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(editEvent(data));
-        return data;
-    } else {
-        throw res;
-    }
+    const data = await res.json();
+    dispatch(editEvent(data));
+    return data;
 };
 
 export const deleteEvent = (eventId) => async (dispatch) => {

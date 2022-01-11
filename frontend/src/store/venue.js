@@ -31,12 +31,8 @@ export const editVenue = (venueId, updatedVenue) => {
 export const getVenue = () => async (dispatch) => {
     const res = await csrfFetch(`/api/venues`);
 
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(loadVenues(data));
-    } else {
-        throw res;
-    }
+    const data = await res.json();
+    dispatch(loadVenues(data));
 };
 
 export const createVenue = (newVenue) => async (dispatch) => {
@@ -45,14 +41,9 @@ export const createVenue = (newVenue) => async (dispatch) => {
         body: JSON.stringify(newVenue)
     });
 
-    if (res.ok) {
-        const data = await res.json();
-
-        dispatch(addVenue(data));
-        return data;
-    } else {
-        throw res;
-    }
+    const data = await res.json();
+    dispatch(addVenue(data));
+    return data;
 };
 
 export const updateVenue = (venueId, updatedVenue) => async (dispatch) => {
@@ -61,13 +52,9 @@ export const updateVenue = (venueId, updatedVenue) => async (dispatch) => {
         body: JSON.stringify(updatedVenue)
     });
 
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(editVenue(data));
-        return data;
-    } else {
-        throw res;
-    }
+    const data = await res.json();
+    dispatch(editVenue(data));
+    return data;
 };
 
 // initial state

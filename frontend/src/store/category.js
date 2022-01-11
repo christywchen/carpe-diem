@@ -14,12 +14,8 @@ export const loadCategories = (categories) => {
 export const getAllCategories = () => async (dispatch) => {
     const res = await csrfFetch('/api/categories');
 
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(loadCategories(data));
-    } else {
-        throw res;
-    }
+    const data = await res.json();
+    dispatch(loadCategories(data));
 };
 
 // initial state
