@@ -5,12 +5,13 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginForm from './components/LoginFormModal';
 import SignUpForm from './components/SignUpFormModal';
 import Navigation from './components/Navigation';
-import Footer from "./components/Footer";
+import UserDashboard from './components/UserDashboard';
 import Events from './components/EventsPage'
 import EventDetails from './components/EventDetails';
 import EventCreate from './components/EventCreate';
 import EventEdit from './components/EventEdit';
 import PageNotFound from './components/PageNotFound';
+import Footer from "./components/Footer";
 
 import * as sessionActions from "./store/session";
 
@@ -33,6 +34,7 @@ function App() {
             <Routes>
               <Route path='*' element={<Navigate to='/not-found' />} />
               <Route path='/' element={<Navigate to='/events' />} />
+              <Route path='/dashboard' element={<UserDashboard />} />
               <Route path='/events' element={<Events />} />
               <Route path='/events/new' element={<EventCreate />} />
               <Route path='/events/:eventId' element={<EventDetails />} />

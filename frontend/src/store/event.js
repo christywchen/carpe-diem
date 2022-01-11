@@ -43,6 +43,22 @@ export const getAllEvents = () => async (dispatch) => {
     dispatch(loadEvents(data));
 };
 
+export const getPublishedEventsByUser = (userId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/users/${userId}/events/published`);
+
+    const data = await res.json();
+    dispatch(loadEvents(data));
+};
+
+export const getDraftEventsByUser = (userId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/users/${userId}/events/drafts`);
+
+    const data = await res.json();
+    console.log('data', data)
+    dispatch(loadEvents(data));
+};
+
+
 export const getEvent = (eventId) => async (dispatch) => {
     const res = await csrfFetch(`/api/events/${eventId}`);
 
