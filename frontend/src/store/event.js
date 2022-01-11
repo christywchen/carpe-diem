@@ -1,9 +1,9 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_EVENTS = 'events/getEvents';
+const LOAD_EVENTS = 'event/loadEvents';
 const ADD_EVENT = 'event/addEvent';
-const EDIT_EVENT = 'event/editEvent'
-const REMOVE_EVENT = 'event/removeEvent'
+const EDIT_EVENT = 'event/editEvent';
+const REMOVE_EVENT = 'event/removeEvent';
 
 // action creators
 export const loadEvents = (events) => {
@@ -63,7 +63,6 @@ export const createEvent = (newEvent) => async (dispatch) => {
 };
 
 export const updateEvent = (eventId, updatedEvent) => async (dispatch) => {
-    console.log(eventId, updatedEvent)
     const res = await csrfFetch(`/api/events/${eventId}`, {
         method: 'PATCH',
         body: JSON.stringify(updatedEvent)

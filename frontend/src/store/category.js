@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_CATEGORIES = 'session/loadCategories';
+const LOAD_CATEGORIES = 'event/loadCategories';
 
 // action creators
 export const loadCategories = (categories) => {

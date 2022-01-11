@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import eventReducer from './event';
 import categoryReducer from './category';
+import venueReducer from './venue';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     event: eventReducer,
-    category: categoryReducer
+    category: categoryReducer,
+    venue: venueReducer
 });
 
 let enhancer;
