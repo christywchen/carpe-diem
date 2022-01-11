@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const venueService = require('../../db/services/venue-service');
 
@@ -10,12 +10,15 @@ const router = express.Router();
 
 // validate venues
 const validateVenues = [
+    check('published')
+        .exists()
+        .withMessage('Venue needs a status of published: true or false.'),
     check('name')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
         .withMessage('Please provide an venue name.')
         .isLength({ max: 50 })
-        .withMessage('Maximum length for venue name is 50 characters'),
+        .withMessage('Maximum length for venue name is 50 characters.'),
     check('address')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })

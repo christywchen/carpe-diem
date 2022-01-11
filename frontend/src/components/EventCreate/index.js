@@ -62,17 +62,20 @@ function EventCreate() {
 
         if (virtualEvent === false) {
             const newVenue = {
-                venueName,
-                venueAddress,
-                venueCity,
-                venueState,
-                venueZip,
-                published
+                name: venueName ? venueName : null,
+                address: venueAddress ? venueAddress : null,
+                city: venueCity ? venueCity : null,
+                state: venueState ? venueState : null,
+                zip: venueZip ? venueZip : null,
+                published: published,
+                lat: null,
+                lng: null
             };
-            const venueRecord = await dispatch(createVenue(published, newVenue));
+
+            const venueRecord = await dispatch(createVenue(newVenue, published));
             venueId = venueRecord.id;
         } else {
-            setCapacity('')
+            setCapacity('');
         }
 
         const newEvent = {
@@ -85,11 +88,11 @@ function EventCreate() {
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
             imageUrl: imageUrl ? imageUrl : null,
-            published,
+            published: published,
             venueId: venueId ? venueId : null
         }
 
-        const eventRecord = await dispatch(createEvent(published, newEvent));
+        const eventRecord = await dispatch(createEvent(newEvent, published));
         const eventId = eventRecord.id;
 
         return eventId;

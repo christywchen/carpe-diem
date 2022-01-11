@@ -43,7 +43,7 @@ export const getAllEvents = () => async (dispatch) => {
     dispatch(loadEvents(data));
 };
 
-export const createEvent = (published, newEvent) => async (dispatch) => {
+export const createEvent = (newEvent, published) => async (dispatch) => {
     const res = await csrfFetch('/api/events', {
         method: 'POST',
         body: JSON.stringify(newEvent)
