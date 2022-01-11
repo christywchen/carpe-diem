@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { getAllCategories } from "../../store/category";
+import { createVenue } from "../../store/venue";
+import { createEvent } from "../../store/event";
 
 import { validateEventForm } from '../../utils/form-validations';
 
-
-
 function EventCreate() {
-    const sessionUser = useSelector(state => state.session.user);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
+    const categoriesObj = useSelector(state => state.category.categories);
 
-    const [published, setPublished] = useState(true);
+    const categories = Object.values(categoriesObj);
 
     const [name, setName] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [description, setDescription] = useState('');
     const [capacity, setCapacity] = useState('');;
-    const [virtualEvent, setVirtualEvent] = useState('');
+    const [virtualEvent, setVirtualEvent] = useState('empty');
     const [secretLocation, setSecretLocation] = useState(false);
     const [eventUrl, setEventUrl] = useState('');
     const [imageUrl, setImageUrl] = useState('');
-    const [venueId, setVenueId] = useState('');
     const [category, setCategory] = useState('');
+    const [published, setPublished] = useState(true);
 
     const [venueName, setVenueName] = useState('');
     const [venueAddress, setVenueAddress] = useState('');
@@ -33,6 +37,10 @@ function EventCreate() {
     const [validateVenue, setValidateVenue] = useState({})
 
     /* HOOKS */
+    useEffect(() => {
+        dispatch(getAllCategories());
+    }, [dispatch]);
+
     // if user is not authenticated, redirect user to log in page
     useEffect(() => {
         if (!sessionUser) {
@@ -46,24 +54,51 @@ function EventCreate() {
 
     // show additional input fields depending on if the event is physical or virtual
     useEffect(() => {
-    }, [validateEvent, validateVenue, virtualEvent]);
+    }, [validateEvent, validateVenue, virtualEvent, published]);
 
     /* HELPER FUNCTIONS */
-    function createRecord() {
-        // if (!published) {
-        //     setPublished(false);
-        // }
+    async function createRecord() {
+        let venueId;
 
-        // CREATE THE RECORD WITH DISPATCH
+        if (virtualEvent === false) {
+            const newVenue = {
+                venueName,
+                venueAddress,
+                venueCity,
+                venueState,
+                venueZip,
+                published
+            };
+            const venueRecord = await dispatch(createVenue(newVenue));
+            venueId = venueRecord.id;
+        } else {
+            setCapacity('')
+        }
+
+        const newEvent = {
+            name: name ? name : null,
+            startTime: startTime ? startTime : null,
+            endTime: endTime ? endTime : null,
+            description: description ? description : null,
+            capacity: capacity ? capacity : null,
+            secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
+            virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
+            eventUrl: eventUrl ? eventUrl : null,
+            imageUrl: imageUrl ? imageUrl : null,
+            published,
+            venueId: venueId ? venueId : null
+        }
+
+        const eventRecord = await dispatch(createEvent(newEvent));
+        const eventId = eventRecord.id;
+
+        return eventId;
     }
 
-    function resetForm() {
-
-    }
-
-    /* HANDLE SUBMISSION */
-    function handleSubmit(e) {
-        e.preventDefault();
+    function setValidations() {
+        // run validations if user chooses to publish the event
+        // otherwise, clear the validation errors
+        // if (published) {
         const validationItems = {
             name, startTime, endTime, description, category, virtualEvent, capacity,
             venueName, venueAddress, venueCity, venueState, venueZip
@@ -72,18 +107,44 @@ function EventCreate() {
         const errors = validateEventForm({ validationItems });
         const [eventErrors, venueErrors] = errors;
 
-        if (Object.keys(eventErrors).length) {
-            if (venueErrors && Object.keys(venueErrors).length) {
-                setValidateVenue(venueErrors);
-            }
-
-            return setValidateEvent(eventErrors);
+        // set errors
+        if (Object.keys(eventErrors).length > 1) {
+            if (venueErrors && Object.keys(venueErrors).length > 1) setValidateVenue(venueErrors);
+            setValidateEvent(eventErrors);
+        }
+        // clear any venue errors if event is virtual
+        if (virtualEvent === true) {
+            setValidateVenue({});
         }
 
-        createRecord();
-        resetForm()
+        return errors;
+    }
 
-        console.log('herro');
+    /* HANDLE SUBMISSION */
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        if (published) {
+            const errors = setValidations();
+
+            const [eventErrors, venueErrors] = errors;
+
+            if (eventErrors !== undefined ||
+                venueErrors !== undefined &&
+                Object.keys(eventErrors).length ||
+                Object.keys(venueErrors).length) {
+                return;
+            }
+        } else {
+            setValidateEvent({});
+            setValidateVenue({});
+        }
+
+        // move forward with form submission if there are no errors
+        const eventId = createRecord();
+
+        if (published) navigate(`/events/${eventId}`);
+        else navigate('/events');
     }
 
     /* OTHER THINGS */
@@ -303,12 +364,15 @@ function EventCreate() {
                     {'category' in validateEvent && (
                         <div className='form__submit--error'>{validateEvent.category}</div>
                     )}
-                    <input
-                        name='start-time'
-                        type='text'
+                    <select
+                        name='event-type'
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    />
+                        onChange={(e) => setCategory(e.target.value)}>
+                        <option value=''>Select</option>
+                        {categories.map((category) => (
+                            <option key={category.id} value={category.id}>{category.name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label htmlFor='virtual-event'>
@@ -333,10 +397,18 @@ function EventCreate() {
                     /> Physical
                 </div>
                 {virtualEvent === true || virtualEvent === false ? getLocationInfo : null}
+
                 <button
                     type="submit"
+                    onClick={() => setPublished(false)}
                 >
-                    Submit
+                    Save Draft
+                </button>
+                <button
+                    type="submit"
+                    onClick={() => setPublished(true)}
+                >
+                    Publish Now
                 </button>
             </form>
 
