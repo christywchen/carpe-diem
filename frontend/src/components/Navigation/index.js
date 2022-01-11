@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
-import SignUpFormModal from '../SignUpFormModal';
+import LoginFormModal from '../Modals/LoginFormModal';
+import SignUpFormModal from '../Modals/SignUpFormModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {

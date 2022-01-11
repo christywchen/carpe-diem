@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getAllCategories } from "../../store/category";
-import { createVenue } from "../../store/venue";
-import { createEvent } from "../../store/event";
+import { getAllCategories } from "../../../store/category";
+import { createVenue } from "../../../store/venue";
+import { createEvent } from "../../../store/event";
 
-import { validateEventForm } from '../../utils/form-validations';
+import { validateEventForm } from '../../../utils/form-validations';
 
 function EventCreate() {
     const navigate = useNavigate();

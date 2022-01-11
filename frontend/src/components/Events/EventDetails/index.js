@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Navigate, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getEvent } from '../../store/event';
+import { getEvent } from '../../../store/event';
 
 function EventDetails() {
     const { eventId } = useParams();

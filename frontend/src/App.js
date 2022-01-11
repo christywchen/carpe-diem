@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import LoginForm from './components/LoginFormModal';
-import SignUpForm from './components/SignUpFormModal';
+import LoginForm from './components/Modals/LoginFormModal';
+import SignUpForm from './components/Modals/SignUpFormModal';
 import Navigation from './components/Navigation';
-import UserDashboard from './components/UserDashboard';
-import Events from './components/EventsPage'
-import EventDetails from './components/EventDetails';
-import EventCreate from './components/EventCreate';
-import EventEdit from './components/EventEdit';
+import UserDashboard from './components/Dashboard/DashboardMain';
+import Events from './components/Events/EventsPage'
+import EventDetails from './components/Events/EventDetails';
+import EventCreate from './components/Events/EventCreate';
+import EventEdit from './components/Events/EventEdit';
 import PageNotFound from './components/PageNotFound';
 import Footer from "./components/Footer";
 

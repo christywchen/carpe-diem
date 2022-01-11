@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getAllEvents } from '../../store/event';
+import { getAllEvents } from '../../../store/event';
 
 import EventCard from '../EventCard';
 

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import './EventCard.css';
 
-import eventCard from '../../assets/event-card.jpg';
+import eventCard from '../../../assets/event-card.jpg';
 
 function EventCard({ eventId }) {
     const event = useSelector(state => state.event.events[eventId]);

@@ -10,6 +10,7 @@ import { ModalProvider } from "./context/Modal";
 import reportWebVitals from './reportWebVitals';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
+
 import * as sessionActions from './store/session';
 import * as eventActions from './store/event';
 import * as categoryActions from './store/category';

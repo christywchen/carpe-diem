@@ -1,7 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-function UserDashboard() {
+import { getPublishedEventsByUser, getDraftEventsByUser } from '../../../store/event';
+
+function DashboardMain() {
     return (
         <>
             <h2>Events You're Attending</h2>
@@ -12,4 +14,4 @@ function UserDashboard() {
     )
 }
 
-export default UserDashboard;
+export default DashboardMain;
