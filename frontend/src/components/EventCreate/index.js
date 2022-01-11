@@ -54,7 +54,7 @@ function EventCreate() {
 
     // show additional input fields depending on if the event is physical or virtual
     useEffect(() => {
-    }, [validateEvent, validateVenue, virtualEvent, published]);
+    }, [validateEvent, validateVenue, virtualEvent]);
 
     /* HELPER FUNCTIONS */
     async function createRecord() {
@@ -95,53 +95,47 @@ function EventCreate() {
         return eventId;
     }
 
-    function setValidations() {
+    function runValidations() {
         // run validations if user chooses to publish the event
         // otherwise, clear the validation errors
-        // if (published) {
         const validationItems = {
             name, startTime, endTime, description, category, virtualEvent, capacity,
             venueName, venueAddress, venueCity, venueState, venueZip
         };
 
         const errors = validateEventForm({ validationItems });
-        const [eventErrors, venueErrors] = errors;
+        let [eventErrors, venueErrors] = errors;
 
-        // set errors
-        if (Object.keys(eventErrors).length > 1) {
-            if (venueErrors && Object.keys(venueErrors).length > 1) setValidateVenue(venueErrors);
-            setValidateEvent(eventErrors);
-        }
-        // clear any venue errors if event is virtual
         if (virtualEvent === true) {
-            setValidateVenue({});
+            venueErrors = {};
         }
 
         return errors;
     }
 
     /* HANDLE SUBMISSION */
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
         if (published) {
-            const errors = setValidations();
+            const errors = runValidations();
 
             const [eventErrors, venueErrors] = errors;
 
-            if (eventErrors !== undefined ||
-                venueErrors !== undefined &&
-                Object.keys(eventErrors).length ||
+            setValidateEvent(eventErrors)
+            setValidateVenue(venueErrors)
+
+            if (Object.keys(eventErrors).length ||
                 Object.keys(venueErrors).length) {
                 return;
             }
-        } else {
-            setValidateEvent({});
-            setValidateVenue({});
         }
 
+        setValidateEvent({});
+        setValidateVenue({});
+
         // move forward with form submission if there are no errors
-        const eventId = createRecord();
+        const eventId = await createRecord();
 
         if (published) navigate(`/events/${eventId}`);
         else navigate('/events');
