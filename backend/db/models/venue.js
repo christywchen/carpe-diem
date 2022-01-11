@@ -26,8 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(2),
       allowNull: false,
       validate: {
-        len: [2, 2]
-      }
+        len: [2, 2],
+        isAlpha: true
+      },
     },
     zip: {
       type: DataTypes.STRING,

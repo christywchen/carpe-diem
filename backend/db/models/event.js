@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: {
       type: DataTypes.INTEGER,
       validate: {
-        isNumeric: true
+        isInt: true
       }
     },
     secretLocation: {

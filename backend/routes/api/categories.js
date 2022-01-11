@@ -6,7 +6,7 @@ const categoryService = require('../../db/services/category-service');
 const router = express.Router();
 
 // GET /api/categories (get all event types)
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (_req, res) => {
     const categories = await categoryService.getAllCategories();
 
     res.json(categories);

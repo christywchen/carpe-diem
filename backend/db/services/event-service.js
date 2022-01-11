@@ -85,7 +85,7 @@ async function updateEvent(event, requestBody) {
         published,
         venueId,
         categoryId
-    })
+    });
 };
 
 // DELETE AN EVENT

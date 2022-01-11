@@ -18,7 +18,7 @@ const validateEvent = [
         .exists({ checkFalsy: true })
         .withMessage('Please provide an event name.')
         .isLength({ max: 50 })
-        .withMessage('Maximum length is 50 characters.'),
+        .withMessage('Maximum event name length is 50 characters.'),
     check('startTime')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
