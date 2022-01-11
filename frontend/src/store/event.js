@@ -1,6 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_EVENTS = 'event/loadEvents';
+const LOAD_PUBLISHED_EVENTS = 'event/loadPublishedEvents';
+const LOAD_DRAFT_EVENTS = 'event/loadDraftEvents';
 const ADD_EVENT = 'event/addEvent';
 const EDIT_EVENT = 'event/editEvent';
 const REMOVE_EVENT = 'event/removeEvent';
@@ -9,6 +11,20 @@ const REMOVE_EVENT = 'event/removeEvent';
 export const loadEvents = (events) => {
     return {
         type: LOAD_EVENTS,
+        events
+    }
+};
+
+export const loadPublishedEvents = (events) => {
+    return {
+        type: LOAD_PUBLISHED_EVENTS,
+        events
+    }
+};
+
+export const loadDraftEvents = (events) => {
+    return {
+        type: LOAD_DRAFT_EVENTS,
         events
     }
 };
@@ -43,19 +59,19 @@ export const getAllEvents = () => async (dispatch) => {
     dispatch(loadEvents(data));
 };
 
-export const getPublishedEventsByUser = (userId) => async (dispatch) => {
+export const getPublishedByUser = (userId) => async (dispatch) => {
     const res = await csrfFetch(`/api/users/${userId}/events/published`);
 
     const data = await res.json();
-    dispatch(loadEvents(data));
+
+    dispatch(loadPublishedEvents(data));
 };
 
-export const getDraftEventsByUser = (userId) => async (dispatch) => {
+export const getDraftsByUser = (userId) => async (dispatch) => {
     const res = await csrfFetch(`/api/users/${userId}/events/drafts`);
 
     const data = await res.json();
-    console.log('data', data)
-    dispatch(loadEvents(data));
+    dispatch(loadDraftEvents(data));
 };
 
 
@@ -105,6 +121,20 @@ const eventReducer = (state = initialState, action) => {
         case LOAD_EVENTS:
             newState = { ...state };
             newState.events = action.events.reduce((events, event) => {
+                events[event.id] = event;
+                return events;
+            }, {});
+            return newState;
+        case LOAD_PUBLISHED_EVENTS:
+            newState = { ...state };
+            newState.published = action.events.reduce((events, event) => {
+                events[event.id] = event;
+                return events;
+            }, {});
+            return newState;
+        case LOAD_DRAFT_EVENTS:
+            newState = { ...state };
+            newState.drafts = action.events.reduce((events, event) => {
                 events[event.id] = event;
                 return events;
             }, {});
