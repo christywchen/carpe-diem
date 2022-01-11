@@ -9,7 +9,7 @@ function SignUpFormModal({ button = false }) {
     return (
         <>
             {button ?
-                <button className='button button__submit--secondary' type="submit">Want to Sign Up?</button> :
+                <button className='button button__submit--secondary button__modal' type="submit">Want to Sign Up?</button> :
                 <button className='button nav__button--link nav__button--link-main' onClick={() => setShowModal(true)}>Sign Up</button>
             }
             {showModal && (
@@ -19,7 +19,7 @@ function SignUpFormModal({ button = false }) {
                         <div className='modal__container--text'>Join to start hosting and attending events!</div>
                         <SignUpForm />
                         <hr />
-                        <button className='button button__submit--primary' type="submit">Demo User</button>
+                        <button className='button button__submit--primary button__modal' type="submit">Demo User</button>
                         <LoginFormModal button={true} />
                     </div>
                 </Modal>

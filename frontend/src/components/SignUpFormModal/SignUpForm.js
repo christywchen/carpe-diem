@@ -79,7 +79,7 @@ function SignUpForm() {
                     required
                 />
             </label>
-            <button className="button button__submit--primary" type="submit">Sign Up</button>
+            <button className="button button__submit--primary button__modal" type="submit">Sign Up</button>
         </form>
     );
 }

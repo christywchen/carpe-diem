@@ -32,9 +32,15 @@ button {
     border-radius: 2px;
 }
 
-.button__submit--primary {
-    width: 100%;
+.button__submit--grey {
+    background-color: var(--medium-grey);
+}
 
+.button__submit--grey:hover {
+    background-color: var(--light-grey);
+}
+
+.button__submit--primary {
     background-color: var(--accent-color-2);
 }
 
@@ -49,8 +55,6 @@ button {
 }
 
 .button__submit--secondary {
-    width: 100%;
-
     background-color: var(--accent-color-1);
 }
 
@@ -62,6 +66,10 @@ button {
     outline: none;
 
     background-color: var(--accent-color-1);
+}
+
+.button__modal {
+    width: 100%;
 }
 
 hr {
