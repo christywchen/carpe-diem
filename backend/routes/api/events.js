@@ -61,8 +61,6 @@ router.get('/:eventId', asyncHandler(async (req, res) => {
     const eventId = parseInt(req.params.eventId, 10);
     const event = await eventService.getEvent(eventId);
 
-    console.log(event)
-
     res.json(event);
 }));
 

@@ -17,9 +17,10 @@ module.exports = {
         capacity: 700,
         secretLocation: true,
         published: true,
+        virtualEvent: true,
         hostId: 1,
         venueId: 1,
-        categoryId: 4
+        categoryId: 5
       }, {
         name: 'Daft Punk & Friends night',
         startTime: '2022-01-11 05:57:38.413-08',
@@ -28,6 +29,7 @@ module.exports = {
         capacity: 700,
         secretLocation: true,
         published: true,
+        virtualEvent: false,
         hostId: 1,
         venueId: 1,
         categoryId: 4
@@ -39,6 +41,7 @@ module.exports = {
         capacity: 700,
         secretLocation: true,
         published: false,
+        virtualEvent: false,
         hostId: 1,
         venueId: 1,
         categoryId: 4
@@ -50,6 +53,7 @@ module.exports = {
         capacity: 8500,
         secretLocation: false,
         published: false,
+        virtualEvent: false,
         hostId: 1,
         venueId: 3,
         categoryId: 3
@@ -61,9 +65,10 @@ module.exports = {
         capacity: 300,
         secretLocation: false,
         published: true,
+        virtualEvent: true,
         hostId: 2,
         venueId: 1,
-        categoryId: 3
+        categoryId: 5
       }, {
         name: 'Polo & Pan SF',
         startTime: '2022-01-11 05:57:38.413-08',
@@ -72,6 +77,7 @@ module.exports = {
         capacity: 300,
         secretLocation: false,
         published: true,
+        virtualEvent: false,
         hostId: 1,
         venueId: 4,
         categoryId: 3
@@ -83,6 +89,7 @@ module.exports = {
         capacity: 300,
         secretLocation: false,
         published: false,
+        virtualEvent: false,
         hostId: 1,
         venueId: 4,
         categoryId: 3
@@ -94,6 +101,7 @@ module.exports = {
         capacity: 300,
         secretLocation: false,
         published: true,
+        virtualEvent: false,
         hostId: 1,
         venueId: 6,
         categoryId: 3
@@ -105,6 +113,7 @@ module.exports = {
         capacity: 300,
         secretLocation: false,
         published: true,
+        virtualEvent: false,
         hostId: 2,
         venueId: 5,
         categoryId: 1
@@ -116,9 +125,10 @@ module.exports = {
         capacity: 5000,
         secretLocation: false,
         published: true,
+        virtualEvent: true,
         hostId: 2,
         venueId: 5,
-        categoryId: 1
+        categoryId: 5
       }, {
         name: 'Electric Forest',
         startTime: '2022-01-11 05:57:38.413-08',
@@ -127,6 +137,7 @@ module.exports = {
         capacity: 5000,
         secretLocation: false,
         published: true,
+        virtualEvent: false,
         hostId: 1,
         venueId: 4,
         categoryId: 1
@@ -138,6 +149,7 @@ module.exports = {
         capacity: 5000,
         secretLocation: false,
         published: false,
+        virtualEvent: false,
         hostId: 1,
         venueId: 4,
         categoryId: 1
