@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
+import { validateEventForm } from '../../utils/form-validations';
+
+
 
 function EventCreate() {
     const sessionUser = useSelector(state => state.session.user);
@@ -26,7 +29,7 @@ function EventCreate() {
     const [venueCity, setVenueCity] = useState('');
     const [venueState, setVenueState] = useState('');
     const [venueZip, setVenueZip] = useState('');
-    const [validateErrors, setValidateErrors] = useState({});
+    const [validateEvent, setValidateEvent] = useState({});
     const [validateVenue, setValidateVenue] = useState({})
 
     /* HOOKS */
@@ -43,53 +46,20 @@ function EventCreate() {
 
     // additional input fields depending on if the event is physical or virtual
     useEffect(() => {
-    }, [validateForm, validateVenue, virtualEvent]);
+    }, [validateEvent, validateVenue, virtualEvent]);
 
     /* HELPER FUNCTIONS */
-    function validateForm() {
-        const errors = {};
-        let venueErrors;
-
-        if (!name.length) errors.name = 'Please include a name for your event.';
-        else if (name.length > 75) errors.name = 'Maximum character length is 75 characters.';
-
-        if (!startTime) errors.startTime = 'Please enter a start time.';
-        if (!endTime) errors.endTime = 'Please enter an end time.';
-        if (!description) errors.description = 'Please provide a short description about your event.';
-        if (!category.length) errors.category = 'Let us know what type of event you\'re hosting.'
-
-        if (!virtualEvent) {
-            errors.virtualEvent = 'Let us know if your event is virtual or in-person.';
-
-            if (virtualEvent === false) {
-                venueErrors = validateVenueForm();
-
-                if (!capacity) errors.capacity = 'Please provide an attendee capacity for your event.';
-            }
-        }
-
-        return [errors, venueErrors];
-    }
-
-    function validateVenueForm() {
-        const errors = {};
-        const zipString = /^\d{5}(?:[-\s]?\d{4})?$/;
-        const venueStr = String(venueZip);
-
-        if (!venueName) errors.venueName = 'Please provide the name of the venue';
-        if (!venueAddress || !venueCity || !venueState || !venueZip) errors.venueAddress = 'Please provide location information for the venue.';
-        if (venueState.length > 2) errors.venueState = 'Please provide a two-letter abbreviation for the state.';
-        if (!zipString.test(venueStr)) errors.venueZip = 'Please provide zip code in the following formats: 12345, 12345-6789, or 123456789.'
-
-        return errors;
-    }
-
     function createRecord() {
-        if (published) {
-            validateForm();
-        } else {
-            setPublished(false);
-        }
+        // const validationItems = {
+        //     name, startTime, endTime, description, category, virtualEvent, capacity,
+        //     venueName, venueAddress, venueCity, venueState, venueZip
+        // };
+
+        // if (published) {
+        //     validateEventForm({ validationItems });
+        // } else {
+        //     setPublished(false);
+        // }
 
         // CREATE THE RECORD WITH DISPATCH
     }
@@ -101,16 +71,21 @@ function EventCreate() {
     /* HANDLE SUBMISSION */
     function handleSubmit(e) {
         e.preventDefault();
+        const validationItems = {
+            name, startTime, endTime, description, category, virtualEvent, capacity,
+            venueName, venueAddress, venueCity, venueState, venueZip
+        };
 
-        const errors = validateForm();
-        const [formErrors, venueErrors] = errors;
+        const errors = validateEventForm({ validationItems });
 
-        if (Object.keys(formErrors).length) {
+        const [eventErrors, venueErrors] = errors;
+
+        if (Object.keys(eventErrors).length) {
             if (venueErrors && Object.keys(venueErrors).length) {
                 setValidateVenue(venueErrors);
             }
 
-            return setValidateErrors(formErrors);
+            return setValidateEvent(eventErrors);
         }
 
         createRecord();
@@ -217,8 +192,8 @@ function EventCreate() {
                         onChange={(e) => setVenueZip(e.target.value)}
                     />
                 </div>
-                {'capacity' in validateErrors && (
-                    <div className='form__submit--error'>{validateErrors.capacity}</div>
+                {'capacity' in validateEvent && (
+                    <div className='form__submit--error'>{validateEvent.capacity}</div>
                 )}
                 <div>
                     <label htmlFor='event-capacity'>
@@ -261,8 +236,8 @@ function EventCreate() {
                     <label htmlFor='name'>
                         Event Name:
                     </label>
-                    {'name' in validateErrors && (
-                        <div className='form__submit--error'>{validateErrors.name}</div>
+                    {'name' in validateEvent && (
+                        <div className='form__submit--error'>{validateEvent.name}</div>
                     )}
                     <input
                         name='name'
@@ -286,8 +261,8 @@ function EventCreate() {
                     <label htmlFor='description'>
                         Description:
                     </label>
-                    {'description' in validateErrors && (
-                        <div className='form__submit--error'>{validateErrors.description}</div>
+                    {'description' in validateEvent && (
+                        <div className='form__submit--error'>{validateEvent.description}</div>
                     )}
                     <textarea
                         name='description'
@@ -299,8 +274,8 @@ function EventCreate() {
                     <label htmlFor='start-time'>
                         Start Time:
                     </label>
-                    {'startTime' in validateErrors && (
-                        <div className='form__submit--error'>{validateErrors.startTime}</div>
+                    {'startTime' in validateEvent && (
+                        <div className='form__submit--error'>{validateEvent.startTime}</div>
                     )}
                     <input
                         name='start-time'
@@ -313,8 +288,8 @@ function EventCreate() {
                     <label htmlFor='end-time'>
                         End Time:
                     </label>
-                    {'endTime' in validateErrors && (
-                        <div className='form__submit--error'>{validateErrors.endTime}</div>
+                    {'endTime' in validateEvent && (
+                        <div className='form__submit--error'>{validateEvent.endTime}</div>
                     )}
                     <input
                         name='end-time'
@@ -327,8 +302,8 @@ function EventCreate() {
                     <label htmlFor='event-type'>
                         Event Type:
                     </label>
-                    {'category' in validateErrors && (
-                        <div className='form__submit--error'>{validateErrors.category}</div>
+                    {'category' in validateEvent && (
+                        <div className='form__submit--error'>{validateEvent.category}</div>
                     )}
                     <input
                         name='start-time'
@@ -341,8 +316,8 @@ function EventCreate() {
                     <label htmlFor='virtual-event'>
                         Virtual or Physical Event:
                     </label>
-                    {'virtualEvent' in validateErrors && (
-                        <div className='form__submit--error'>{validateErrors.virtualEvent}</div>
+                    {'virtualEvent' in validateEvent && (
+                        <div className='form__submit--error'>{validateEvent.virtualEvent}</div>
                     )}
                     <input
                         name='virtual-event'
