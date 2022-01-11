@@ -53,8 +53,8 @@ function EventCreate() {
     }, []);
 
     // show additional input fields depending on if the event is physical or virtual
-    useEffect(() => {
-    }, [validateEvent, validateVenue, virtualEvent]);
+    // listen for updates to validations
+    useEffect(() => { }, [validateEvent, validateVenue, virtualEvent]);
 
     /* HELPER FUNCTIONS */
     async function createRecord() {
@@ -67,9 +67,7 @@ function EventCreate() {
                 city: venueCity ? venueCity : null,
                 state: venueState ? venueState : null,
                 zip: venueZip ? venueZip : null,
-                published: published,
-                lat: null,
-                lng: null
+                published: published
             };
 
             const venueRecord = await dispatch(createVenue(newVenue, published));
@@ -89,7 +87,8 @@ function EventCreate() {
             eventUrl: eventUrl ? eventUrl : null,
             imageUrl: imageUrl ? imageUrl : null,
             published: published,
-            venueId: venueId ? venueId : null
+            venueId: venueId ? venueId : null,
+            categoryId: category ? category : null
         }
 
         const eventRecord = await dispatch(createEvent(newEvent, published));
@@ -396,12 +395,14 @@ function EventCreate() {
                 {virtualEvent === true || virtualEvent === false ? getLocationInfo : null}
 
                 <button
+                    className='button button__submit--grey'
                     type="submit"
                     onClick={() => setPublished(false)}
                 >
                     Save Draft
                 </button>
                 <button
+                    className='button button__submit--primary'
                     type="submit"
                     onClick={() => setPublished(true)}
                 >
