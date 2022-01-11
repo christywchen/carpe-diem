@@ -17,6 +17,10 @@
 
 #nav a {
     color: var(--light-neutral);
+}
+
+.nav__link--left > a,
+.nav__link--right > a {
     padding: 20px;
 }
 
