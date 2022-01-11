@@ -19,7 +19,8 @@ async function createVenue(requestBody) {
         state,
         zip,
         lat,
-        long
+        long,
+        published
     } = requestBody;
 
     return await db.Venue.create({
@@ -29,7 +30,8 @@ async function createVenue(requestBody) {
         state,
         zip,
         lat,
-        long
+        long,
+        published
     });
 }
 
@@ -42,7 +44,8 @@ async function updateVenue(venue, requestBody) {
         state,
         zip,
         lat,
-        long
+        long,
+        published
     } = requestBody;
 
     return await venue.update({
@@ -52,7 +55,8 @@ async function updateVenue(venue, requestBody) {
         state,
         zip,
         lat,
-        long
+        long,
+        published
     });
 }
 
