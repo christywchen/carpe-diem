@@ -10,29 +10,28 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING(50),
-        allowNull: false,
       },
       address: {
         type: Sequelize.STRING(100),
-        allowNull: false,
       },
       city: {
         type: Sequelize.STRING(50),
-        allowNull: false,
       },
       state: {
         type: Sequelize.STRING(2),
-        allowNull: false,
       },
       zip: {
         type: Sequelize.STRING(10),
-        allowNull: false
       },
       lat: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL,
       },
       lng: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL,
+      },
+      published: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
