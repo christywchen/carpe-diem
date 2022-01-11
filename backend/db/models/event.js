@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 50]
       }
     },
-    endTime: {
+    startTime: {
       type: DataTypes.DATE
     },
     endTime: {
