@@ -30,10 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN
     },
     eventUrl: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     imageUrl: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     published: {
       type: DataTypes.BOOLEAN,

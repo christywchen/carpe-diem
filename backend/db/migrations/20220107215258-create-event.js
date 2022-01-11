@@ -31,10 +31,10 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       eventUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       imageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       published: {
         allowNull: false,
