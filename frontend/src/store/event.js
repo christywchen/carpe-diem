@@ -11,14 +11,14 @@ export const loadEvents = (events) => {
         type: LOAD_EVENTS,
         events
     }
-}
+};
 
 export const addEvent = (newEvent) => {
     return {
         type: ADD_EVENT,
         newEvent
     }
-}
+};
 
 export const editEvent = (eventId, updatedEvent) => {
     return {
@@ -26,14 +26,14 @@ export const editEvent = (eventId, updatedEvent) => {
         eventId,
         updatedEvent
     }
-}
+};
 
 export const removeEvent = (eventId) => {
     return {
         type: REMOVE_EVENT,
         eventId
     }
-}
+};
 
 // thunk action creators
 export const getAllEvents = () => async (dispatch) => {
@@ -60,7 +60,7 @@ export const createEvent = (newEvent) => async (dispatch) => {
     } else {
         throw res;
     }
-}
+};
 
 export const updateEvent = (eventId, updatedEvent) => async (dispatch) => {
     console.log(eventId, updatedEvent)
@@ -76,13 +76,13 @@ export const updateEvent = (eventId, updatedEvent) => async (dispatch) => {
     } else {
         throw res;
     }
-}
+};
 
 export const deleteEvent = (eventId) => async (dispatch) => {
     await csrfFetch(`/api/events/${eventId}`, {
         method: 'DELETE'
     });
-}
+};
 
 // initial state
 const initialState = { events: {} }
@@ -114,6 +114,6 @@ const eventReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
 export default eventReducer;
