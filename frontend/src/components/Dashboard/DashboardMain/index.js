@@ -1,16 +1,39 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { getPublishedEventsByUser, getDraftEventsByUser } from '../../../store/event';
+import { getPublishedByUser, getDraftsByUser } from '../../../store/event';
 
 function DashboardMain() {
-    return (
-        <>
-            <h2>Events You're Attending</h2>
+    const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user);
+    const userId = sessionUser.id;
+    const publishedEventsObj = useSelector((state) => state.event.published);
 
-            <h2>Events You're Organizing</h2>
-            <p>Just a dashboard.</p>
-        </>
+    if (publishedEventsObj) {
+        const publishedEvents = Object.values(publishedEventsObj);
+
+        // console.log(Object.values(publishedEventsObj))
+        console.log(publishedEventsObj)
+    }
+
+
+    // const events = useSelector((state) => state.event.events);
+
+    // console.log(events)
+    useEffect(() => {
+        dispatch(getPublishedByUser(userId));
+        dispatch(getDraftsByUser(userId));
+    }, [dispatch])
+
+    return (
+        null
+        //     <>
+        //         <h1>Your Events</h1>
+        //         <h2>Events You're Attending</h2>
+
+        //         <h2>Events You're Organizing</h2>
+        //         <p>Just a dashboard.</p>
+        //     </>
     )
 }
 
