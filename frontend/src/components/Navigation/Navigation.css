@@ -99,6 +99,19 @@ li.profile__dropdown--item {
     padding: 20px;
 }
 
+.profile__dropdown--list {
+    animation: growDown 400ms ease-in-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
 .profile__dropdown--button-link {
     padding: 0px;
 }
