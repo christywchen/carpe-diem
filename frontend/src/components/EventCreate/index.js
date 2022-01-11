@@ -44,9 +44,7 @@ function EventCreate() {
     // if user is not authenticated, redirect user to log in page
     useEffect(() => {
         if (!sessionUser) {
-            setTimeout(() => {
-                navigate('/signup');
-            }, 1500);
+            navigate('/login');
         } else {
             return null;
         }
@@ -141,14 +139,6 @@ function EventCreate() {
 
         if (published) navigate(`/events/${eventId}`);
         else navigate('/events');
-    }
-
-    /* OTHER THINGS */
-    // show unauthenticated user a message before redirecting
-    if (!sessionUser) {
-        return (
-            <p>You must be logged in to create an event. Redirecting to the login page.</p>
-        )
     }
 
     // render this subcomponent depending event

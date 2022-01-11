@@ -8,9 +8,7 @@ import eventCard from '../../assets/event-card.jpg';
 
 function EventCard({ eventId }) {
     const event = useSelector(state => state.event.events[eventId]);
-    const { name, date, categoryId } = event;
-    const { city: venueCity, state: venueState } = event.Venue;
-    const { name: category } = event.Category;
+    const { name, date, categoryId, Category, Venue } = event;
 
     return (
         <>
@@ -21,13 +19,14 @@ function EventCard({ eventId }) {
                     </Link>
                 </div>
                 <div className='event__card--body'>
-                    <div className={`event__card--flag event__card--flag-${categoryId}`}>{category}</div>
+                    <div className={`event__card--flag event__card--flag-${categoryId}`}>{Category?.name}</div>
                     <h3 className='event__card--title'>{name}
                     </h3>
                     <div className='event__card--date'>{date}</div>
                     <div className='event__card--location'>
                         <i className="fas fa-map-marker-alt fa-sm event__card--pin" />
-                        {venueCity}, {venueState}</div>
+                        {Venue?.city}, {Venue?.state}
+                    </div>
                     <div className='event__card--headliners'>Headliner: Sakuraburst</div>
                     <div className='event__card--headliners'>Organizer: Sakuraburst</div>
                 </div>

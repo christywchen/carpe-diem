@@ -1,38 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getEvent } from '../../store/event';
 
 function EventDetails() {
     const { eventId } = useParams();
-    const event = useSelector(state => state.event.events[+eventId]);
+    console.log(typeof eventId)
+    const dispatch = useDispatch();
+    const event = useSelector(state => state.event.events[eventId]);
+    console.log('event', event)
+
+    useEffect(() => {
+        dispatch(getEvent(eventId));
+    }, [dispatch]);
 
     if (!event) {
         return <Navigate to='/not-found' />
     }
-    const {
-        name,
-        date,
-        description,
-        secretLocation,
-        virtualEvent,
-        eventUrl,
-        imageUrl,
-        categoryId
-    } = event;
 
-    const {
-        name: venueName,
 
-    } = event.Venue;
+    // const {
+    //     name: venueName,
 
-    const { name: category } = event.Category;
+    // } = event.Venue;
 
-    console.log('event details', event)
+    // const { name: category } = event.Category;
+
     return (
         <>
             <p>
-                {name}
-
+                {event?.name}
+                Event Page
             </p>
             <p>
                 <Link to={`/events/${eventId}/edit`} >Edit Event</Link>
