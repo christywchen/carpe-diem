@@ -80,6 +80,7 @@ function EventCreate() {
 
         const [eventErrors, venueErrors] = errors;
 
+        console.log(venueErrors)
         if (Object.keys(eventErrors).length) {
             if (venueErrors && Object.keys(venueErrors).length) {
                 setValidateVenue(venueErrors);
@@ -140,12 +141,15 @@ function EventCreate() {
                     />
                 </div>
                 <div>
-                    {'venueAddress' in validateVenue && (
-                        <div className='form__submit--error'>{validateVenue.venueAddress}</div>
+                    {'venueInfo' in validateVenue && (
+                        <div className='form__submit--error'>{validateVenue.venueInfo}</div>
                     )}
                     <label htmlFor='venue-address'>
                         Address:
                     </label>
+                    {'venueAddress' in validateVenue && (
+                        <div className='form__submit--error'>{validateVenue.venueAddress}</div>
+                    )}
                     <input
                         name='venue-address'
                         type='text'
@@ -157,6 +161,9 @@ function EventCreate() {
                     <label htmlFor='venue-city'>
                         City:
                     </label>
+                    {'venueCity' in validateVenue && (
+                        <div className='form__submit--error'>{validateVenue.venueCity}</div>
+                    )}
                     <input
                         name='venue-city'
                         type='text'
