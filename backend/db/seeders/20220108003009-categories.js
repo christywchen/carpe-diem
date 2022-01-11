@@ -13,7 +13,7 @@ module.exports = {
       { name: 'Club' },
       { name: 'Concert' },
       { name: 'Warehouse' },
-      { name: 'Online' }
+      { name: 'Virtual' }
     ], {});
   },
 
