@@ -38,10 +38,15 @@
 }
 
 #main {
-  width: 75%;
+  width: 80%;
 
   overflow-y: auto;
   margin: 40px auto 220px;
+}
+
+#main__narrow {
+  width: 70%;
+  margin: 0 auto;
 }
 
 #container {

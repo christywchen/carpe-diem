@@ -46,10 +46,10 @@ function EventEdit() {
     }, [dispatch]);
 
     return (
-        <>
+        <div id='main__narrow'>
             <h1>Edit Your Event</h1>
             {event !== undefined && <EventForm formProps={formProps} formType={formType} />}
-        </>
+        </div>
     )
 }
 

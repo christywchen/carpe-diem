@@ -7,21 +7,33 @@ function EventsTable({ events }) {
             {events.length ? (<table>
                 <thead>
                     <tr>
-                        <th>Event Name</th>
-                        <th>View Event</th>
-                        <th>Edit Event</th>
+                        <th className='table'>Event</th>
+                        <th className='table table__th--event-name'></th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {events.map(({ name, id }) => (
+                    {events.map(({ name, id, published, startTime }) => (
                         <tr key={id}>
-                            <td>{name}</td>
                             <td>
-                                <Link to={`/events/${id}/edit`}>Edit Event</Link>
+                                {startTime ?
+                                    (<>Date</>) :
+                                    (<>--/--</ >)
+                                }
                             </td>
                             <td>
-                                <Link to={`/events/${id}`}>View Event</Link>
+                                {published === true ?
+                                    (<Link to={`/events/${id}`}>{name}</Link>) :
+                                    (<>{name}</ >)
+                                }
+                            </td>
+                            <td>
+                                <Link to={`/events/${id}/edit`}>Edit</Link>
+                            </td>
+                            <td>
+                                <Link to={`/events/${id}`}>Delete</Link>
                             </td>
                         </tr>
                     ))}

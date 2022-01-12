@@ -8,6 +8,12 @@ h1 {
     border-bottom: 4px solid var(--accent-color-1);
 }
 
+h2 {
+    font-weight: 400;
+    font-size: 1.5em;
+    margin: 24px;
+}
+
 h3 {
     color: var(--heading-small);
     font-family: var(--body-font);
@@ -19,6 +25,15 @@ a {
     text-decoration: none;
 }
 
+hr {
+    margin: 8px 0;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: none;
+}
+
+/* BUTTONS */
 button {
     box-sizing: border-box;
     margin: 6px 0;
@@ -72,10 +87,28 @@ button {
     width: 100%;
 }
 
-hr {
-    margin: 8px 0;
-    border-top: none;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: none;
+/* TABLES */
+
+table {
+    width: 100%;
+    background-color: rgba(27, 14, 37, 0.651);
+    border-collapse: collapse;
+}
+
+thead {
+    text-transform: uppercase;
+    font-weight: 400;
+    background-color: rgba(11, 1, 19, 0.651);
+    /* margin: 0px; */
+}
+
+table th {
+    padding: 14px 0;
+}
+table td {
+    padding: 14px;
+}
+
+.table__th--event-name {
+    width: 70%;
 }

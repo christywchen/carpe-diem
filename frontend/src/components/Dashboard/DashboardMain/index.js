@@ -1,35 +1,44 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useLocation } from 'react-redux';
+import { NavLink, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 import { getPublishedByUser, getDraftsByUser } from '../../../store/event';
 
 import EventsTable from '../EventsTable';
+import EventsDrafts from '../EventsDrafts';
+import EventsPublished from '../EventsPublished';
 
 function DashboardMain() {
-    const dispatch = useDispatch();
-
-    const sessionUser = useSelector((state) => state.session.user);
-    const userId = sessionUser.id;
-
-    const publishedEventsObj = useSelector((state) => state.event.published);
-    const publishedEvents = Object.values(publishedEventsObj);
-
-    const draftEventsObj = useSelector((state) => state.event.drafts);
-    const draftEvents = Object.values(draftEventsObj);
+    const navigate = useNavigate()
+    const location = useLocation();
 
     useEffect(() => {
-        dispatch(getPublishedByUser(userId));
-        dispatch(getDraftsByUser(userId));
-    }, [dispatch])
+        if (location.pathname === '/dashboard') {
+            navigate('/dashboard/all')
+        };
+    }, [location]);
 
     return (
         <>
-            <h1>Your Events</h1>
-            <h2>Events You're Hosting</h2>
-            {publishedEvents && (<EventsTable events={publishedEvents} />)}
+            <div id='main__narrow'>
+                <h1>Your Events</h1>
+                <NavLink to='/dashboard/all'>All</NavLink>
+                <NavLink to='/dashboard/drafts'>Drafts</NavLink>
+                <NavLink to='/dashboard/published'>Published</NavLink>
 
-            <h2>Events You're Working On</h2>
-            {draftEvents && (<EventsTable events={draftEvents} />)}
+                <Routes>
+                    <Route path='all' element={
+                        <>
+                            <EventsPublished />
+                            <hr />
+                            <EventsDrafts />
+                        </>
+                    } />
+                    <Route path='drafts' element={<EventsDrafts />} />
+                    <Route path='published' element={<EventsPublished />} />
+                </Routes>
+
+            </div >
         </>
     )
 }
