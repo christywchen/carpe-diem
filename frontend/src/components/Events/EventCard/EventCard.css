@@ -19,16 +19,16 @@
 }
 
 .event__card--flag {
-    /* position: absolute; */
     width: fit-content;
     justify-self: flex-end;
-    /* margin: 6px; */
-    padding: 3px 5px;
+    padding: 5px 5px 4px 6px;
 
     color: white;
     font-size: 0.7em;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    line-height: 1em;
+
     border-radius: 2px;
 }
 

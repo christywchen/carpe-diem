@@ -198,122 +198,156 @@ function EventForm({ formProps, formType }) {
     if (virtualEvent) {
         getLocationInfo = (
             <>
-                <div>
-                    <label htmlFor='event-url'>
-                        Stream Url: The Stream url will be shared on the day of the event.
-                    </label>
-                    <input
-                        name='event-url'
-                        type='text'
-                        value={eventUrl}
-                        onChange={(e) => setEventUrl(e.target.value)}
-                    />
+
+                <div className='event__form--venue-container'>
+                    <div className='event__form--section-venue'>
+                        <div class='event__form--title'>
+                            <label htmlFor='event-url'>
+                                Stream URL:
+                            </label>
+                        </div>
+                        <div class='event__form--description'>
+                            <p>
+                                This will be shared on the day of the event.
+                            </p>
+                        </div>
+                        <input
+                            name='event-url'
+                            type='text'
+                            value={eventUrl}
+                            onChange={(e) => setEventUrl(e.target.value)}
+                        />
+                    </div>
                 </div>
             </>
         );
     } else {
         getLocationInfo = (
             <>
-                <div>
-                    <label htmlFor='venue-name'>
-                        Venue Name:
-                        {'venueName' in validateVenue && (
-                            <span className='form__submit--error'>{validateVenue.venueName}</span>
+                <div className='event__form--venue-container'>
+                    <div className='event__form--section-venue'>
+                        <div class='event__form--title'>
+                            <label htmlFor='venue-name'>
+                                Venue Name*
+                            </label>
+                            {'venueName' in validateVenue && (
+                                <span className='form__submit--error'>{validateVenue.venueName}</span>
+                            )}
+                        </div>
+                        <input
+                            name='venue-name'
+                            type='text'
+                            value={venueName}
+                            onChange={(e) => setVenueName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <div className='event__form--venue'>
+                            <div class='event__form--title'>
+                                <label htmlFor='venue-address'>
+                                    Address:
+                                </label>
+                                {'venueAddress' in validateVenue && (
+                                    <div className='form__submit--error'>{validateVenue.venueAddress}</div>
+                                )}
+                            </div>
+                            <input
+                                name='venue-address'
+                                type='text'
+                                value={venueAddress}
+                                onChange={(e) => setVenueAddress(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className='event__form--venue'>
+                        <div class='event__form--title'>
+                            <label htmlFor='venue-city'>
+                                City:
+                            </label>
+                            {'venueCity' in validateVenue && (
+                                <div className='form__submit--error'>{validateVenue.venueCity}</div>
+                            )}
+                        </div>
+                        <input
+                            name='venue-city'
+                            type='text'
+                            value={venueCity}
+                            onChange={(e) => setVenueCity(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <div class='event__form--title'>
+                            <label htmlFor='venue-state'>
+                                State:
+                            </label>
+                            {'venueState' in validateVenue && (
+                                <div className='form__submit--error'>{validateVenue.venueState}</div>
+                            )}
+                        </div>
+                        <input
+                            name='venue-state'
+                            type='text'
+                            value={venueState}
+                            onChange={(e) => setVenueState(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <div class='event__form--title'>
+                            <label htmlFor='venue-zip'>
+                                Zip:
+                            </label>
+                            {'venueZip' in validateVenue && (
+                                <div className='form__submit--error'>{validateVenue.venueZip}</div>
+                            )}
+                        </div>
+                        <input
+                            name='venue-zip'
+                            type='text'
+                            value={venueZip}
+                            onChange={(e) => setVenueZip(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <div class='event__form--title'>
+                            <div>
+                                <label htmlFor='event-capacity'>
+                                    Capacity*
+                                </label>
+                                {'capacity' in validateEvent && (
+                                    <div className='form__submit--error'>{validateEvent.capacity}</div>
+                                )}
+                            </div>
+                            <input
+                                name='event-capacity'
+                                type='number'
+                                value={capacity}
+                                onChange={(e) => setCapacity(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <div class='event__form--title'>
+                            <label htmlFor='secret-location'>
+                                Secret Location?
+                            </label>
+                            <input
+                                name='secret-location'
+                                type='checkbox'
+                                value='true'
+                                checked={secretLocation === true}
+                                onChange={(e) => setSecretLocation(!secretLocation)}
+                            />
+                        </div>
+                        {secretLocation && (
+                            <div class='event__form--description'>
+                                <p>
+                                    Address specifics will be kept secret until the day of the event.
+                                </p>
+                            </div>
                         )}
-                    </label>
-                    <input
-                        name='venue-name'
-                        type='text'
-                        value={venueName}
-                        onChange={(e) => setVenueName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    {'venueInfo' in validateVenue && (
-                        <div className='form__submit--error'>{validateVenue.venueInfo}</div>
-                    )}
-                    <label htmlFor='venue-address'>
-                        Address:
-                    </label>
-                    {'venueAddress' in validateVenue && (
-                        <div className='form__submit--error'>{validateVenue.venueAddress}</div>
-                    )}
-                    <input
-                        name='venue-address'
-                        type='text'
-                        value={venueAddress}
-                        onChange={(e) => setVenueAddress(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor='venue-city'>
-                        City:
-                    </label>
-                    {'venueCity' in validateVenue && (
-                        <div className='form__submit--error'>{validateVenue.venueCity}</div>
-                    )}
-                    <input
-                        name='venue-city'
-                        type='text'
-                        value={venueCity}
-                        onChange={(e) => setVenueCity(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor='venue-state'>
-                        State:
-                    </label>
-                    {'venueState' in validateVenue && (
-                        <div className='form__submit--error'>{validateVenue.venueState}</div>
-                    )}
-                    <input
-                        name='venue-state'
-                        type='text'
-                        value={venueState}
-                        onChange={(e) => setVenueState(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor='venue-zip'>
-                        Zip:
-                    </label>
-                    {'venueZip' in validateVenue && (
-                        <div className='form__submit--error'>{validateVenue.venueZip}</div>
-                    )}
-                    <input
-                        name='venue-zip'
-                        type='text'
-                        value={venueZip}
-                        onChange={(e) => setVenueZip(e.target.value)}
-                    />
-                </div>
-                {'capacity' in validateEvent && (
-                    <div className='form__submit--error'>{validateEvent.capacity}</div>
-                )}
-                <div>
-                    <label htmlFor='event-capacity'>
-                        Event Capacity:
-                    </label>
-                    <input
-                        name='event-capacity'
-                        type='number'
-                        value={capacity}
-                        onChange={(e) => setCapacity(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor='secret-location'>
-                        Secret Location? The address specifics will be shared with attendees on the day of the event.
-                    </label>
-                    <input
-                        name='secret-location'
-                        type='checkbox'
-                        value='true'
-                        checked={secretLocation === true}
-                        onChange={(e) => setSecretLocation(!secretLocation)}
-                    /> Secret
-                </div>
 
+                    </div>
+                </div>
             </>
 
         )
@@ -330,7 +364,7 @@ function EventForm({ formProps, formType }) {
                     <div className='event__form--section'>
                         <div class='event__form--title'>
                             <label htmlFor='name'>
-                                Event Name:
+                                Event Name*
                             </label>
                             {'name' in validateEvent && (
                                 <span className='form__submit--error'>{validateEvent.name}</span>
@@ -343,10 +377,12 @@ function EventForm({ formProps, formType }) {
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
-                    <div className='create__event--form-section'>
-                        <label htmlFor='image'>
-                            Event Image URL:
-                        </label>
+                    <div className='event__form--section'>
+                        <div class='event__form--title'>
+                            <label htmlFor='image'>
+                                Event Image URL
+                            </label>
+                        </div>
                         <input
                             name='image'
                             type='text'
@@ -354,85 +390,108 @@ function EventForm({ formProps, formType }) {
                             onChange={(e) => setImageUrl(e.target.value)}
                         />
                     </div>
-                    <div className='create__event--form-section'>
-                        <label htmlFor='description'>
-                            Description:
-                        </label>
-                        {'description' in validateEvent && (
-                            <div className='form__submit--error'>{validateEvent.description}</div>
-                        )}
+                    <div className='event__form--section'>
+                        <div class='event__form--title'>
+                            <label htmlFor='description'>
+                                Description*
+                            </label>
+                            {'description' in validateEvent && (
+                                <div className='form__submit--error'>{validateEvent.description}</div>
+                            )}
+                        </div>
                         <textarea
                             name='description'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-                    <div className='create__event--form-section'>
-                        <label htmlFor='start-time'>
-                            Start Time:
-                        </label>
-                        {'startTime' in validateEvent && (
-                            <div className='form__submit--error'>{validateEvent.startTime}</div>
-                        )}
-                        <input
-                            name='start-time'
-                            type='datetime-local'
-                            value={startTime}
-                            onChange={(e) => setStartTime(e.target.value)}
-                        />
+                    <div className='event__form--section'>
+                        <div class='event__form--title'>
+                            <div>
+                                <label htmlFor='start-time'>
+                                    Start Time*
+                                </label>
+                                {'startTime' in validateEvent && (
+                                    <div className='form__submit--error'>{validateEvent.startTime}</div>
+                                )}
+                            </div>
+                            <input
+                                name='start-time'
+                                type='datetime-local'
+                                value={startTime}
+                                onChange={(e) => setStartTime(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    <div className='create__event--form-section'>
-                        <label htmlFor='end-time'>
-                            End Time:
-                        </label>
-                        {'endTime' in validateEvent && (
-                            <div className='form__submit--error'>{validateEvent.endTime}</div>
-                        )}
-                        <input
-                            name='end-time'
-                            type='datetime-local'
-                            value={endTime}
-                            onChange={(e) => setEndTime(e.target.value)}
-                        />
+                    <div className='event__form--section'>
+                        <div class='event__form--title'>
+                            <div>
+                                <label htmlFor='end-time'>
+                                    End Time*
+                                </label>
+                                {'endTime' in validateEvent && (
+                                    <div className='form__submit--error'>{validateEvent.endTime}</div>
+                                )}
+                            </div>
+                            <input
+                                name='end-time'
+                                type='datetime-local'
+                                value={endTime}
+                                onChange={(e) => setEndTime(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    <div className='create__event--form-section'>
-                        <label htmlFor='event-type'>
-                            Event Type:
-                        </label>
-                        {'categoryId' in validateEvent && (
-                            <div className='form__submit--error'>{validateEvent.categoryId}</div>
-                        )}
-                        <select
-                            name='event-type'
-                            value={categoryId}
-                            onChange={(e) => setCategoryId(e.target.value)}>
-                            <option value=''>Select</option>
-                            {categories.map((category) => (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                            ))}
-                        </select>
+                    <div className='event__form--section'>
+                        <div class='event__form--title'>
+                            <div>
+                                <label htmlFor='event-type'>
+                                    Event Type*
+                                </label>
+                                {'categoryId' in validateEvent && (
+                                    <div className='form__submit--error'>{validateEvent.categoryId}</div>
+                                )}
+                            </div>
+                            <select
+                                name='event-type'
+                                value={categoryId}
+                                onChange={(e) => setCategoryId(e.target.value)}>
+                                <option value=''>Select</option>
+                                {categories.map((category) => (
+                                    <option key={category.id} value={category.id}>{category.name}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
-                    <div className='create__event--form-section'>
-                        <label htmlFor='virtual-event'>
-                            Virtual or Physical Event:
-                        </label>
+                    <div className='event__form--section'>
+                        <div class='event__form--title'>
+                            <div>
+                                <label htmlFor='virtual-event'>
+                                    Virtual or Physical Event*
+                                </label>
+                            </div>
+                            <div className='event__form--box'>
+                                <input
+                                    name='virtual-event'
+                                    type='radio'
+                                    value='true'
+                                    checked={virtualEvent === true}
+                                    onChange={(e) => setVirtualEvent(true)}
+                                /> Virtual
+                            </div>
+                            <div className='event__form--radio'>
+                                <input
+                                    name='virtual-event'
+                                    type='radio'
+                                    value='false'
+                                    checked={virtualEvent === false}
+                                    onChange={(e) => setVirtualEvent(false)}
+                                /> Physical
+                            </div>
+                        </div>
                         {'virtualEvent' in validateEvent && (
                             <div className='form__submit--error'>{validateEvent.virtualEvent}</div>
                         )}
-                        <input
-                            name='virtual-event'
-                            type='radio'
-                            value='true'
-                            checked={virtualEvent === true}
-                            onChange={(e) => setVirtualEvent(true)}
-                        /> Virtual
-                        <input
-                            name='virtual-event'
-                            type='radio'
-                            value='false'
-                            checked={virtualEvent === false}
-                            onChange={(e) => setVirtualEvent(false)}
-                        /> Physical
+
                     </div>
                     {virtualEvent === true || virtualEvent === false ? getLocationInfo : null}
 

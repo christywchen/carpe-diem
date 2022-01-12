@@ -16,11 +16,11 @@
   --accent-color-triplet: 231, 64, 120;
   --accent-color-4: #603d80;
   --accent-color-4-light: #603d80;
-  --light-neutral: #d2cfda;
+  --light-neutral: #c2bfca;
   --light-grey: #a8a8a8;
   --medium-grey: #999999;
   --card-background: #261f38;
-  --body-text: #ffe4f3;
+  --body-text: #c2bfca;
   --modal-bg: #24192e;
   --event-flag-1: #1b8a9e;
   --event-flag-2: #b14569;
@@ -38,7 +38,7 @@ body {
 
 body {
   font-family: var(--body-font);
-  color: var(--light-neutral);
+  color: var(--body-text);
   font-size: 15px;
   font-weight: 300;
   line-height: 1.4em;

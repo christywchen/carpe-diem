@@ -16,7 +16,7 @@
 }
 
 #nav a {
-    color: var(--light-neutral);
+    color: var(--body-text);
 }
 
 .nav__link--left > a,
@@ -69,7 +69,7 @@
 ul.profile__dropdown--list {
     position: absolute;
     width: fit-content;
-    margin: 75px -10px 0 0;
+    margin: 77px -10px 0 0;
 
     text-align: right;
     list-style-type: none;

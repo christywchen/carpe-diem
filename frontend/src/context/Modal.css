@@ -46,9 +46,9 @@
     padding: 8px 10px;
     margin: 8px 0;
 
-    color: var(--light-neutral);
+    color: var(--body-text);
     border: none;
-    border-bottom: 1px solid var(--light-neutral);
+    border-bottom: 1px solid var(--body-text);
     caret-color: var(--accent-color-2);
     background: none;
 }
