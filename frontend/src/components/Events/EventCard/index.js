@@ -27,8 +27,8 @@ function EventCard({ eventId }) {
                         <i className="fas fa-map-marker-alt fa-sm event__card--pin" />
                         {Venue?.city}, {Venue?.state}
                     </div>
-                    <div className='event__card--headliners'>Headliner: Sakuraburst</div>
-                    <div className='event__card--headliners'>Organizer: Sakuraburst</div>
+                    {/* <div className='event__card--headliners'>Headliner: Sakuraburst</div>
+                    <div className='event__card--headliners'>Organizer: Sakuraburst</div> */}
                 </div>
             </div >
         </>

@@ -99,3 +99,16 @@
     justify-content: center;
     gap: 10px;
 }
+
+.event__form--errors {
+    margin: 32px 0 0 0;
+    padding: 10px 14px;
+
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+
+    border-radius: 2px;
+    border: 1px solid var(--accent-color-3);
+    background-color: rgba(var(--accent-color-triplet), 0.3);
+}

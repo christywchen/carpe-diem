@@ -42,7 +42,7 @@ export const createVenue = (newVenue, published) => async (dispatch) => {
     });
 
     const data = await res.json();
-    if (published) dispatch(addVenue(data));
+    dispatch(addVenue(data));
     return data;
 };
 

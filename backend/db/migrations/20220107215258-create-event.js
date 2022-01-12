@@ -10,8 +10,7 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING(50),
-        allowNull: false,
-        defaultValue: 'Untitled Event'
+        allowNull: false
       },
       startTime: {
         type: Sequelize.DATE

@@ -7,6 +7,8 @@ import { createVenue, updateVenue } from "../../../store/venue";
 import { createEvent, updateEvent } from "../../../store/event";
 import { validateEventForm } from '../../../utils/form-validations';
 
+import { getDateTime } from "../../../utils/date-time";
+
 import './EventForm.css';
 
 function EventForm({ formProps, formType }) {
@@ -37,6 +39,9 @@ function EventForm({ formProps, formType }) {
     const [validateEvent, setValidateEvent] = useState({});
     const [validateVenue, setValidateVenue] = useState({})
 
+    const [minStartTime, setMinStartTime] = useState(formProps?.startTime || getDateTime());
+    const [minEndTime, setMinEndTime] = useState(minStartTime)
+
     /* HOOKS */
     useEffect(() => {
         dispatch(getAllCategories());
@@ -49,7 +54,7 @@ function EventForm({ formProps, formType }) {
 
     // show additional input fields depending on if the event is physical or virtual
     // listen for updates to validations
-    useEffect(() => { }, [validateEvent, validateVenue, virtualEvent]);
+    useEffect(() => { }, [validateEvent, validateVenue, minEndTime, virtualEvent]);
 
     /* HELPER FUNCTIONS */
     async function createRecord() {
@@ -418,8 +423,13 @@ function EventForm({ formProps, formType }) {
                             <input
                                 name='start-time'
                                 type='datetime-local'
+                                min={minStartTime}
                                 value={startTime}
-                                onChange={(e) => setStartTime(e.target.value)}
+                                onChange={(e) => {
+                                    setStartTime(e.target.value);
+                                    setMinEndTime(e.target.value);
+                                    return;
+                                }}
                             />
                         </div>
                     </div>
@@ -436,6 +446,7 @@ function EventForm({ formProps, formType }) {
                             <input
                                 name='end-time'
                                 type='datetime-local'
+                                min={minEndTime}
                                 value={endTime}
                                 onChange={(e) => setEndTime(e.target.value)}
                             />
@@ -494,6 +505,10 @@ function EventForm({ formProps, formType }) {
 
                     </div>
                     {virtualEvent === true || virtualEvent === false ? getLocationInfo : null}
+
+                    {Object.keys(validateEvent).length > 0 || Object.keys(validateVenue).length > 0 ? (
+                        <div className='event__form--errors'>Something seems to be missing. Check above to see what went wrong.</div>
+                    ) : null}
                     <div className='event__form--submit'>
                         {formType === 'editPublished' ?
                             (
@@ -527,6 +542,9 @@ function EventForm({ formProps, formType }) {
                             )}
 
                     </div>
+                    {/* {Object.keys(validateEvent).length > 0 || Object.keys(validateVenue).length > 0 ? (
+                        <div className='event__form--errors'>Something seems to be missing. Check above to see what went wrong.</div>
+                    ) : null} */}
                 </form>
             </div>
         </>

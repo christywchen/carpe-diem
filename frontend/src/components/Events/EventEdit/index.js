@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import EventForm from '../EventForm';
 import { getEvent } from '../../../store/event';
 
+import { getDateTime } from '../../../utils/date-time';
+
 function EventEdit() {
     const { eventId } = useParams();
     const dispatch = useDispatch();
@@ -17,11 +19,13 @@ function EventEdit() {
     if (event) {
         if (!event.published) formType = 'editDraft';
 
+        console.log(event.startTime)
+        console.log(getDateTime(event.startTime))
         formProps = {
             eventId: event.id,
             name: event.name,
-            // startTime: event.startTime,
-            // endTime: event.endTime,
+            startTime: getDateTime(event.startTime),
+            endTime: getDateTime(event.endTime),
             description: event.description,
             capacity: event.capacity,
             virtualEvent: event.virtualEvent,

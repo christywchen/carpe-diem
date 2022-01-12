@@ -7,7 +7,14 @@ import { getEvent } from '../../../store/event';
 function EventDetails() {
     const { eventId } = useParams();
     const dispatch = useDispatch();
-    const event = useSelector(state => state.event.events[eventId]);
+    const event = useSelector(state => {
+        if (state.event.events[eventId]) {
+            return state.event.events[eventId];
+        } else {
+            return null
+        }
+    });
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,7 +30,7 @@ function EventDetails() {
     //     }
     // }, [])
 
-    if (event?.published === false) {
+    if (event === null) {
         return <Navigate to='/not-found' />
     }
 
