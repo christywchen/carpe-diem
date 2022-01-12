@@ -1,0 +1,9 @@
+.delete__event--name {
+    padding: 0 0 0 3px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.delete__event--body {
+    padding: 20px;
+}

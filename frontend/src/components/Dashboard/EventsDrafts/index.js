@@ -19,12 +19,11 @@ function EventsDrafts() {
     useEffect(() => {
         if (!sessionUser) {
             navigate('/login');
-        }
-        else {
+        } else {
             userId = sessionUser.id;
             dispatch(getDraftsByUser(userId));
         }
-    }, [dispatch]);
+    }, [draftEvents]);
 
     return (
         <>

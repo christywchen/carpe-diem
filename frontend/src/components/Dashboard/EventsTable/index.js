@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+import DeleteEventModal from '../../Modals/DeleteEventModal';
 
 function EventsTable({ events }) {
     return (
@@ -33,7 +35,8 @@ function EventsTable({ events }) {
                                 <Link to={`/events/${id}/edit`}>Edit</Link>
                             </td>
                             <td>
-                                <Link to={`/events/${id}`}>Delete</Link>
+                                <DeleteEventModal eventId={id} eventName={name} published={published} />
+                                {/* <Link to={`/events/${id}`}>Delete</Link> */}
                             </td>
                         </tr>
                     ))}

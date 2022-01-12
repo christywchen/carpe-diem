@@ -19,11 +19,9 @@ function EventsAll() {
     return (
         <>
             <div className='events__dashboard--table'>
-                <h2>Published Events</h2>
                 <EventsPublished />
                 <hr />
 
-                <h2>Draft Events</h2>
                 <EventsDrafts />
                 <hr />
             </div>

@@ -5,7 +5,8 @@ const LOAD_PUBLISHED_EVENTS = 'event/loadPublishedEvents';
 const LOAD_DRAFT_EVENTS = 'event/loadDraftEvents';
 const ADD_EVENT = 'event/addEvent';
 const EDIT_EVENT = 'event/editEvent';
-const REMOVE_EVENT = 'event/removeEvent';
+const REMOVE_PUBLISHED_EVENT = 'event/removePublishedEvent';
+const REMOVE_DRAFT_EVENT = 'event/removeDraftEvent';
 
 // action creators
 export const loadEvents = (events) => {
@@ -44,9 +45,16 @@ export const editEvent = (eventId, updatedEvent) => {
     }
 };
 
-export const removeEvent = (eventId) => {
+export const removePublishedEvent = (eventId) => {
     return {
-        type: REMOVE_EVENT,
+        type: REMOVE_PUBLISHED_EVENT,
+        eventId
+    }
+};
+
+export const removeDraftEvent = (eventId) => {
+    return {
+        type: REMOVE_DRAFT_EVENT,
         eventId
     }
 };
@@ -73,7 +81,6 @@ export const getDraftsByUser = (userId) => async (dispatch) => {
     const data = await res.json();
     dispatch(loadDraftEvents(data));
 };
-
 
 export const getEvent = (eventId) => async (dispatch) => {
     const res = await csrfFetch(`/api/events/${eventId}`);
@@ -104,10 +111,13 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
     return data;
 };
 
-export const deleteEvent = (eventId) => async (dispatch) => {
+export const deleteEvent = (eventId, published) => async (dispatch) => {
     await csrfFetch(`/api/events/${eventId}`, {
         method: 'DELETE'
     });
+
+    if (published) dispatch(removePublishedEvent(eventId));
+    else dispatch(removeDraftEvent(eventId));
 };
 
 // initial state
@@ -147,9 +157,15 @@ const eventReducer = (state = initialState, action) => {
             newState = { ...state };
             newState.events[action.eventId] = action.updatedEvent;
             return newState;
-        case REMOVE_EVENT:
+        case REMOVE_PUBLISHED_EVENT:
             newState = { ...state };
-            delete newState[action.eventId];
+            delete newState.events[action.eventId];
+            delete newState.published[action.eventId];
+            return newState;
+        case REMOVE_DRAFT_EVENT:
+            newState = { ...state };
+            delete newState.events[action.eventId];
+            delete newState.drafts[action.eventId];
             return newState;
         default:
             return state;
