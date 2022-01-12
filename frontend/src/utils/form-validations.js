@@ -50,10 +50,6 @@ export function validateVenueForm(venueName, venueAddress, venueCity, venueState
     if (!venueCity.length) errors.venueCity = 'Venue city is required.';
     else if (venueCity.length > 50) errors.venueCity = 'Maximum character length is 50.'
 
-    // || !venueCity.length || !venueState.length || !venueZip.length) {
-    //     errors.venueInfo = 'Please provide details about the venue\'s location.';
-    // }
-
     if (!stateString.test(venueState)) errors.venueState = 'Provide a two-letter state abbreviation.';
     if (!zipString.test(venueStr)) errors.venueZip = 'Must be a standard postal code.'
 
