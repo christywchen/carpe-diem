@@ -75,7 +75,7 @@ function EventForm({ formProps, formType }) {
         }
 
         const event = {
-            name: name ? name : null,
+            name: name ? name : 'Untitled Event',
             startTime: startTime ? startTime : null,
             endTime: endTime ? endTime : null,
             description: description ? description : null,
@@ -120,7 +120,7 @@ function EventForm({ formProps, formType }) {
         }
 
         const event = {
-            name: name ? name : null,
+            name: name ? name : 'Untitled Event',
             startTime: startTime ? startTime : null,
             endTime: endTime ? endTime : null,
             description: description ? description : null,

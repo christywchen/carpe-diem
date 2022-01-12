@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     name: {
       type: DataTypes.STRING(50),
+      defaultValue: 'Untitled Event',
       validate: {
         len: [1, 50]
       }

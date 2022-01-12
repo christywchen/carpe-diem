@@ -9,7 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING(50),
+        allowNull: false,
+        defaultValue: 'Untitled Event'
       },
       startTime: {
         type: Sequelize.DATE

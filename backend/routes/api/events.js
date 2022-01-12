@@ -14,7 +14,6 @@ const validateEvent = [
         .exists()
         .withMessage('Event needs a status of published: true or false.'),
     check('name')
-        .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
         .withMessage('Please provide an event name.')
         .isLength({ max: 50 })
