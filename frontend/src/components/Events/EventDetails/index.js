@@ -23,6 +23,10 @@ function EventDetails() {
     //     }
     // }, [])
 
+    if (event?.published === false) {
+        return <Navigate to='/not-found' />
+    }
+
     let locationInfo;
     if (event?.virtualEvent) {
         locationInfo = (
