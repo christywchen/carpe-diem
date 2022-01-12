@@ -46,7 +46,7 @@ export const createVenue = (newVenue, published) => async (dispatch) => {
     return data;
 };
 
-export const updateVenue = (venueId, updatedVenue) => async (dispatch) => {
+export const updateVenue = (venueId, updatedVenue, published) => async (dispatch) => {
     const res = await csrfFetch(`/api/venues/${venueId}`, {
         method: 'PATCH',
         body: JSON.stringify(updatedVenue)

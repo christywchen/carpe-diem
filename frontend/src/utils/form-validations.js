@@ -1,6 +1,6 @@
 
 export function validateEventForm({ validationItems }) {
-    const { name, startTime, endTime, description, category, virtualEvent, capacity,
+    const { name, startTime, endTime, description, categoryId, virtualEvent, capacity,
         venueName, venueAddress, venueCity, venueState, venueZip } = validationItems;
 
     const eventErrors = {};
@@ -12,7 +12,7 @@ export function validateEventForm({ validationItems }) {
     if (!startTime.length) eventErrors.startTime = 'Please enter a start time.';
     if (!endTime.length) eventErrors.endTime = 'Please enter an end time.';
     if (!description) eventErrors.description = 'Please provide a short description about your event.';
-    if (!category.length) eventErrors.category = 'Let us know what type of event you\'re hosting.'
+    if (!categoryId) eventErrors.categoryId = 'Let us know what type of event you\'re hosting.'
 
     if (virtualEvent === 'empty') {
         eventErrors.virtualEvent = 'Let us know if your event is virtual or in-person.';

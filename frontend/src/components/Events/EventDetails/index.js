@@ -41,9 +41,9 @@ function EventDetails() {
             locationInfo = (
                 <>
                     <p>ok fine here's the address</p>
-                    <p>{event?.Venue.name}</p>
-                    <p>{event?.Venue.address}</p>
-                    <p>{event?.Venue.city}, {event?.Venue.state} {event?.Venue.zip}</p>
+                    <p>{event?.Venue?.name}</p>
+                    <p>{event?.Venue?.address}</p>
+                    <p>{event?.Venue?.city}, {event?.Venue?.state} {event?.Venue?.zip}</p>
                 </>
             )
         }

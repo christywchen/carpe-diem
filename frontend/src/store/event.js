@@ -93,14 +93,14 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
     return data;
 };
 
-export const updateEvent = (eventId, updatedEvent) => async (dispatch) => {
+export const updateEvent = (eventId, updatedEvent, published) => async (dispatch) => {
     const res = await csrfFetch(`/api/events/${eventId}`, {
         method: 'PATCH',
         body: JSON.stringify(updatedEvent)
     });
 
     const data = await res.json();
-    dispatch(editEvent(data));
+    if (published) dispatch(addEvent(data));
     return data;
 };
 
