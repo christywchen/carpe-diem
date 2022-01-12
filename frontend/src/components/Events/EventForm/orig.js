@@ -217,10 +217,10 @@ function EventForm({ formProps, formType }) {
                 <div>
                     <label htmlFor='venue-name'>
                         Venue Name:
-                        {'venueName' in validateVenue && (
-                            <span className='form__submit--error'>{validateVenue.venueName}</span>
-                        )}
                     </label>
+                    {'venueName' in validateVenue && (
+                        <div className='form__submit--error'>{validateVenue.venueName}</div>
+                    )}
                     <input
                         name='venue-name'
                         type='text'
@@ -321,21 +321,19 @@ function EventForm({ formProps, formType }) {
 
     return (
         <>
-            <p>Tell us about your event and give people a reason to come! Don't forget to share what makes your event unique. You can always make edits later on if you change your mind about something.</p>
-            <div id='event__form--container'>
+            <div id='create__event--form'>
+                <p>Tell us about your event and give people a reason to come! Don't forget to share what makes your event unique.</p>
                 <form
                     onSubmit={handleSubmit}
-                    className='event__form--content'
+                    className='create__event--formcontent'
                 >
-                    <div className='event__form--section'>
-                        <div class='event__form--title'>
-                            <label htmlFor='name'>
-                                Event Name:
-                            </label>
-                            {'name' in validateEvent && (
-                                <span className='form__submit--error'>{validateEvent.name}</span>
-                            )}
-                        </div>
+                    <div>
+                        <label htmlFor='name'>
+                            Event Name:
+                        </label>
+                        {'name' in validateEvent && (
+                            <div className='form__submit--error'>{validateEvent.name}</div>
+                        )}
                         <input
                             name='name'
                             type='text'
@@ -343,9 +341,9 @@ function EventForm({ formProps, formType }) {
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
-                    <div className='create__event--form-section'>
+                    <div>
                         <label htmlFor='image'>
-                            Event Image URL:
+                            Event Image:
                         </label>
                         <input
                             name='image'
@@ -354,7 +352,7 @@ function EventForm({ formProps, formType }) {
                             onChange={(e) => setImageUrl(e.target.value)}
                         />
                     </div>
-                    <div className='create__event--form-section'>
+                    <div>
                         <label htmlFor='description'>
                             Description:
                         </label>
@@ -367,7 +365,7 @@ function EventForm({ formProps, formType }) {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-                    <div className='create__event--form-section'>
+                    <div>
                         <label htmlFor='start-time'>
                             Start Time:
                         </label>
@@ -381,7 +379,7 @@ function EventForm({ formProps, formType }) {
                             onChange={(e) => setStartTime(e.target.value)}
                         />
                     </div>
-                    <div className='create__event--form-section'>
+                    <div>
                         <label htmlFor='end-time'>
                             End Time:
                         </label>
@@ -395,7 +393,7 @@ function EventForm({ formProps, formType }) {
                             onChange={(e) => setEndTime(e.target.value)}
                         />
                     </div>
-                    <div className='create__event--form-section'>
+                    <div>
                         <label htmlFor='event-type'>
                             Event Type:
                         </label>
@@ -412,7 +410,7 @@ function EventForm({ formProps, formType }) {
                             ))}
                         </select>
                     </div>
-                    <div className='create__event--form-section'>
+                    <div>
                         <label htmlFor='virtual-event'>
                             Virtual or Physical Event:
                         </label>

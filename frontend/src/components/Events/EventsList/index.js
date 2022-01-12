@@ -18,8 +18,9 @@ function Events() {
 
     return (
         <>
-            <h1>Tonight's Top Events</h1>
-
+            <div className='events__container--title'>
+                <h1>Tonight's Top Events</h1>
+            </div>
             <div className='events__container--items'>
                 {events.map((event) =>
                     (< EventCard key={event.id} eventId={event.id} />)

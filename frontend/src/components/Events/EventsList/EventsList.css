@@ -1,5 +1,5 @@
 .events__container--items {
-    margin-top: -20px;
+    margin: -20px 0 -20px 0;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);

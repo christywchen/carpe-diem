@@ -39,8 +39,9 @@ body {
 body {
   font-family: var(--body-font);
   color: var(--light-neutral);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 300;
+  line-height: 1.4em;
   /* background: rgb(230, 92, 184);
   background: linear-gradient(45deg, rgba(230, 92, 184, 1) 0%, rgba(97, 168, 232, 1) 100%); */
 

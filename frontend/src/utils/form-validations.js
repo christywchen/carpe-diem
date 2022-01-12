@@ -44,7 +44,7 @@ export function validateVenueForm(venueName, venueAddress, venueCity, venueState
     else if (venueName.length > 50) errors.venueName = 'Maximum character length is 50.';
 
     if (!venueAddress.length || !venueCity.length || !venueState.length || !venueZip.length) {
-        errors.venueInfo = 'Please provide location information for the venue.';
+        errors.venueInfo = 'Please provide details about the venue\'s location.';
     }
 
     if (venueAddress.length > 100) errors.venueAddress = 'Maximum character length is 100.';
