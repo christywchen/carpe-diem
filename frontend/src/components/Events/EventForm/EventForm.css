@@ -92,3 +92,10 @@
     padding: 12px 24px 20px;
     border-radius: 5px;
 }
+
+.event__form--submit {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

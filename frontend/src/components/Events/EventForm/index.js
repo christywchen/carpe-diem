@@ -201,12 +201,12 @@ function EventForm({ formProps, formType }) {
 
                 <div className='event__form--venue-container'>
                     <div className='event__form--section-venue'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='event-url'>
                                 Stream URL:
                             </label>
                         </div>
-                        <div class='event__form--description'>
+                        <div className='event__form--description'>
                             <p>
                                 This will be shared on the day of the event.
                             </p>
@@ -226,7 +226,7 @@ function EventForm({ formProps, formType }) {
             <>
                 <div className='event__form--venue-container'>
                     <div className='event__form--section-venue'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='venue-name'>
                                 Venue Name*
                             </label>
@@ -243,7 +243,7 @@ function EventForm({ formProps, formType }) {
                     </div>
                     <div>
                         <div className='event__form--venue'>
-                            <div class='event__form--title'>
+                            <div className='event__form--title'>
                                 <label htmlFor='venue-address'>
                                     Address:
                                 </label>
@@ -260,7 +260,7 @@ function EventForm({ formProps, formType }) {
                         </div>
                     </div>
                     <div className='event__form--venue'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='venue-city'>
                                 City:
                             </label>
@@ -276,7 +276,7 @@ function EventForm({ formProps, formType }) {
                         />
                     </div>
                     <div>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='venue-state'>
                                 State:
                             </label>
@@ -292,7 +292,7 @@ function EventForm({ formProps, formType }) {
                         />
                     </div>
                     <div>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='venue-zip'>
                                 Zip:
                             </label>
@@ -308,7 +308,7 @@ function EventForm({ formProps, formType }) {
                         />
                     </div>
                     <div>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <div>
                                 <label htmlFor='event-capacity'>
                                     Capacity*
@@ -326,7 +326,7 @@ function EventForm({ formProps, formType }) {
                         </div>
                     </div>
                     <div>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='secret-location'>
                                 Secret Location?
                             </label>
@@ -339,7 +339,7 @@ function EventForm({ formProps, formType }) {
                             />
                         </div>
                         {secretLocation && (
-                            <div class='event__form--description'>
+                            <div className='event__form--description'>
                                 <p>
                                     Address specifics will be kept secret until the day of the event.
                                 </p>
@@ -362,7 +362,7 @@ function EventForm({ formProps, formType }) {
                     className='event__form--content'
                 >
                     <div className='event__form--section'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='name'>
                                 Event Name*
                             </label>
@@ -378,7 +378,7 @@ function EventForm({ formProps, formType }) {
                         />
                     </div>
                     <div className='event__form--section'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='image'>
                                 Event Image URL
                             </label>
@@ -391,7 +391,7 @@ function EventForm({ formProps, formType }) {
                         />
                     </div>
                     <div className='event__form--section'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <label htmlFor='description'>
                                 Description*
                             </label>
@@ -406,7 +406,7 @@ function EventForm({ formProps, formType }) {
                         />
                     </div>
                     <div className='event__form--section'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <div>
                                 <label htmlFor='start-time'>
                                     Start Time*
@@ -424,7 +424,7 @@ function EventForm({ formProps, formType }) {
                         </div>
                     </div>
                     <div className='event__form--section'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <div>
                                 <label htmlFor='end-time'>
                                     End Time*
@@ -442,7 +442,7 @@ function EventForm({ formProps, formType }) {
                         </div>
                     </div>
                     <div className='event__form--section'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <div>
                                 <label htmlFor='event-type'>
                                     Event Type*
@@ -463,7 +463,7 @@ function EventForm({ formProps, formType }) {
                         </div>
                     </div>
                     <div className='event__form--section'>
-                        <div class='event__form--title'>
+                        <div className='event__form--title'>
                             <div>
                                 <label htmlFor='virtual-event'>
                                     Virtual or Physical Event*
@@ -494,37 +494,39 @@ function EventForm({ formProps, formType }) {
 
                     </div>
                     {virtualEvent === true || virtualEvent === false ? getLocationInfo : null}
+                    <div className='event__form--submit'>
+                        {formType === 'editPublished' ?
+                            (
+                                <>
+                                    <button
+                                        className='button button__submit--primary'
+                                        type="submit"
+                                        onClick={() => setPublished(true)}
+                                    >
+                                        Save Changes
+                                    </button>
+                                </>
+                            ) :
+                            (
+                                <>
+                                    <button
+                                        className='button button__submit--grey'
+                                        type="submit"
+                                        onClick={() => setPublished(false)}
+                                    >
+                                        Save Draft
+                                    </button>
+                                    <button
+                                        className='button button__submit--primary'
+                                        type="submit"
+                                        onClick={() => setPublished(true)}
+                                    >
+                                        Publish Now
+                                    </button>
+                                </>
+                            )}
 
-                    {formType === 'editPublished' ?
-                        (
-                            <>
-                                <button
-                                    className='button button__submit--primary'
-                                    type="submit"
-                                    onClick={() => setPublished(true)}
-                                >
-                                    Save Changes
-                                </button>
-                            </>
-                        ) :
-                        (
-                            <>
-                                <button
-                                    className='button button__submit--grey'
-                                    type="submit"
-                                    onClick={() => setPublished(false)}
-                                >
-                                    Save Draft
-                                </button>
-                                <button
-                                    className='button button__submit--primary'
-                                    type="submit"
-                                    onClick={() => setPublished(true)}
-                                >
-                                    Publish Now
-                                </button>
-                            </>
-                        )}
+                    </div>
                 </form>
             </div>
         </>
