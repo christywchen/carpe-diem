@@ -155,15 +155,22 @@ const eventReducer = (state = initialState, action) => {
             return newState;
         case EDIT_EVENT:
             newState = { ...state };
+            newState.events = { ...state.events };
             newState.events[action.eventId] = action.updatedEvent;
             return newState;
         case REMOVE_PUBLISHED_EVENT:
             newState = { ...state };
+            newState.events = { ...state.events };
+            newState.published = { ...state.published };
+
             delete newState.events[action.eventId];
             delete newState.published[action.eventId];
             return newState;
         case REMOVE_DRAFT_EVENT:
             newState = { ...state };
+            newState.events = { ...state.events };
+            newState.drafts = { ...state.drafts };
+
             delete newState.events[action.eventId];
             delete newState.drafts[action.eventId];
             return newState;

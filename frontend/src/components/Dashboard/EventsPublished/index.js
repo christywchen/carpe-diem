@@ -24,7 +24,7 @@ function EventsPublished() {
             userId = sessionUser.id;
             dispatch(getPublishedByUser(userId));
         }
-    }, [publishedEvents]);
+    }, [dispatch]);
 
     return (
         <>

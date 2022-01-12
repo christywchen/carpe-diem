@@ -23,7 +23,7 @@ function EventsDrafts() {
             userId = sessionUser.id;
             dispatch(getDraftsByUser(userId));
         }
-    }, [draftEvents]);
+    }, [dispatch]);
 
     return (
         <>
