@@ -6,7 +6,7 @@ import LoginForm from './components/Modals/LoginFormModal';
 import SignUpForm from './components/Modals/SignUpFormModal';
 import Navigation from './components/Navigation';
 import UserDashboard from './components/Dashboard/DashboardMain';
-import Events from './components/Events/EventsPage'
+import Events from './components/Events/EventsList'
 import EventDetails from './components/Events/EventDetails';
 import EventCreate from './components/Events/EventCreate';
 import EventEdit from './components/Events/EventEdit';

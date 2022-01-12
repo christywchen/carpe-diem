@@ -43,11 +43,7 @@ function EventForm({ formProps, formType }) {
 
     // if user is not authenticated, redirect user to log in page
     useEffect(() => {
-        if (!sessionUser) {
-            navigate('/login');
-        } else {
-            return null;
-        }
+        if (!sessionUser) navigate('/login');
     }, []);
 
     // show additional input fields depending on if the event is physical or virtual

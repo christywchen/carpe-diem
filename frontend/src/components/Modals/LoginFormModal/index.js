@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import { Modal } from '../../../context/Modal';
 import SignUpFormModal from '../../Modals/SignUpFormModal';
 import LoginForm from './LoginForm';
 
 function LoginFormModal({ button = false }) {
+    const navigate = useNavigate();
+
+    const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        if (sessionUser) navigate('/');
+    }, [sessionUser]);
 
     return (
         <>

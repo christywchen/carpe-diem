@@ -5,14 +5,12 @@ import { getAllEvents } from '../../../store/event';
 
 import EventCard from '../EventCard';
 
-import './Events.css';
+import './EventsList.css';
 
 function Events() {
     const dispatch = useDispatch();
     const eventsObj = useSelector((state) => state.event.events);
     const events = Object.values(eventsObj)
-
-    console.log(eventsObj)
 
     useEffect(() => {
         dispatch(getAllEvents());

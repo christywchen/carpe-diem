@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getDraftsByUser } from '../../../store/event';
@@ -8,16 +9,22 @@ import EventsTable from '../EventsTable';
 
 function EventsDrafts() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const sessionUser = useSelector((state) => state.session.user);
-    const userId = sessionUser.id;
-
     const draftEventsObj = useSelector((state) => state.event.drafts);
     const draftEvents = Object.values(draftEventsObj);
 
+    let userId;
     useEffect(() => {
-        dispatch(getDraftsByUser(userId));
-    }, [dispatch])
+        if (!sessionUser) {
+            navigate('/login');
+        }
+        else {
+            userId = sessionUser.id;
+            dispatch(getDraftsByUser(userId));
+        }
+    }, [dispatch]);
 
     return (
         <>
