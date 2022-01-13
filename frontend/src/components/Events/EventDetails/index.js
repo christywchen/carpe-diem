@@ -62,6 +62,7 @@ function EventDetails() {
 
     return (
         <>
+            <img src={event.imageUrl} />
             <p> Event Name
                 {event?.name}
             </p>
