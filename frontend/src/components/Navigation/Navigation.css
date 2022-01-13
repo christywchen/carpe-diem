@@ -28,7 +28,7 @@
 .profile__button:hover,
 .nav__button--link:hover {
     color: var(--accent-color-1-light) !important;
-    /* font-family: "Times New Roman", Times, serif; */
+    transition: 0.3s;
 }
 
 #nav a:focus,
@@ -85,22 +85,6 @@ ul.profile__dropdown--list {
 li.profile__dropdown--item {
     padding: 14px 25px 14px 35px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.nav__button--link {
-    width: fit-content;
-
-    margin: 0;
-
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    background-color: unset;
-    border: none;
-}
-
-.nav__button--link-main {
-    padding: 20px;
 }
 
 .profile__dropdown--list {

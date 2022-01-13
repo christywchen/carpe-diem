@@ -28,9 +28,21 @@ function DashboardMain() {
                 <div id='dashboard__header'>
                     <h1 id='dashboard__header--title'>Your Events</h1>
                     <div id='dashboard__head--links'>
-                        <NavLink to='/dashboard/all'>All</NavLink>
-                        <NavLink to='/dashboard/drafts'>Drafts</NavLink>
-                        <NavLink to='/dashboard/published'>Published</NavLink>
+                        <NavLink
+                            className={({ isActive }) => 'button button__nav--link' + (isActive ? ' button__nav--active' : '')}
+                            to='/dashboard/all'>
+                            All
+                        </NavLink>
+                        <NavLink
+                            className={({ isActive }) => 'button button__nav--link' + (isActive ? ' button__nav--active' : '')}
+                            to='/dashboard/drafts'>
+                            Drafts
+                        </NavLink>
+                        <NavLink
+                            className={({ isActive }) => 'button button__nav--link' + (isActive ? ' button__nav--active' : '')}
+                            to='/dashboard/published'>
+                            Published
+                        </NavLink>
                     </div>
                 </div>
 

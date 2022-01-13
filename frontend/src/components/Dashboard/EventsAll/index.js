@@ -20,10 +20,9 @@ function EventsAll() {
         <>
             <div className='events__dashboard--table'>
                 <EventsPublished />
-                <hr />
+                <hr className='table__divider' />
 
                 <EventsDrafts />
-                <hr />
             </div>
         </>
     )

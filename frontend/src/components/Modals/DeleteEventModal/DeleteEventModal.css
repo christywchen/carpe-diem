@@ -7,3 +7,16 @@
 .delete__event--body {
     padding: 20px;
 }
+
+.delete__event--text {
+    padding-top: 20px;
+}
+
+.button__submit--cancel {
+    background-color: var(--light-grey);
+}
+
+.button__submit--cancel:hover {
+    background-color: var(--accent-color-3-light);
+    transition: 0.3s;
+}
