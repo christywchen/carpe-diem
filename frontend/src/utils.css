@@ -99,11 +99,11 @@ tr.table__tr--record:hover {
     transition: 0.3s;
 }
 
-tr.table__th--name {
+th.table__th--name {
     width: 10%;
 }
 
-tr.table__th--event-name {
+th.table__th--event-name {
     width: 70%;
 }
 
@@ -116,10 +116,15 @@ td.table__td--event-name {
 .table__tr--record button {
     color: var(--body-font);
 }
-.table__tr--attrib a:hover {
+.table__tr--record a:hover {
     color: var(--accent-color-1);
 }
 
 hr.table__divider {
     margin: 40px 0;
+}
+
+/* OTHER */
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }

@@ -25,9 +25,30 @@ export function getDateTime(day) {
     }
 }
 
-export function getDateShort(dateTime) {
-    const date = getDateTime(dateTime);
-    const dateNums = date.split('T')[0].split('-');
+export function getDateShort(date) {
+    /*
+    This function gets takes a standard date input and returns it in MM/DD format.
+    */
+    const dateObj = getDateTime(date);
+    const [year, month, day] = dateObj.split('T')[0].split('-');
 
-    return `${dateNums[1]}/${dateNums[2]}`;
+    return `${month}/${day}`;
+}
+
+export function getDateString(date) {
+    /*
+    This function takes a standard date input and returns it in readable string format.
+    Time is formatted as 12 hour periods.
+    */
+    const dateObj = new Date(date);
+    const [dayStr, dayNum, month, year, time] = dateObj.toString().split(' ');
+    let [hour, minute, second] = time.split(':');
+    let timePeriod = 'AM';
+
+    if (hour > 12) {
+        hour -= 12;
+        timePeriod = 'PM';
+    }
+
+    return `${dayStr} ${month} ${dayNum}, ${hour}:${minute} ${timePeriod}`;
 }

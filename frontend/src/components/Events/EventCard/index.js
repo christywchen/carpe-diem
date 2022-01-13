@@ -1,16 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import './EventCard.css';
 
+import { getDateString } from '../../../utils/date-time';
 
 function EventCard({ event }) {
-    const { id, name, date, categoryId, imageUrl, Category, Venue } = event;
+    const { id, name, startTime, description, categoryId, imageUrl, Category, Venue } = event;
 
     const cardStyling = {
         backgroundImage: `url('${imageUrl})`
     }
+
+    function getDescSummary(description) {
+        if (description.length < 75) return description;
+        else return description.slice(0, 80) + '...';
+    }
+
+    const time = getDateString(startTime);
 
     return (
         <>
@@ -26,13 +33,12 @@ function EventCard({ event }) {
                             {name}
                         </Link>
                     </h3>
-                    <div className='event__card--date'>{date}</div>
+                    <div className='event__card--date'>{time}</div>
                     <div className='event__card--location'>
                         <i className="fas fa-map-marker-alt fa-sm event__card--pin" />
-                        {Venue?.city}, {Venue?.state}
+                        {Venue ? (<>{Venue?.city}, {Venue?.state}</>) : (<>Virtual Event</>)}
                     </div>
-                    <div className='event__card--headliners'>Headliner: Sakuraburst</div>
-                    <div className='event__card--headliners'>Organizer: Sakuraburst</div>
+                    <div className='event__card--description'>{getDescSummary(description)}</div>
                 </div>
             </div >
         </>
