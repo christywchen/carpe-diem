@@ -41,7 +41,7 @@ export function getDateString(date) {
     Time is formatted as 12 hour periods.
     */
     const dateObj = new Date(date);
-    const [dayStr, dayNum, month, year, time] = dateObj.toString().split(' ');
+    const [dayStr, dayNum, month, year, time] = dateObj.toUTCString().split(' ');
     let [hour, minute, second] = time.split(':');
     let timePeriod = 'AM';
 
