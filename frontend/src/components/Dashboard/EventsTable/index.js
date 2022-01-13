@@ -24,7 +24,6 @@ function EventsTable({ events }) {
                     {sortedByDate.map(({ name, id, published, startTime }) => (
                         <tr className='table__tr--record' key={id}>
                             <td className='table__td--attrib'>
-                                {console.log(getDateShort(startTime))}
                                 {startTime ?
                                     getDateShort(startTime) :
                                     (<>TBD</ >)

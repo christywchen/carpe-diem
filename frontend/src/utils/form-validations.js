@@ -6,8 +6,6 @@ export function validateEventForm({ validationItems }) {
     const eventErrors = {};
     let venueErrors = {};
 
-    console.log(name)
-
     if (!name) eventErrors.name = 'Include a name for your event.';
     else if (name.length > 50) eventErrors.name = 'Maximum character length is 50.';
 

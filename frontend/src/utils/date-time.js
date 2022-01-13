@@ -50,7 +50,7 @@ export function getDateString(date) {
         timePeriod = 'PM';
     }
 
-    return `${dayStr} ${month} ${dayNum}, ${hour}:${minute} ${timePeriod}`;
+    return [`${dayStr} ${month} ${dayNum}`, `${hour}:${minute} ${timePeriod}`, `${year}`];
 }
 
 export function sortByDate(eventsArr) {

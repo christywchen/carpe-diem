@@ -8,24 +8,22 @@ import { getDateString } from '../../../utils/date-time';
 function EventCard({ event }) {
     const { id, name, startTime, description, categoryId, imageUrl, Category, Venue } = event;
 
-    const cardStyling = {
-        backgroundImage: `url("${imageUrl}")`
-    }
+    const backgroundImage = { backgroundImage: `url("${imageUrl}")` }
 
     function getDescSummary(description) {
         if (description?.length < 75) return description;
         else return description?.slice(0, 80) + '...';
     }
 
-    const time = getDateString(startTime);
+    const [date, time] = getDateString(startTime);
 
     return (
         <>
             <div className='event__card--container'>
-                <div className='event__card--image event__card--image-default' style={imageUrl ? cardStyling : null}>
-                    <Link to={`/events/${id}`}>
-                    </Link>
-                </div>
+                <Link to={`/events/${id}`}>
+                    <div className='event__card--image event__card--image-default' style={imageUrl ? backgroundImage : null}>
+                    </div>
+                </Link>
                 <div className='event__card--body'>
                     <div className={`event__card--flag event__card--flag-${categoryId}`}>{Category?.name}</div>
                     <h3 className='event__card--title'>
@@ -33,7 +31,7 @@ function EventCard({ event }) {
                             {name}
                         </Link>
                     </h3>
-                    <div className='event__card--date'>{time}</div>
+                    <div className='event__card--date'>{date}, {time}</div>
                     <div className='event__card--location'>
                         <i className="fas fa-map-marker-alt fa-sm event__card--pin" />
                         {Venue ? (<>{Venue?.city}, {Venue?.state}</>) : (<>Virtual Event</>)}

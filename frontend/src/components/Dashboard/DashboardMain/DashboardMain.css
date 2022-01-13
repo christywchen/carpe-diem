@@ -20,6 +20,7 @@
 }
 
 .button__nav--link:hover {
+    color: white;
     background-color: var(--accent-color-4-light);
     opacity: 1;
     transition: 0.3s;
