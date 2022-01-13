@@ -104,11 +104,16 @@ tr.table__th--name {
 }
 
 tr.table__th--event-name {
-    width: 80%;
+    width: 70%;
 }
 
-.table__tr--attrib a,
-.table__tr--attrib button {
+td.table__td--event-name a,
+td.table__td--event-name {
+    font-weight: 500;
+}
+
+.table__tr--record a,
+.table__tr--record button {
     color: var(--body-font);
 }
 .table__tr--attrib a:hover {
@@ -116,5 +121,5 @@ tr.table__th--event-name {
 }
 
 hr.table__divider {
-    margin: 20px 0;
+    margin: 40px 0;
 }

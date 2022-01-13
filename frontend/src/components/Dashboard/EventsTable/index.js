@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import DeleteEventModal from '../../Modals/DeleteEventModal';
 
+import { getDateShort } from '../../../utils/date-time';
+
 function EventsTable({ events }) {
     return (
         <>
@@ -19,22 +21,23 @@ function EventsTable({ events }) {
                 <tbody>
                     {events.map(({ name, id, published, startTime }) => (
                         <tr className='table__tr--record' key={id}>
-                            <td className='table__tr--attrib'>
+                            <td className='table__td--attrib'>
+                                {console.log(getDateShort(startTime))}
                                 {startTime ?
-                                    (<>Date</>) :
-                                    (<>--/--</ >)
+                                    getDateShort(startTime) :
+                                    (<>TBD</ >)
                                 }
                             </td>
-                            <td className='table__tr--attrib'>
+                            <td className='table__td--attrib table__td--event-name'>
                                 {published === true ?
                                     (<Link to={`/events/${id}`}>{name}</Link>) :
                                     (<>{name}</ >)
                                 }
                             </td>
-                            <td className='table__tr--attrib'>
+                            <td className='table__td--attrib'>
                                 <Link to={`/events/${id}/edit`}>Edit</Link>
                             </td>
-                            <td className='table__tr--attrib'>
+                            <td className='table__td--attrib'>
                                 <DeleteEventModal eventId={id} eventName={name} published={published} />
                             </td>
                         </tr>

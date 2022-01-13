@@ -19,9 +19,15 @@ export function getDateTime(day) {
     if (min < 10) min = "0" + min;
 
     if (day) {
-        console.log(`${year}-${month}-${date}T${hour}:${min}`, 'TESTETST')
         return `${year}-${month}-${date}T${hour}:${min}`;
     } else {
         return `${year}-${month}-${date}T00:00`;
     }
+}
+
+export function getDateShort(dateTime) {
+    const date = getDateTime(dateTime);
+    const dateNums = date.split('T')[0].split('-');
+
+    return `${dateNums[1]}/${dateNums[2]}`;
 }
