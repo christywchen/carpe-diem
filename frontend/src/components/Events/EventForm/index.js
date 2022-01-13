@@ -40,7 +40,7 @@ function EventForm({ formProps, formType }) {
     const [validateVenue, setValidateVenue] = useState({})
 
     const [minStartTime, setMinStartTime] = useState(getDateTime());
-    const [minEndTime, setMinEndTime] = useState(startTime)
+    const [minEndTime, setMinEndTime] = useState(startTime || getDateTime());
 
     /* HOOKS */
     useEffect(() => {
