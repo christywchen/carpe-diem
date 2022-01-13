@@ -67,7 +67,7 @@ function EventDetails() {
                         <div className='event__details--1 event__details--1-default' style={event.imageUrl ? backgroundImage : null}>
                             {sessionUser && sessionUser.id === hostId &&
                                 (<p>
-                                    <Link to={`/events/${eventId}/edit`} >Edit Event</Link>
+                                    <Link className='button button__event--edit' to={`/events/${eventId}/edit`} >Edit Event</Link>
                                 </p>)
                             }
                         </div>

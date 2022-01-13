@@ -86,3 +86,18 @@
 .event__details--location-link {
     font-style: italic;
 }
+
+.button__event--edit {
+    font-size: 0.9em;
+    padding: 5px 10px;
+    color: white;
+    transition: 0.3s;
+    opacity: 0.8;
+}
+
+.button__event--edit:hover {
+    color: white;
+    background-color: var(--accent-color-2);
+    transition: 0.3s;
+    opacity: 1;
+}
