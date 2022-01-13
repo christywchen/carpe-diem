@@ -1,0 +1,118 @@
+#event__form--container {
+    width: 75%;
+    margin: 30px auto;
+}
+
+.event__form--section {
+    margin-top: 40px;
+}
+
+.event__form--section-venue {
+    margin-top: 10px;
+}
+
+.event__form--title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.event__form--content label {
+    font-size: 1.2em;
+}
+
+.form__submit--error,
+.event__form--description {
+    margin-left: auto;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+/* .event__form--description {
+    margin-left: auto;
+    font-size: 0.8em;
+    font-style: italic;
+} */
+
+.event__form--content input[type="text"],
+.event__form--content textarea {
+    width: 100%;
+}
+
+.event__form--content input[type="radio"] {
+    margin: 0 5px;
+}
+
+.event__form--content input[type="number"] {
+    width: 30%;
+}
+
+.event__form--content input,
+.event__form--content textarea,
+.event__form--content select {
+    padding: 8px 10px;
+    margin: 8px 0;
+
+    color: var(--body-color);
+    font-family: var(--body-font);
+    border: none;
+    border-bottom: 1px solid var(--body-color);
+    caret-color: var(--accent-color-2);
+    background-color: rgba(33, 27, 66, 0.25);
+}
+
+.event__form--content input:focus,
+.event__form--content textarea:focus,
+.event__form--content select:focus {
+    color: var(--accent-color-2);
+    border-bottom: 1px solid var(--accent-color-2);
+    outline: none;
+}
+
+.event__form--content input::placeholder,
+.event__form--content textarea::placeholder {
+    color: var(--medium-grey);
+}
+
+.event__form--content textarea {
+    height: 100px;
+    resize: none;
+    overflow: auto;
+}
+
+.event__form--radio .event__form--checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.event__form--venue-container {
+    background-color: rgba(33, 27, 66, 0.25);
+    margin: 20px 16px;
+    padding: 12px 24px 20px;
+    border-radius: 5px;
+}
+
+.event__form--submit {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.event__form--errors {
+    margin: 32px 0 0 0;
+    padding: 10px 14px;
+
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+
+    border-radius: 2px;
+    border: 1px solid var(--accent-color-3);
+    background-color: rgba(var(--accent-color-triplet), 0.3);
+}
+
+.form__submit--error {
+    color: var(--accent-color-2);
+}

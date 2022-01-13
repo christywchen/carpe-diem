@@ -1,0 +1,93 @@
+.event__card--container {
+    width: 100%;
+    background-color: var(--card-background);
+    margin: 20px 0px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out 0.3s;
+    border-radius: 3px;
+}
+
+.event__card--container:hover {
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.8);
+    transition: 0.3s;
+}
+
+.event__card--image {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    height: 150px;
+    width: inherit;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+
+.event__card--image-default {
+    background-image: url("../../../assets/event-card.jpg");
+}
+
+.event__card--flag {
+    width: fit-content;
+    justify-self: flex-end;
+    padding: 5px 5px 4px 6px;
+
+    color: white;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1em;
+
+    border-radius: 2px;
+}
+
+.event__card--flag-1 {
+    background-color: var(--event-flag-1);
+}
+
+.event__card--flag-2 {
+    background-color: var(--event-flag-2);
+}
+
+.event__card--flag-3 {
+    background-color: var(--event-flag-3);
+}
+
+.event__card--flag-4 {
+    background-color: var(--event-flag-4);
+}
+
+.event__card--flag-5 {
+    background-color: var(--event-flag-5);
+}
+
+.event__card--body {
+    padding: 5px 15px;
+}
+
+.event__card--body div {
+    margin: 10px 0;
+}
+
+.event__card--title a {
+    color: var(--body-color);
+}
+.event__card--title a:hover,
+.event__card--title a:active {
+    color: var(--body-color-light);
+    transition: 0.3s;
+}
+
+.event__card--date {
+    color: var(--accent-color-1-light);
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.event__card--pin {
+    margin-right: 7px;
+}
+
+.event__card--description {
+    font-size: 0.9em;
+    font-style: italic;
+}

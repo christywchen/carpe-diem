@@ -1,0 +1,130 @@
+/* BUTTONS */
+.button {
+    box-sizing: border-box;
+    margin: 6px 0;
+
+    padding: 8px 10px;
+
+    color: white;
+    font-weight: 600;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+    outline: none;
+}
+
+.button__submit--grey {
+    background-color: var(--medium-grey);
+}
+
+.button__submit--grey:hover {
+    background-color: var(--light-grey);
+    transition: 0.3s;
+}
+
+.button__submit--primary {
+    background-color: var(--accent-color-2);
+}
+
+.button__submit--primary:hover {
+    background-color: var(--accent-color-2-light);
+    transition: 0.3s;
+}
+
+.button__submit--primary:focus {
+    background-color: var(--accent-color-2);
+}
+
+.button__submit--secondary {
+    background-color: var(--accent-color-1);
+}
+
+.button__submit--secondary:hover {
+    background-color: var(--accent-color-1-light);
+    transition: 0.3s;
+}
+
+.button__submit--secondary:focus {
+    background-color: var(--accent-color-1);
+}
+
+.button__modal {
+    width: 100%;
+}
+
+.nav__button--link {
+    width: fit-content;
+
+    margin: 0;
+
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background-color: unset;
+    border: none;
+}
+
+.nav__button--link-main {
+    padding: 20px;
+}
+
+/* TABLES */
+
+table {
+    width: 100%;
+    background-color: var(--table-bg);
+    border-collapse: collapse;
+}
+
+thead {
+    text-align: left;
+    text-transform: uppercase;
+    background-color: var(--table-th);
+}
+
+table th {
+    padding: 14px;
+
+    font-size: 0.8em;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+table td {
+    padding: 14px;
+}
+
+tr.table__tr--record:hover {
+    background-color: var(--table-tr-hover);
+    transition: 0.3s;
+}
+
+th.table__th--name {
+    width: 10%;
+}
+
+th.table__th--event-name {
+    width: 70%;
+}
+
+td.table__td--event-name a,
+td.table__td--event-name {
+    font-weight: 500;
+}
+
+.table__tr--record a,
+.table__tr--record button {
+    color: var(--body-color);
+}
+.table__tr--record a:hover {
+    color: var(--accent-color-1);
+}
+
+hr.table__divider {
+    margin: 40px 0;
+}
+
+/* OTHER */
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}

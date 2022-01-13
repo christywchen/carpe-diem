@@ -1,0 +1,106 @@
+@import url("../../index.css");
+
+#nav {
+    top: 0;
+    height: 95px;
+    width: 100%;
+    display: grid;
+    padding: 0 5vw;
+
+    grid-template-columns: 1fr 200px 1fr;
+    align-items: center;
+
+    background-color: var(--nav-bar);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+#nav a {
+    color: var(--body-color);
+}
+
+.nav__link--left > a,
+.nav__link--right > a {
+    padding: 20px;
+}
+
+#nav a:hover,
+.profile__button:hover,
+.nav__button--link:hover {
+    color: var(--accent-color-1-light) !important;
+    transition: 0.3s;
+}
+
+#nav a:focus,
+.profile__button:focus,
+.nav__button--link:focus {
+    outline: none;
+}
+
+.nav__link--center {
+    text-align: center;
+    height: 100%;
+    font-size: 0;
+    background-image: url("../../assets/carpediem-mini.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 160px;
+}
+
+.nav__link--left {
+    display: flex;
+    justify-content: left;
+}
+
+.nav__link--right {
+    display: flex;
+    justify-content: right;
+}
+
+.profile__button {
+    color: inherit;
+    padding: 3px 0 0 15px;
+}
+
+.profile__dropdown--button {
+    padding: 0px;
+}
+
+ul.profile__dropdown--list {
+    position: absolute;
+    width: fit-content;
+    margin: 77px -20px 0 0;
+
+    text-align: right;
+    list-style-type: none;
+
+    background-color: var(--nav-bar);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 0px 3px 3px;
+}
+
+li.profile__dropdown--item {
+    padding: 14px 25px 14px 35px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile__dropdown--list {
+    animation: growDown 400ms ease-in-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+.profile__dropdown--button-link {
+    padding: 0px;
+    color: var(--body-color);
+}

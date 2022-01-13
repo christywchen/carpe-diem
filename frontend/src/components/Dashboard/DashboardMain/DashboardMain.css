@@ -1,0 +1,38 @@
+.title {
+    display: flex;
+}
+
+#dashboard__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dashboard__head--links {
+    display: flex;
+    gap: 5px;
+}
+
+.button__nav--link {
+    font-size: 0.9em;
+    padding: 5px 10px;
+    opacity: 0.8;
+}
+
+.button__nav--link:hover {
+    color: white;
+    background-color: var(--accent-color-4-light);
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.button__nav--active {
+    background-color: var(--accent-color-4);
+    opacity: 1;
+}
+
+.button__nav--active:hover {
+    background-color: var(--accent-color-4-light);
+    opacity: 1;
+    transition: 0.3s;
+}

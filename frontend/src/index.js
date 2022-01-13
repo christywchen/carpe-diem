@@ -10,7 +10,11 @@ import { ModalProvider } from "./context/Modal";
 import reportWebVitals from './reportWebVitals';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
+
 import * as sessionActions from './store/session';
+import * as eventActions from './store/event';
+import * as categoryActions from './store/category';
+import * as venueActions from './store/venue';
 
 const store = configureStore();
 
@@ -20,6 +24,9 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch; // attach the csrfFetch function onto the window
   window.store = store;
   window.sessionActions = sessionActions;
+  window.eventActions = eventActions;
+  window.categoryActions = categoryActions;
+  window.venueActions = venueActions;
 }
 
 function Root() {

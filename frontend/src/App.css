@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+#main {
+  width: 80%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  margin: 40px auto 220px;
+}
+
+#content {
+  margin-top: 30px;
+}
+
+#main__narrow {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#container {
+  overflow: auto;
+
+  min-height: 100vh;
+  background: no-repeat fixed bottom/100% var(--background) url("./assets/wallpaper-resize.jpg");
+}
