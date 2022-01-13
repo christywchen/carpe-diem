@@ -112,3 +112,7 @@
     border: 1px solid var(--accent-color-3);
     background-color: rgba(var(--accent-color-triplet), 0.3);
 }
+
+.form__submit--error {
+    color: var(--accent-color-2);
+}
