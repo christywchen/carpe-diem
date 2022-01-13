@@ -85,6 +85,7 @@ module.exports = {
         published: true,
         virtualEvent: false,
         hostId: 3,
+        venueId: 3,
         categoryId: 3
       }, {
         name: 'Said the Sky',
