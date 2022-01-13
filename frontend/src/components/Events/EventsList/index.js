@@ -21,10 +21,13 @@ function Events() {
             <div className='events__container--title'>
                 <h1>Tonight's Top Events</h1>
             </div>
-            <div className='events__container--items'>
-                {events.map((event) =>
-                    (< EventCard key={event.id} eventId={event.id} />)
-                )}
+
+            <div id='content'>
+                <div className='events__container--items'>
+                    {events.map((event) =>
+                        (< EventCard key={event.id} eventId={event.id} />)
+                    )}
+                </div>
             </div>
         </ >
     )

@@ -44,6 +44,10 @@
   margin: 40px auto 220px;
 }
 
+#content {
+  margin-top: 30px;
+}
+
 #main__narrow {
   width: 70%;
   margin: 0 auto;

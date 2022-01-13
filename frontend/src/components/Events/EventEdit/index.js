@@ -50,7 +50,10 @@ function EventEdit() {
     return (
         <div id='main__narrow'>
             <h1>Edit Your Event</h1>
-            {event !== undefined && <EventForm formProps={formProps} formType={formType} />}
+
+            <div id='content'>
+                {event !== undefined && <EventForm formProps={formProps} formType={formType} />}
+            </div>
         </div>
     )
 }
