@@ -6,7 +6,7 @@ import './EventCard.css';
 import { getDateString } from '../../../utils/date-time';
 
 function EventCard({ event }) {
-    const { id, name, startTime, description, categoryId, imageUrl, Category, Venue } = event;
+    const { id, name, startTime, description, categoryId, imageUrl, virtualEvent, Category, Venue } = event;
 
     const backgroundImage = { backgroundImage: `url("${imageUrl}")` }
 
@@ -34,7 +34,7 @@ function EventCard({ event }) {
                     <div className='event__card--date'>{date}, {time}</div>
                     <div className='event__card--location'>
                         <i className="fas fa-map-marker-alt fa-sm event__card--pin" />
-                        {Venue ? (<>{Venue?.city}, {Venue?.state}</>) : (<>Virtual Event</>)}
+                        {!virtualEvent ? (<>{Venue?.city}, {Venue?.state}</>) : (<>Virtual Event</>)}
                     </div>
                     <div className='event__card--description'>{getDescSummary(description)}</div>
                 </div>
