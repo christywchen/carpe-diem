@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import EventForm from '../EventForm';
@@ -12,11 +12,20 @@ function EventEdit() {
     const { eventId } = useParams();
     const dispatch = useDispatch();
     const event = useSelector(state => state.event.events[eventId]);
+    const sessionUser = useSelector(state => state.session.user);
 
     let formType = 'editPublished';
     let formProps;
 
+    useEffect(() => {
+        dispatch(getEvent(eventId));
+    }, [dispatch]);
+
     if (event) {
+        if (sessionUser && sessionUser.id !== event.id) {
+            return <Navigate to='/not-found' />
+        }
+
         if (!event.published) formType = 'editDraft';
 
         formProps = {
@@ -42,10 +51,6 @@ function EventEdit() {
             venueZip: event.Venue?.zip
         }
     }
-
-    useEffect(() => {
-        dispatch(getEvent(eventId));
-    }, [dispatch]);
 
     return (
         <div id='main__narrow'>
