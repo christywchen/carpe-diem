@@ -25,7 +25,7 @@ function EventForm({ formProps, formType }) {
     const [description, setDescription] = useState(formProps?.description || '');
     const [capacity, setCapacity] = useState(formProps?.capacity || '');;
     const [virtualEvent, setVirtualEvent] = useState((formProps?.virtualEvent === true || formProps?.virtualEvent === false) ? formProps?.virtualEvent : 'empty');
-    const [secretLocation, setSecretLocation] = useState(false);
+    const [secretLocation, setSecretLocation] = useState(formProps?.secretLocation || false);
     const [eventUrl, setEventUrl] = useState(formProps?.eventUrl || '');
     const [imageUrl, setImageUrl] = useState(formProps?.imageUrl || '');
     const [categoryId, setCategoryId] = useState(formProps?.categoryId || '');
