@@ -13,8 +13,8 @@ function EventCard({ event }) {
     }
 
     function getDescSummary(description) {
-        if (description.length < 75) return description;
-        else return description.slice(0, 80) + '...';
+        if (description?.length < 75) return description;
+        else return description?.slice(0, 80) + '...';
     }
 
     const time = getDateString(startTime);

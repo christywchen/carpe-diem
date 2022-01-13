@@ -22,7 +22,7 @@ function EventEdit() {
     }, [dispatch]);
 
     if (event) {
-        if (sessionUser && sessionUser.id !== event.id) {
+        if (sessionUser && sessionUser.id !== event.hostId) {
             return <Navigate to={`/events/${event.id}`} />
         }
 
