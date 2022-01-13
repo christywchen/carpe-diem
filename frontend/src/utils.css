@@ -128,3 +128,8 @@ hr.table__divider {
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+.text__link--colored {
+    color: var(--accent-color-3-light);
+    transition: 0.3s;
+}

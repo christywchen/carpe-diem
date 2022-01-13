@@ -34,9 +34,8 @@ function EventDetails() {
 
                     <div id='content'>
                         <p>
-                            Uh oh, this event doesn't exist yet. Perhaps you could be the one to make it happen?
+                            Uh oh, this event doesn't exist yet. Perhaps you could be the one to make it happen? <Link className='text__link--colored' to='/events'>Continue browsing events.</Link>
                         </p>
-                        <Link to='/events'>Click here to continue browsing events.</Link>
 
                     </div>
                 </div>
@@ -49,6 +48,7 @@ function EventDetails() {
             endTime,
             description,
             capacity,
+            virtualEvent,
             hostId,
             Venue,
             categoryId,
@@ -60,10 +60,17 @@ function EventDetails() {
         const dateInfo = populateDate(startTime, endTime);
         const locationInfo = populateLocation(event);
 
+        console.log(event)
         return (
             <>
                 <div id='main__narrow'>
-                    <div id='event__details--grid'>
+                    {!virtualEvent && (
+                        <div className='event__details--alert'>
+                            This is an in-person event. Have fun, stay safe, and don't forget to take the necessary health precautions before attending!
+                        </div>
+                    )}
+                    < div id='event__details--grid'>
+
                         <div className='event__details--1 event__details--1-default' style={event.imageUrl ? backgroundImage : null}>
                             {sessionUser && sessionUser.id === hostId &&
                                 (<p>
