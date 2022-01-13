@@ -5,9 +5,12 @@
 :root {
   --body-font: "Inter", sans-serif;
   --heading-font: "Bebas Neue", sans-serif;
+  --body-color: #c9c6d1;
+  --body-color-light: #dbd9e2;
   --nav-bar: #1a0f23;
   --nav-bar-light: #2c1e36;
   --background: #0e0516;
+  --card-background: #261f38;
   --accent-color-1: #cfae1b;
   --accent-color-1-light: #dabc39;
   --accent-color-2: #5ebaca;
@@ -17,11 +20,8 @@
   --accent-color-triplet: 231, 64, 120;
   --accent-color-4: #603d80;
   --accent-color-4-light: #77509b;
-  --light-neutral: #c2bfca;
   --light-grey: #a8a8a8;
   --medium-grey: #999999;
-  --card-background: #261f38;
-  --body-text: #c2bfca;
   --modal-bg: #24192e;
   --event-flag-1: #1b8a9e;
   --event-flag-2: #b14569;
@@ -42,7 +42,7 @@ body {
 
 body {
   font-family: var(--body-font);
-  color: var(--body-text);
+  color: var(--body-color);
   font-size: 15px;
   font-weight: 300;
   line-height: 1.4em;
@@ -70,7 +70,7 @@ h1 {
 
 h2 {
   font-weight: 400;
-  font-size: 1.3em;
+  font-size: 1.5em;
   margin: 24px 0;
 }
 

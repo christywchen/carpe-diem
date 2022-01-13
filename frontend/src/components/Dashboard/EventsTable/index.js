@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import DeleteEventModal from '../../Modals/DeleteEventModal';
-
 import { getDateShort } from '../../../utils/date-time';
+import { sortByDate } from '../../../utils/date-time';
 
 function EventsTable({ events }) {
+    const sortedByDate = sortByDate(events);
+
     return (
         <>
             {events.length ? (<table>
@@ -19,7 +21,7 @@ function EventsTable({ events }) {
                 </thead>
 
                 <tbody>
-                    {events.map(({ name, id, published, startTime }) => (
+                    {sortedByDate.map(({ name, id, published, startTime }) => (
                         <tr className='table__tr--record' key={id}>
                             <td className='table__td--attrib'>
                                 {console.log(getDateShort(startTime))}

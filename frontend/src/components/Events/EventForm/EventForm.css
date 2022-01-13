@@ -54,10 +54,10 @@
     padding: 8px 10px;
     margin: 8px 0;
 
-    color: var(--body-text);
+    color: var(--body-color);
     font-family: var(--body-font);
     border: none;
-    border-bottom: 1px solid var(--body-text);
+    border-bottom: 1px solid var(--body-color);
     caret-color: var(--accent-color-2);
     background-color: rgba(33, 27, 66, 0.25);
 }

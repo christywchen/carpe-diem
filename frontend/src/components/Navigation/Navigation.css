@@ -16,7 +16,7 @@
 }
 
 #nav a {
-    color: var(--body-text);
+    color: var(--body-color);
 }
 
 .nav__link--left > a,
@@ -102,5 +102,5 @@ li.profile__dropdown--item {
 }
 .profile__dropdown--button-link {
     padding: 0px;
-    color: var(--body-text);
+    color: var(--body-color);
 }

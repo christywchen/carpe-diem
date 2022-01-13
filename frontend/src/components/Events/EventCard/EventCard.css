@@ -8,7 +8,7 @@
 }
 
 .event__card--container:hover {
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 1);
     transition: 0.3s;
 }
 
@@ -68,10 +68,26 @@
     margin: 10px 0;
 }
 
+.event__card--title a {
+    color: var(--body-color);
+}
+.event__card--title a:hover,
+.event__card--title a:active {
+    color: var(--body-color-light);
+    transition: 0.3s;
+}
+
 .event__card--date {
-    font-weight: 500;
+    color: var(--accent-color-1-light);
+    font-size: 0.9em;
+    font-weight: 600;
 }
 
 .event__card--pin {
     margin-right: 7px;
+}
+
+.event__card--description {
+    font-size: 0.9em;
+    font-style: italic;
 }

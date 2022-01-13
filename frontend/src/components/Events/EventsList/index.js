@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getAllEvents } from '../../../store/event';
+import { sortByDate } from '../../../utils/date-time';
 
 import EventCard from '../EventCard';
 
@@ -16,16 +17,18 @@ function Events() {
         dispatch(getAllEvents());
     }, [dispatch]);
 
+    const sortedByDate = sortByDate(events)
+
     return (
         <>
             <div className='events__container--title'>
-                <h1>Tonight's Top Events</h1>
+                <h1>Upcoming Events</h1>
             </div>
 
             <div id='content'>
                 <div className='events__container--items'>
-                    {events.map((event) =>
-                        (< EventCard key={event.id} event={event} />)
+                    {sortedByDate.map((event) =>
+                        (<EventCard key={event.id} event={event} />)
                     )}
                 </div>
             </div>

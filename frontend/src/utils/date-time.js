@@ -52,3 +52,9 @@ export function getDateString(date) {
 
     return `${dayStr} ${month} ${dayNum}, ${hour}:${minute} ${timePeriod}`;
 }
+
+export function sortByDate(eventsArr) {
+    const sorted = eventsArr?.sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
+
+    return sorted;
+}
