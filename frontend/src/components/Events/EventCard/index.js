@@ -9,7 +9,7 @@ function EventCard({ event }) {
     const { id, name, startTime, description, categoryId, imageUrl, Category, Venue } = event;
 
     const cardStyling = {
-        backgroundImage: `url('${imageUrl})`
+        backgroundImage: `url("${imageUrl}")`
     }
 
     function getDescSummary(description) {
