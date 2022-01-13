@@ -8,7 +8,11 @@ import eventCard from '../../../assets/event-card.jpg';
 
 function EventCard({ eventId }) {
     const event = useSelector(state => state.event.events[eventId]);
-    const { name, date, categoryId, Category, Venue } = event;
+    let { name, date, categoryId, imageUrl, Category, Venue } = event;
+
+    if (!imageUrl) {
+        imageUrl = eventCard;
+    }
 
     return (
         <>
