@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
                     <li className='profile__dropdown--item'>{user.email}</li>
                     <li className='profile__dropdown--item'>Your Tickets</li>
                     <li className='profile__dropdown--item'>
-                        <Link to='/dashboard'>Your Events</Link>
+                        <Link to='/dashboard'>Manage Events</Link>
                     </li>
                     <li className='profile__dropdown--item'>
                         <button className='profile__dropdown--button-link nav__button--link' onClick={logout}>Log Out</button>
