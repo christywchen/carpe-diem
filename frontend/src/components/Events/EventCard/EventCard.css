@@ -12,8 +12,11 @@
 }
 
 .event__card--image {
-    height: 150px;
+    background-size: cover;
+    background-position: center;
     display: flex;
+    height: 150px;
+    width: inherit;
     overflow: hidden;
     border-radius: 4px 4px 0 0;
 }
@@ -50,11 +53,6 @@
 
 .event__card--flag-5 {
     background-color: var(--event-flag-5);
-}
-
-.event__card--image img {
-    width: 100%;
-    /* height: auto; */
 }
 
 .event__card--body {
