@@ -25,7 +25,7 @@ function Events() {
             <div id='content'>
                 <div className='events__container--items'>
                     {events.map((event) =>
-                        (< EventCard key={event.id} eventId={event.id} />)
+                        (< EventCard key={event.id} event={event} />)
                     )}
                 </div>
             </div>

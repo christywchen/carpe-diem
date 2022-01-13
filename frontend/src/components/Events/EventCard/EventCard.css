@@ -21,6 +21,10 @@
     border-radius: 4px 4px 0 0;
 }
 
+.event__card--image-default {
+    background-image: url("../../../assets/event-card.jpg");
+}
+
 .event__card--flag {
     width: fit-content;
     justify-self: flex-end;
