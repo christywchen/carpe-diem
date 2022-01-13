@@ -23,7 +23,7 @@ function EventEdit() {
 
     if (event) {
         if (sessionUser && sessionUser.id !== event.id) {
-            return <Navigate to='/not-found' />
+            return <Navigate to={`/events/${event.id}`} />
         }
 
         if (!event.published) formType = 'editDraft';

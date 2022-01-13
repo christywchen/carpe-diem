@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <>
-                <NavLink to="/">Liked Events</NavLink>
+                <NavLink to="/dashboard">Manage Events</NavLink>
                 <ProfileButton user={sessionUser} />
             </>
         );
