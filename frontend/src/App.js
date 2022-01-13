@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import LoginForm from './components/Modals/LoginFormModal';
-import SignUpForm from './components/Modals/SignUpFormModal';
+import LoginPage from './components/LoginPage';
+import SignUpPage from './components/SignUpPage';
 import Navigation from './components/Navigation';
 import UserDashboard from './components/Dashboard/DashboardMain';
 import Events from './components/Events/EventsList'
@@ -41,8 +41,8 @@ function App() {
               <Route path='/events/new' element={<EventCreate />} />
               <Route path='/events/:eventId' element={<EventDetails />} />
               <Route path='/events/:eventId/edit' element={<EventEdit />} />
-              <Route path='/login' element={<LoginForm />} />
-              <Route path='/signup' element={<SignUpForm />} />
+              <Route path='/login' element={<LoginPage />} />
+              <Route path='/signup' element={<SignUpPage />} />
               <Route path='/not-found' element={<PageNotFound />} />
             </Routes >
 

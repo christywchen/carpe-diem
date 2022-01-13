@@ -18,7 +18,7 @@ module.exports = {
         capacity: 700,
         secretLocation: true,
         published: true,
-        virtualEvent: true,
+        virtualEvent: false,
         hostId: 1,
         venueId: 1,
         categoryId: 4
@@ -37,7 +37,7 @@ module.exports = {
         categoryId: 4
       }, {
         name: 'Techno Takeover',
-        startTime: '2022-01-11 20:00:00',
+        startTime: '2022-01-14 20:00:00',
         endTime: '2022-01-15 00:00:00',
         imageUrl: 'https://carpe-diem-app.herokuapp.com/event-images/03-techno-takeover.jpeg',
         description: 'First 100 RSVPs get in free before 11pm. Proof of Full Vaccination Required.',
@@ -70,7 +70,7 @@ module.exports = {
         capacity: 300,
         secretLocation: false,
         published: true,
-        virtualEvent: true,
+        virtualEvent: false,
         hostId: 2,
         venueId: 3,
         categoryId: 1
@@ -81,11 +81,10 @@ module.exports = {
         imageUrl: 'https://carpe-diem-app.herokuapp.com/event-images/06-polo-pan.jpeg',
         description: 'With just one full-length album (2017\'s Caravelle) to their name, Polo & Pan have become synonymous with trippy dance tracks that carry equally dreamy melodies.  The duo, consisting of Paul Armand-Delille (Polo) and Alexandre Grynszpan (Pan), first met in 2012 and have since been creating fans around the globe performing to sold-out crowds at notable venues like LA\'s Novo, London\'s Printworks, NY\'s Terminal 5, and Montreal\'s MTELUS. They\'ve played numerous festival stages such as 2019\'s Coachella where Billboard called their performance "without a doubt one of the best performances."',
         capacity: 300,
-        secretLocation: false,
+        secretLocation: true,
         published: true,
         virtualEvent: false,
         hostId: 3,
-        venueId: 3,
         categoryId: 3
       }, {
         name: 'Said the Sky',
@@ -134,8 +133,8 @@ module.exports = {
         description: 'After a brief hiatus, Basscon Wasteland returns to Southern California for two electrifying nights of hard dance.',
         capacity: 5000,
         secretLocation: false,
-        published: false,
-        virtualEvent: true,
+        published: true,
+        virtualEvent: false,
         hostId: 2,
         venueId: 4,
         categoryId: 1
@@ -147,6 +146,7 @@ module.exports = {
         description: 'Electric Forest is a four-day, one-weekend, multi-genre event with a focus on electronic and jam band genres, held in Rothbury, Michigan, at the Double JJ Resort. In 2017 and 2018, the festival expanded to two weekends back to back, before switching back to one weekend for 2019.',
         secretLocation: false,
         published: true,
+        eventUrl: 'https://www.youtube.com/watch?v=18NHV4nJLQc',
         virtualEvent: true,
         hostId: 3,
         categoryId: 4
@@ -158,6 +158,7 @@ module.exports = {
         description: 'Lightning in a Bottle is an annual music festival in the Central Valley region of California first held in 2006. It is presented by The Do LaB, which seeks to promote sustainability, social cohesion, and creative expression.',
         secretLocation: false,
         published: false,
+        eventUrl: 'https://www.youtube.com/watch?v=eAXdSkBMQAQ',
         virtualEvent: true,
         hostId: 1,
         categoryId: 4

@@ -5,9 +5,11 @@ import * as sessionActions from '../../../store/session';
 import { Modal } from '../../../context/Modal';
 import SignUpFormModal from '../../Modals/SignUpFormModal';
 import LoginForm from './LoginForm';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function LoginFormModal({ button = false }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
 
     const handleSubmit = (e) => {
@@ -20,6 +22,12 @@ function LoginFormModal({ button = false }) {
             .catch(async (res) => {
                 const data = await res.json();
             });
+    }
+
+    const handleRedirect = (e) => {
+        e.preventDefault();
+        setShowModal(false)
+        navigate('/signup')
     }
 
     return (
@@ -37,7 +45,10 @@ function LoginFormModal({ button = false }) {
                         <form onSubmit={handleSubmit}>
                             <button className='button button__submit--primary button__modal' type="submit">Demo User</button>
                         </form>
-                        <SignUpFormModal button={true} />
+                        <form onSubmit={handleRedirect}>
+                            <button className='button button__submit--secondary button__modal button__modal' type="submit">Want to Sign Up?</button>
+                        </form>
+                        {/* <SignUpFormModal button={true} /> */}
                     </div>
                 </Modal>
             )}

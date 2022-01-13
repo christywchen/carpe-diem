@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 
-import './SignUpPage.css';
-
 function SignUpPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);

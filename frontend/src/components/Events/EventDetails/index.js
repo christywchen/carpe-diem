@@ -75,7 +75,7 @@ function EventDetails() {
                             <span className='event__details--date-short'>{shortDate}</span>
                             <div>
                                 <h2 className='event__details--title'>{name}</h2>
-                                <span class={`event__details--flag event__details--flag-${categoryId}`}>{Category.name}</span>
+                                <span className={`event__details--flag event__details--flag-${categoryId}`}>{Category.name}</span>
                             </div>
 
                             <div className='event__details--date-full'>

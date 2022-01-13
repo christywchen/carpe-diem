@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 
 function LoginPage() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const sessionUser = useSelector(state => state.session.user);
 
     const [credential, setCredential] = useState('');
@@ -27,45 +26,31 @@ function LoginPage() {
             });
     }
 
-    function handleRedirect(e) {
-        navigate('/signup');
-    }
-
     return (
-        <div id='modal__container--form modal__container--sign-up'>
-            <form className='modal__container--formcontent' onSubmit={handleSubmit}>
-                {errors.length ?
-                    <ul className='modal__container--form-errors'>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul> : null
-                }
-                <label htmlFor='username-or-email'>
-                    <input
-                        id='username-or-email'
-                        type="text"
-                        value={credential}
-                        onChange={(e) => setCredential(e.target.value)}
-                        placeholder='Username or Email'
-                        required
-                    />
-                </label>
-                <label htmlFor='password'>
-                    <input
-                        id='password'
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder='Password'
-                        required
-                    />
-                </label>
-                <button className="button button__submit--primary button__modal" type="submit">Log In</button>
-            </form>
-            <form onSubmit={handleRedirect}>
-                <button className='button button__submit--secondary button__modal'
-                    type='submit'
-                >Want to Log In?</button></form>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <ul>
+                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+            <label>
+                Username or Email
+                <input
+                    type="text"
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                Password
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+            </label>
+            <button type="submit">Log In</button>
+        </form>
     );
 }
 

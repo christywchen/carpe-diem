@@ -9,6 +9,7 @@ import SignUpForm from './SignUpForm';
 
 function SignUpFormModal({ button = false }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
 
     const handleSubmit = (e) => {
@@ -21,6 +22,12 @@ function SignUpFormModal({ button = false }) {
             .catch(async (res) => {
                 const data = await res.json();
             });
+    }
+
+    const handleRedirect = (e) => {
+        e.preventDefault();
+        setShowModal(false)
+        navigate('/login')
     }
 
     return (
@@ -39,7 +46,10 @@ function SignUpFormModal({ button = false }) {
                         <form onSubmit={handleSubmit}>
                             <button className='button button__submit--primary button__modal' type="submit">Demo User</button>
                         </form>
-                        <LoginFormModal button={true} />
+                        <form onSubmit={handleRedirect}>
+                            <button className='button button__submit--secondary button__modal button__modal' type="submit">Want to Log In?</button>
+                        </form>
+                        {/* <LoginFormModal button={true} /> */}
                     </div>
                 </Modal>
             )}
