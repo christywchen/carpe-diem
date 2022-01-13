@@ -3,7 +3,8 @@ import { csrfFetch } from "./csrf";
 const LOAD_EVENTS = 'event/loadEvents';
 const LOAD_PUBLISHED_EVENTS = 'event/loadPublishedEvents';
 const LOAD_DRAFT_EVENTS = 'event/loadDraftEvents';
-const ADD_EVENT = 'event/addEvent';
+const ADD_PUBLISHED_EVENT = 'event/addEvent';
+const ADD_DRAFT_EVENT = 'event/addEvent';
 const EDIT_EVENT = 'event/editEvent';
 const REMOVE_PUBLISHED_EVENT = 'event/removePublishedEvent';
 const REMOVE_DRAFT_EVENT = 'event/removeDraftEvent';
@@ -30,9 +31,16 @@ export const loadDraftEvents = (events) => {
     }
 };
 
-export const addEvent = (newEvent) => {
+export const addPublishedEvent = (newEvent) => {
     return {
-        type: ADD_EVENT,
+        type: ADD_PUBLISHED_EVENT,
+        newEvent
+    }
+};
+
+export const addDraftEvent = (newEvent) => {
+    return {
+        type: ADD_DRAFT_EVENT,
         newEvent
     }
 };
@@ -96,7 +104,8 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
     });
 
     const data = await res.json();
-    if (published) dispatch(addEvent(data));
+    if (published) dispatch(addPublishedEvent(data));
+    else dispatch(addDraftEvent(data));
     return data;
 };
 
@@ -107,7 +116,8 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
     });
 
     const data = await res.json();
-    if (published) dispatch(addEvent(data));
+    if (published) dispatch(addPublishedEvent(data));
+    else dispatch(addDraftEvent(data));
     return data;
 };
 
@@ -149,9 +159,14 @@ const eventReducer = (state = initialState, action) => {
                 return events;
             }, {});
             return newState;
-        case ADD_EVENT:
+        case ADD_PUBLISHED_EVENT:
             newState = { ...state };
             newState.events = { ...newState.events, [action.newEvent.id]: action.newEvent };
+            newState.published = { ...newState.published, [action.newEvent.id]: action.newEvent };
+            return newState;
+        case ADD_DRAFT_EVENT:
+            newState = { ...state };
+            newState.drafts = { ...newState.drafts, [action.newEvent.id]: action.newEvent };
             return newState;
         case EDIT_EVENT:
             newState = { ...state };

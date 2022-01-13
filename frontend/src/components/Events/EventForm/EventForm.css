@@ -71,7 +71,7 @@
 }
 
 .event__form--content input::placeholder,
-.event__form--content textarea:focus {
+.event__form--content textarea::placeholder {
     color: var(--medium-grey);
 }
 

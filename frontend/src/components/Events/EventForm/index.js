@@ -193,7 +193,7 @@ function EventForm({ formProps, formType }) {
         }
 
         if (published) navigate(`/events/${eventId}`);
-        else navigate('/events');
+        else navigate('/dashboard/drafts');
     }
 
     // render this subcomponent depending event
