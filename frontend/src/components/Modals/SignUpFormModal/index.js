@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import * as sessionActions from '../../../store/session';
 import { Modal } from '../../../context/Modal';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import SignUpForm from './SignUpForm';
 
 function SignUpFormModal({ button = false }) {
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const credential = 'DemoUser';
+        const password = 'password';
+
+        return dispatch(sessionActions.login({ credential, password }))
+            .catch(async (res) => {
+                const data = await res.json();
+            });
+    }
 
     return (
         <>
@@ -19,7 +36,9 @@ function SignUpFormModal({ button = false }) {
                         <div className='modal__container--text'>Join to start hosting and attending events!</div>
                         <SignUpForm />
                         <hr />
-                        <button className='button button__submit--primary button__modal' type="submit">Demo User</button>
+                        <form onSubmit={handleSubmit}>
+                            <button className='button button__submit--primary button__modal' type="submit">Demo User</button>
+                        </form>
                         <LoginFormModal button={true} />
                     </div>
                 </Modal>

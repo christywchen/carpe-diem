@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import * as sessionActions from '../../../store/session';
 import { Modal } from '../../../context/Modal';
 import SignUpFormModal from '../../Modals/SignUpFormModal';
 import LoginForm from './LoginForm';
 
 function LoginFormModal({ button = false }) {
-    const navigate = useNavigate();
-
-    const sessionUser = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        if (sessionUser) navigate('/');
-    }, [sessionUser]);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const credential = 'DemoUser';
+        const password = 'password';
+
+        return dispatch(sessionActions.login({ credential, password }))
+            .catch(async (res) => {
+                const data = await res.json();
+            });
+    }
 
     return (
         <>
@@ -28,7 +34,9 @@ function LoginFormModal({ button = false }) {
                         <div id='modal__container--heading'>Log In</div>
                         <LoginForm />
                         <hr />
-                        <button className='button button__submit--primary button__modal' type="submit">Demo User</button>
+                        <form onSubmit={handleSubmit}>
+                            <button className='button button__submit--primary button__modal' type="submit">Demo User</button>
+                        </form>
                         <SignUpFormModal button={true} />
                     </div>
                 </Modal>
