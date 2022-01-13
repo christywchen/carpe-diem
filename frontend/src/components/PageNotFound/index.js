@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PageNotFound() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // const redirect = setTimeout(() => navigate('/'), 1200);
+
+        // return (() => clearTimeout(redirect))
+    })
+
     return (
         <>
-            Page Not Found
+            <div id='main__narrow'>
+                <h1>Page Not Found</h1>
+
+                <div id='content'>
+                    Oops, how'd you get here? Sending you back to the main page.
+                </div>
+            </div>
         </>
     )
 }

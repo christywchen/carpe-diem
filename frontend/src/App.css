@@ -39,7 +39,10 @@
 
 #main {
   width: 80%;
-
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow-y: auto;
   margin: 40px auto 220px;
 }
