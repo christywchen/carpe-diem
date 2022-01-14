@@ -135,9 +135,8 @@ function EventForm({ formProps, formType }) {
             categoryId: categoryId ? +categoryId : null,
             published: published
         }
-        console.log('before dispatch')
+
         dispatch(updateEvent(eventId, event, published));
-        console.log('after dispatch')
 
         return eventId;
     }
