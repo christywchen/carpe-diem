@@ -38,7 +38,7 @@ export function populateLocation(event) {
     if (virtualEvent) {
         if (today !== startDay) {
             return (
-                <div className='event__details__location event__details--location'>
+                <div className='event__details__location event__details--location-secret'>
                     <p>It's a virtual event! Check back later for the streaming link.</p>
                 </div>
             )

@@ -89,6 +89,7 @@ a {
 
 a:hover {
   color: var(--accent-color-1);
+  transition: 0.3s;
 }
 
 hr {
