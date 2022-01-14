@@ -116,7 +116,10 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
     });
 
     const data = await res.json();
-    if (published) dispatch(addPublishedEvent(data));
+
+    if (published) {
+        dispatch(addPublishedEvent(eventId, data));
+    }
     else dispatch(addDraftEvent(data));
     return data;
 };
@@ -172,6 +175,7 @@ const eventReducer = (state = initialState, action) => {
             newState = { ...state };
             newState.events = { ...state.events };
             newState.events[action.eventId] = action.updatedEvent;
+            newState.events[action.eventId]['Category'] = action.updatedEvent['Category'];
             return newState;
         case REMOVE_PUBLISHED_EVENT:
             newState = { ...state };

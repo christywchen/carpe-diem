@@ -86,8 +86,8 @@ function EventForm({ formProps, formType }) {
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
             imageUrl: imageUrl ? imageUrl : null,
-            venueId: venueId ? venueId : null,
-            categoryId: categoryId ? categoryId : null,
+            venueId: venueId ? +venueId : null,
+            categoryId: categoryId ? +categoryId : null,
             published: published
         }
 
@@ -131,12 +131,13 @@ function EventForm({ formProps, formType }) {
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
             imageUrl: imageUrl ? imageUrl : null,
-            venueId: venueId,
-            categoryId: categoryId ? categoryId : null,
+            venueId: +venueId,
+            categoryId: categoryId ? +categoryId : null,
             published: published
         }
-
+        console.log('before dispatch')
         dispatch(updateEvent(eventId, event, published));
+        console.log('after dispatch')
 
         return eventId;
     }
