@@ -25,22 +25,33 @@ function EventDetails() {
         dispatch(getEvent(eventId));
     }, [dispatch]);
 
+    const errorMsg = (
+        <div id='main__narrow'>
+            <h1>Event Not Found</h1>
+
+            <div id='content'>
+                <p>
+                    Uh oh, this event doesn't exist yet. Perhaps you could be the one to make it happen? <Link className='text__link--colored' to='/events'>Continue browsing events.</Link>
+                </p>
+
+            </div>
+        </div>
+    )
+
     if (!event) {
         return (
             <>
-                <div id='main__narrow'>
-                    <h1>Event Not Found</h1>
-
-                    <div id='content'>
-                        <p>
-                            Uh oh, this event doesn't exist yet. Perhaps you could be the one to make it happen? <Link className='text__link--colored' to='/events'>Continue browsing events.</Link>
-                        </p>
-
-                    </div>
-                </div>
+                {errorMsg}
             </>
         )
-    } else {
+    } else if (!event?.published) {
+        return (
+            <>
+                {errorMsg}
+            </>
+        )
+    }
+    else {
         const {
             name,
             startTime,
