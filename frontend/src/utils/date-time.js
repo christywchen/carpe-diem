@@ -4,11 +4,11 @@ export function getDateTime(day) {
     */
 
     let getDay;
-    if (day) getDay = new Date(day).toUTCString();
-    else getDay = new Date().toUTCString();
+    if (day) getDay = new Date(day);
+    else getDay = new Date();
 
-    let month = getDay.getMonth() + 1;
-    let date = getDay.getDate();
+    let month = getDay.getUTCMonth() + 1;
+    let date = getDay.getUTCDate();
     let year = getDay.getFullYear();
     let hour = getDay.getHours();
     let min = getDay.getMinutes();
