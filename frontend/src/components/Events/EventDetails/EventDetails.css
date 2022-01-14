@@ -108,7 +108,7 @@
     color: white;
     font-size: 0.9em;
     text-align: center;
-    border-radius: 2px;
+    border-radius: 3px;
     border: 1px solid var(--accent-color-2);
     background-color: rgba(var(--accent-color-2-triplet), 0.4);
     opacity: 0.9;
