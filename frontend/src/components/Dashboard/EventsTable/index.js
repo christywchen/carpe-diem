@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import DeleteEventModal from '../../Modals/DeleteEventModal';
@@ -44,7 +43,11 @@ function EventsTable({ events }) {
                         </tr>
                     ))}
                 </tbody>
-            </table>) : (<p>Nothing to see here.</p>)}
+            </table>) : (
+                <p>
+                    Nothing to see here. <Link className='text__link--colored' to='/events/new'>Host your own event!</Link>
+                </p>
+            )}
         </>
     )
 }

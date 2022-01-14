@@ -25,7 +25,7 @@ module.exports = {
       }, {
         name: 'Daft Punk & Friends Night',
         startTime: '2022-01-20 20:00:00',
-        endTime: '2022-01-20 00:00:00',
+        endTime: '2022-01-21 00:00:00',
         imageUrl: 'https://carpe-diem-app.herokuapp.com/event-images/02-daft-punk-night.jpeg',
         description: '1720 Presents the first Daft Punk and Friends Tribute Party of 2022, playing the classics, french electro, indie-dance, disco, and More! 🤖',
         capacity: 700,
@@ -85,6 +85,7 @@ module.exports = {
         published: true,
         virtualEvent: false,
         hostId: 3,
+        venueId: 3,
         categoryId: 3
       }, {
         name: 'Said the Sky',

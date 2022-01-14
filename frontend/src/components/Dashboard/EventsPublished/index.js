@@ -1,5 +1,4 @@
-
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -29,7 +28,7 @@ function EventsPublished() {
     return (
         <>
             <div className='events__dashboard--table'>
-                <h2>Published Events</h2>
+                <h2>Events You're Working On</h2>
                 {publishedEvents && (<EventsTable events={publishedEvents} />)}
             </div>
         </>

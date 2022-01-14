@@ -14,10 +14,11 @@
   --accent-color-1: #cfae1b;
   --accent-color-1-light: #e2c649;
   --accent-color-2: #5ebaca;
+  --accent-color-2-triplet: 94, 186, 202;
   --accent-color-2-light: #7bd8e9;
   --accent-color-3: #e74078;
   --accent-color-3-light: #fa4e88;
-  --accent-color-triplet: 231, 64, 120;
+  --accent-color-3-triplet: 231, 64, 120;
   --accent-color-4: #603d80;
   --accent-color-4-light: #77509b;
   --light-grey: #b3b3b3;
@@ -88,6 +89,7 @@ a {
 
 a:hover {
   color: var(--accent-color-1);
+  transition: 0.3s;
 }
 
 hr {

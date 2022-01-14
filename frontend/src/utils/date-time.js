@@ -7,11 +7,11 @@ export function getDateTime(day) {
     if (day) getDay = new Date(day);
     else getDay = new Date();
 
-    let month = getDay.getMonth() + 1;
-    let date = getDay.getDate();
-    let year = getDay.getFullYear();
-    let hour = getDay.getHours();
-    let min = getDay.getMinutes();
+    let month = getDay.getUTCMonth() + 1;
+    let date = getDay.getUTCDate();
+    let year = getDay.getUTCFullYear();
+    let hour = getDay.getUTCHours();
+    let min = getDay.getUTCMinutes();
 
     if (month < 10) month = "0" + month;
     if (date < 10) date = "0" + date;

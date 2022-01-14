@@ -20,11 +20,15 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-#modal__container {
-    position: absolute;
+#auth__parent {
+    min-height: 500px;
+}
+
+#auth__container {
     width: 410px;
     height: fit-content;
 
+    margin: 10px auto;
     padding: 50px 60px;
 
     text-align: center;
@@ -34,14 +38,14 @@
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-#modal__container--heading {
+#auth__container--heading {
     margin: 0 0 10px 0;
 
     font-size: 1.5em;
     font-weight: 500;
 }
 
-#modal__container input {
+#auth__container input {
     width: 100%;
     padding: 8px 10px;
     margin: 8px 0;
@@ -53,17 +57,17 @@
     background: none;
 }
 
-#modal__container input:focus {
+#auth__container input:focus {
     color: var(--accent-color-2);
     border-bottom: 1px solid var(--accent-color-2);
     outline: none;
 }
 
-#modal__container input::placeholder {
+#auth__container input::placeholder {
     color: var(--medium-grey);
 }
 
-ul.modal__container--form-errors {
+ul.auth__container--form-errors {
     margin: 14px 0;
     padding: 10px 0 6px 0;
 
@@ -77,12 +81,12 @@ ul.modal__container--form-errors {
     background-color: rgba(var(--accent-color-3-triplet), 0.3);
 }
 
-ul.modal__container--form-errors li {
+ul.auth__container--form-errors li {
     margin: 0 0 4px 0;
     list-style-type: none;
 }
 
-.modal__container--text {
+.auth__container--text {
     padding: 5px 0;
 
     font-size: 0.9em;

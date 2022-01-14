@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { getDateShort, getDateString } from "../../../utils/date-time";
+import { getDateShort, getDateString } from "./date-time";
 
 export function populateDate(startTime, endTime) {
     const [sDate, sTime, sYear] = getDateString(startTime);
@@ -26,7 +25,6 @@ export function populateLocation(event) {
     const {
         startTime,
         secretLocation,
-        capacity,
         virtualEvent,
         eventUrl,
         Venue
@@ -38,14 +36,14 @@ export function populateLocation(event) {
     if (virtualEvent) {
         if (today !== startDay) {
             return (
-                <div className='event__details__location event__details--location'>
+                <div className='event__details__location event__details--location-secret'>
                     <p>It's a virtual event! Check back later for the streaming link.</p>
                 </div>
             )
         } else {
             return (
                 <div className='event__details--location event__details--location-link'>
-                    <Link to={eventUrl ? eventUrl : '/'}>Click to Start Streaming!</Link>
+                    <a href={eventUrl ? eventUrl : '/'} target="_blank" rel="noreferrer noopener">Click to Start Streaming!</a>
                 </div>
             )
         }
@@ -62,7 +60,7 @@ export function populateLocation(event) {
                     <div className='event__details--location'>
                         <p>{Venue.name}</p>
                         <p>{Venue.address}</p>
-                        <p>{Venue.city}, {Venue.state} {Venue.zip}</p>
+                        <p>{Venue.city}, {Venue.state.toUpperCase()} {Venue.zip}</p>
                     </div>
                 )
             }

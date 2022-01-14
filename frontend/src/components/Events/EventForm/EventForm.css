@@ -108,9 +108,9 @@
     font-size: 0.8em;
     text-align: center;
 
-    border-radius: 2px;
+    border-radius: 3px;
     border: 1px solid var(--accent-color-3);
-    background-color: rgba(var(--accent-color-triplet), 0.3);
+    background-color: rgba(var(--accent-color-3-triplet), 0.3);
 }
 
 .form__submit--error {

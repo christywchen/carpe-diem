@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -32,7 +32,7 @@ function EventEdit() {
             eventId: event.id,
             name: event.name,
             startTime: event.startTime ? getDateTime(event.startTime) : null,
-            endTime: event.startTime ? getDateTime(event.endTime) : null,
+            endTime: event.endTime ? getDateTime(event.endTime) : null,
             description: event.description,
             capacity: event.capacity,
             virtualEvent: event.virtualEvent,
@@ -41,7 +41,6 @@ function EventEdit() {
             imageUrl: event.imageUrl,
             categoryId: event.categoryId,
             published: event.published,
-            capacity: event.capacity,
 
             venueId: event.Venue?.id,
             venueName: event.Venue?.name,

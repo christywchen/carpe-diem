@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -40,7 +40,7 @@ function EventForm({ formProps, formType }) {
     const [validateVenue, setValidateVenue] = useState({})
 
     const [minStartTime, setMinStartTime] = useState(getDateTime());
-    const [minEndTime, setMinEndTime] = useState(startTime)
+    const [minEndTime, setMinEndTime] = useState(startTime || getDateTime());
 
     /* HOOKS */
     useEffect(() => {
@@ -86,8 +86,8 @@ function EventForm({ formProps, formType }) {
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
             imageUrl: imageUrl ? imageUrl : null,
-            venueId: venueId ? venueId : null,
-            categoryId: categoryId ? categoryId : null,
+            venueId: venueId ? +venueId : null,
+            categoryId: categoryId ? +categoryId : null,
             published: published
         }
 
@@ -131,8 +131,8 @@ function EventForm({ formProps, formType }) {
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
             imageUrl: imageUrl ? imageUrl : null,
-            venueId: venueId,
-            categoryId: categoryId ? categoryId : null,
+            venueId: +venueId,
+            categoryId: categoryId ? +categoryId : null,
             published: published
         }
 
@@ -208,7 +208,7 @@ function EventForm({ formProps, formType }) {
                     <div className='event__form--section-venue'>
                         <div className='event__form--title'>
                             <label htmlFor='event-url'>
-                                Stream URL:
+                                Stream URL
                             </label>
                         </div>
                         <div className='event__form--description'>
@@ -250,7 +250,7 @@ function EventForm({ formProps, formType }) {
                         <div className='event__form--venue'>
                             <div className='event__form--title'>
                                 <label htmlFor='venue-address'>
-                                    Address:
+                                    Address*
                                 </label>
                                 {'venueAddress' in validateVenue && (
                                     <div className='form__submit--error'>{validateVenue.venueAddress}</div>
@@ -267,7 +267,7 @@ function EventForm({ formProps, formType }) {
                     <div className='event__form--venue'>
                         <div className='event__form--title'>
                             <label htmlFor='venue-city'>
-                                City:
+                                City*
                             </label>
                             {'venueCity' in validateVenue && (
                                 <div className='form__submit--error'>{validateVenue.venueCity}</div>
@@ -283,7 +283,7 @@ function EventForm({ formProps, formType }) {
                     <div>
                         <div className='event__form--title'>
                             <label htmlFor='venue-state'>
-                                State:
+                                State*
                             </label>
                             {'venueState' in validateVenue && (
                                 <div className='form__submit--error'>{validateVenue.venueState}</div>
@@ -299,7 +299,7 @@ function EventForm({ formProps, formType }) {
                     <div>
                         <div className='event__form--title'>
                             <label htmlFor='venue-zip'>
-                                Zip:
+                                Zip*
                             </label>
                             {'venueZip' in validateVenue && (
                                 <div className='form__submit--error'>{validateVenue.venueZip}</div>
