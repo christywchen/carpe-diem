@@ -209,7 +209,7 @@ function EventForm({ formProps, formType }) {
                     <div className='event__form--section-venue'>
                         <div className='event__form--title'>
                             <label htmlFor='event-url'>
-                                Stream URL:
+                                Stream URL
                             </label>
                         </div>
                         <div className='event__form--description'>
@@ -251,7 +251,7 @@ function EventForm({ formProps, formType }) {
                         <div className='event__form--venue'>
                             <div className='event__form--title'>
                                 <label htmlFor='venue-address'>
-                                    Address:
+                                    Address*
                                 </label>
                                 {'venueAddress' in validateVenue && (
                                     <div className='form__submit--error'>{validateVenue.venueAddress}</div>
@@ -268,7 +268,7 @@ function EventForm({ formProps, formType }) {
                     <div className='event__form--venue'>
                         <div className='event__form--title'>
                             <label htmlFor='venue-city'>
-                                City:
+                                City*
                             </label>
                             {'venueCity' in validateVenue && (
                                 <div className='form__submit--error'>{validateVenue.venueCity}</div>
@@ -284,7 +284,7 @@ function EventForm({ formProps, formType }) {
                     <div>
                         <div className='event__form--title'>
                             <label htmlFor='venue-state'>
-                                State:
+                                State*
                             </label>
                             {'venueState' in validateVenue && (
                                 <div className='form__submit--error'>{validateVenue.venueState}</div>
@@ -300,7 +300,7 @@ function EventForm({ formProps, formType }) {
                     <div>
                         <div className='event__form--title'>
                             <label htmlFor='venue-zip'>
-                                Zip:
+                                Zip*
                             </label>
                             {'venueZip' in validateVenue && (
                                 <div className='form__submit--error'>{validateVenue.venueZip}</div>
