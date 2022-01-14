@@ -17,9 +17,9 @@ Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for informatio
 A live demo of this application can be found [here](https://carpe-diem-app.herokuapp.com/).
 
 # Implementation
-This app was built using **JavaScript** in conjunction with backend tools like **Node.js**, **Express**, **Sequelize**, and **PostgreSQL** for data management. The API routes were designed with RESTful architecture in mind and utilizes a services layer to communicate between server and database. Other libraries used include **csurf**, **express-validator**, and **bcrypt.js**.
+This app was built using **JavaScript** in conjunction with backend tools like **Node.js**, **Express**, **Sequelize**, and **PostgreSQL** for data management. The API routes were designed with RESTful architecture in mind and utilizes a services layer to facilitate communication between server and database. Other libraries used include **csurf**, **express-validator**, and **bcrypt.js**.
 
-The frontend was utilizes **React** and **Redux** along with **React Router** for frontend routing. RESTful architecture also formed the basis for frontend route structure. The application's CSS was written from entirely scratch and uses no external libraries.
+The frontend uses **React** and **Redux** along with **React Router** for frontend routing. RESTful architecture also formed the basis for frontend route structure. The application's CSS was written from entirely scratch and uses no external libraries.
 
 # Local Installation
 
