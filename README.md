@@ -39,7 +39,7 @@ npm install
 ```
 
 ### Database Creation
-Create a **.env** file based on the example provided in **.env.example**. Create a PostgreSQL user with database creation authority and save the credentials in the **.env**.
+Create a PostgreSQL user with database creation authority and save the credentials in the **.env**. Then, create a **.env** file based on the example provided in **.env.example**.
 
 ```
 PORT=
@@ -50,7 +50,7 @@ JWT_SECRET=
 JWT_EXPIRES_IN=
 ```
 
-Migrate and seed the database using the following commands. The seeder files contain necesary information to set up a demo user account that can be used to tour the site without needing to create an account.
+Migrate and seed the database using the following commands. The seeder files contain necesary information to set up a demo user account that can be used to tour the site without needing to register.
 
 ```
 npx dotenv sequelize db:create
