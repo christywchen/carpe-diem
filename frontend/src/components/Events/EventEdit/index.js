@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -28,7 +28,6 @@ function EventEdit() {
 
         if (!event.published) formType = 'editDraft';
 
-        // console.log(event.startTime, event.endTime)
         formProps = {
             eventId: event.id,
             name: event.name,
@@ -42,7 +41,6 @@ function EventEdit() {
             imageUrl: event.imageUrl,
             categoryId: event.categoryId,
             published: event.published,
-            capacity: event.capacity,
 
             venueId: event.Venue?.id,
             venueName: event.Venue?.name,

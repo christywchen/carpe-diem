@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
-import { getPublishedByUser, getDraftsByUser } from '../../../store/event';
-
-import EventsTable from '../EventsTable';
 import EventsDrafts from '../EventsDrafts';
 import EventsPublished from '../EventsPublished';
 import EventsAll from '../EventsAll';

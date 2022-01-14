@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Navigate, Link, useNavigate } from 'react-router-dom';
+import { useEffect, } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getEvent } from '../../../store/event';
 
 import './EventDetails.css'
 import { getDateShort } from '../../../utils/date-time';
-import { populateDate, populateLocation } from './EventData';
+import { populateDate, populateLocation } from '../../../utils/event-data';
 
 function EventDetails() {
     const { eventId } = useParams();
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
@@ -47,10 +46,8 @@ function EventDetails() {
             startTime,
             endTime,
             description,
-            capacity,
             virtualEvent,
             hostId,
-            Venue,
             categoryId,
             Category
         } = event;
@@ -60,7 +57,6 @@ function EventDetails() {
         const dateInfo = populateDate(startTime, endTime);
         const locationInfo = populateLocation(event);
 
-        console.log(event)
         return (
             <>
                 <div id='main__narrow'>

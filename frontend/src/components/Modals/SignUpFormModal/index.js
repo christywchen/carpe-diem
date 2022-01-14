@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import * as sessionActions from '../../../store/session';
 import { Modal } from '../../../context/Modal';
-import LoginFormModal from '../../Modals/LoginFormModal';
 import SignUpForm from './SignUpForm';
 
 function SignUpFormModal({ button = false }) {
@@ -20,7 +19,7 @@ function SignUpFormModal({ button = false }) {
 
         return dispatch(sessionActions.login({ credential, password }))
             .catch(async (res) => {
-                const data = await res.json();
+                await res.json();
             });
     }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from "react-router-dom";
 import * as sessionActions from '../../store/session';
@@ -37,7 +37,7 @@ function LoginPage() {
 
         return dispatch(sessionActions.login({ credential, password }))
             .catch(async (res) => {
-                const data = await res.json();
+                await res.json();
             });
     }
 

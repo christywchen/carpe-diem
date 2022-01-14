@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { getDateShort, getDateString } from "../../../utils/date-time";
+import { getDateShort, getDateString } from "./date-time";
 
 export function populateDate(startTime, endTime) {
     const [sDate, sTime, sYear] = getDateString(startTime);
@@ -26,7 +25,6 @@ export function populateLocation(event) {
     const {
         startTime,
         secretLocation,
-        capacity,
         virtualEvent,
         eventUrl,
         Venue
