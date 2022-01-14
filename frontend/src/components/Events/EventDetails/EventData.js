@@ -45,7 +45,7 @@ export function populateLocation(event) {
         } else {
             return (
                 <div className='event__details--location event__details--location-link'>
-                    <Link to={eventUrl ? eventUrl : '/'}>Click to Start Streaming!</Link>
+                    <a href={eventUrl ? eventUrl : '/'} target="_blank" rel="noreferrer noopener">Click to Start Streaming!</a>
                 </div>
             )
         }
