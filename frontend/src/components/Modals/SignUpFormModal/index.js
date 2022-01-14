@@ -12,7 +12,7 @@ function SignUpFormModal({ button = false }) {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleDemo = (e) => {
         e.preventDefault();
 
         const credential = 'DemoUser';
@@ -26,8 +26,8 @@ function SignUpFormModal({ button = false }) {
 
     const handleRedirect = (e) => {
         e.preventDefault();
-        setShowModal(false)
-        navigate('/login')
+        setShowModal(false);
+        navigate('/login');
     }
 
     return (
@@ -43,7 +43,7 @@ function SignUpFormModal({ button = false }) {
                         <div className='modal__container--text'>Join to start hosting and attending events!</div>
                         <SignUpForm />
                         <hr />
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleDemo}>
                             <button className='button button__submit--primary button__modal' type="submit">Demo User</button>
                         </form>
                         <form onSubmit={handleRedirect}>
