@@ -25,9 +25,10 @@ if (!isProduction) {
     app.use(cors());
 }
 // set headers to better secure your app
-app.use(helmet({
-    contentSecurityPolicy: false
-}));
+// app.use(helmet({
+//     contentSecurityPolicy: false
+// }));
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 // set the _csrf token and create req.csrfToken method
 // the _csrf cookie is http-only and will be added to any server response
