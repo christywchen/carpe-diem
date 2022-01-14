@@ -1,5 +1,5 @@
 # Carpe Diem
-Featuring an 80's inspired aesthetic, Carpe Diem is an app for sharing and finding EDM events. 
+Featuring an 80's inspired aesthetic, Carpe Diem is an app for finding and sharing EDM events. 
 
 Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com/), an innovative app that puts event ticketing and planning in the hands of anyone and everyone who wishes to share their own events. This app capitalizes on that ability for artists to create and share events in order with audiences.
 
@@ -99,8 +99,8 @@ On the React side of things, the solution was to create helper functions for the
 **Step 5**: If an event does not exist, the action will be to create a new record.
 
 **Step 6**: For either case, first post or update the venue, if it exists, in the database.
-
-**Step 7**: After, use that venue's id from the fetch response to create a foreign key that will go into the event record.
+- If the event already exists and the venue is being updated, no other steps need to be taken because the venue already has an associated venue foreign key.
+- If the event exists but does not have an associated venue, OR the event does not exist, get the venue id from the venue creation fetch response. This will be included in the fetch request for creating or updating an event.
 
 **Step 8**: Move forward with posting or update the event in the database.
 
