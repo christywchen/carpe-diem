@@ -20,7 +20,6 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    background-image: url("../../../assets/event-card.jpg");
 }
 
 .event__details--1-default {

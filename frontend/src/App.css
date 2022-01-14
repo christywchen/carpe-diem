@@ -60,5 +60,5 @@
   overflow: auto;
 
   min-height: 100vh;
-  background: no-repeat fixed bottom/100% var(--background) url("./assets/wallpaper-resize.jpg");
+  background: no-repeat fixed bottom/100% var(--background) url("./assets/wallpaper-min.jpg");
 }

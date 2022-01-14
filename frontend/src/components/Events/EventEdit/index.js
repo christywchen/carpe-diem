@@ -28,12 +28,12 @@ function EventEdit() {
 
         if (!event.published) formType = 'editDraft';
 
-        console.log(event.startTime, event.endTime)
+        // console.log(event.startTime, event.endTime)
         formProps = {
             eventId: event.id,
             name: event.name,
             startTime: event.startTime ? getDateTime(event.startTime) : null,
-            endTime: event.startTime ? getDateTime(event.endTime) : null,
+            endTime: event.endTime ? getDateTime(event.endTime) : null,
             description: event.description,
             capacity: event.capacity,
             virtualEvent: event.virtualEvent,
