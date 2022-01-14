@@ -6,11 +6,11 @@ Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com
 ![carpe-diem](https://user-images.githubusercontent.com/55429132/149492269-f0dc14d7-61f5-4fe7-b276-1ae0ee3685c0.png)
 
 Events can be created with the following special features: 
-- Draft or Published: Drafted events can be saved and published later on.
-- Secret Event: Exact location details are revealed on the day of the event.
-- Virtual Event: Instead of providing a physical address, a stream link can be shared.
-- Event Category: Describes whether the event is a festival, concert, warehouse event, etc.
-- Other Features: Event date and time, image, description, location.
+- **Draft or Published**: Drafted events can be saved and published later on.
+- **Secret Event**: Exact location details are revealed on the day of the event.
+- **Virtual Event**: Instead of providing a physical address, a stream link can be shared.
+- **Event Category**: Describes whether the event is a festival, concert, warehouse event, etc.
+- **Other Features**: Event date and time, image, description, location.
 
 Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for information about features and routes. 
 
