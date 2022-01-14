@@ -86,7 +86,7 @@ function EventForm({ formProps, formType }) {
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
             imageUrl: imageUrl ? imageUrl : null,
-            venueId: venueId ? venueId : null,
+            venueId: venueId ? +venueId : null,
             categoryId: categoryId ? +categoryId : null,
             published: published
         }

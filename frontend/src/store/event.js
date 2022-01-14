@@ -3,9 +3,10 @@ import { csrfFetch } from "./csrf";
 const LOAD_EVENTS = 'event/loadEvents';
 const LOAD_PUBLISHED_EVENTS = 'event/loadPublishedEvents';
 const LOAD_DRAFT_EVENTS = 'event/loadDraftEvents';
-const ADD_PUBLISHED_EVENT = 'event/addEvent';
-const ADD_DRAFT_EVENT = 'event/addEvent';
-const EDIT_EVENT = 'event/editEvent';
+const ADD_PUBLISHED_EVENT = 'event/addPublishedEvent';
+const ADD_DRAFT_EVENT = 'event/addDraftEvent';
+const EDIT_PUBLISHED_EVENT = 'event/editPublishedEvent';
+const EDIT_DRAFT_EVENT = 'event/editDraftEvent';
 const REMOVE_PUBLISHED_EVENT = 'event/removePublishedEvent';
 const REMOVE_DRAFT_EVENT = 'event/removeDraftEvent';
 
@@ -45,9 +46,17 @@ export const addDraftEvent = (newEvent) => {
     }
 };
 
-export const editEvent = (eventId, updatedEvent) => {
+export const editPublishedEvent = (eventId, updatedEvent) => {
     return {
-        type: EDIT_EVENT,
+        type: EDIT_PUBLISHED_EVENT,
+        eventId,
+        updatedEvent
+    }
+};
+
+export const editDraftEvent = (eventId, updatedEvent) => {
+    return {
+        type: EDIT_DRAFT_EVENT,
         eventId,
         updatedEvent
     }
@@ -119,8 +128,9 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
 
     if (published) {
         dispatch(addPublishedEvent(eventId, data));
+    } else {
+        dispatch(addDraftEvent(data));
     }
-    else dispatch(addDraftEvent(data));
     return data;
 };
 
@@ -150,16 +160,24 @@ const eventReducer = (state = initialState, action) => {
             return newState;
         case LOAD_PUBLISHED_EVENTS:
             newState = { ...state };
-            newState.published = action.events.reduce((events, event) => {
+            newState.events = action.events.reduce((events, event) => {
                 events[event.id] = event;
                 return events;
+            }, {});
+            newState.published = action.events.reduce((published, event) => {
+                published[event.id] = event;
+                return published;
             }, {});
             return newState;
         case LOAD_DRAFT_EVENTS:
             newState = { ...state };
-            newState.drafts = action.events.reduce((events, event) => {
+            newState.events = action.events.reduce((events, event) => {
                 events[event.id] = event;
                 return events;
+            }, {});
+            newState.drafts = action.events.reduce((drafts, event) => {
+                drafts[event.id] = event;
+                return drafts;
             }, {});
             return newState;
         case ADD_PUBLISHED_EVENT:
@@ -169,13 +187,8 @@ const eventReducer = (state = initialState, action) => {
             return newState;
         case ADD_DRAFT_EVENT:
             newState = { ...state };
+            newState.events = { ...newState.events, [action.newEvent.id]: action.newEvent };
             newState.drafts = { ...newState.drafts, [action.newEvent.id]: action.newEvent };
-            return newState;
-        case EDIT_EVENT:
-            newState = { ...state };
-            newState.events = { ...state.events };
-            newState.events[action.eventId] = action.updatedEvent;
-            newState.events[action.eventId]['Category'] = action.updatedEvent['Category'];
             return newState;
         case REMOVE_PUBLISHED_EVENT:
             newState = { ...state };
