@@ -28,6 +28,7 @@ function EventEdit() {
 
         if (!event.published) formType = 'editDraft';
 
+        console.log(event.startTime, event.endTime)
         formProps = {
             eventId: event.id,
             name: event.name,
