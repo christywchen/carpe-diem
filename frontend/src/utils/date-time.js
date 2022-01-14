@@ -4,8 +4,8 @@ export function getDateTime(day) {
     */
 
     let getDay;
-    if (day) getDay = new Date(day);
-    else getDay = new Date();
+    if (day) getDay = new Date(day).toUTCString();
+    else getDay = new Date().toUTCString();
 
     let month = getDay.getMonth() + 1;
     let date = getDay.getDate();
@@ -40,7 +40,7 @@ export function getDateString(date) {
     This function takes a standard date input and returns it in readable string format.
     Time is formatted as 12 hour periods.
     */
-    const dateObj = new Date(date);
+    const dateObj = new Date(date).toUTCString;
     const [dayStr, dayNum, month, year, time] = dateObj.toUTCString().split(' ');
     let [hour, minute, second] = time.split(':');
     let timePeriod = 'AM';

@@ -78,8 +78,8 @@ function EventForm({ formProps, formType }) {
 
         const event = {
             name: name ? name : 'Untitled Event',
-            startTime: startTime ? startTime : null,
-            endTime: endTime ? endTime : null,
+            startTime: startTime ? new Date(startTime).toUTCString() : null,
+            endTime: endTime ? new Date(endTime).toUTCString() : null,
             description: description ? description : null,
             capacity: capacity ? capacity : null,
             secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
@@ -123,8 +123,8 @@ function EventForm({ formProps, formType }) {
 
         const event = {
             name: name ? name : 'Untitled Event',
-            startTime: startTime ? startTime : null,
-            endTime: endTime ? endTime : null,
+            startTime: startTime ? new Date(startTime).toUTCString() : null,
+            endTime: endTime ? new Date(endTime).toUTCString() : null,
             description: description ? description : null,
             capacity: capacity ? capacity : null,
             secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
