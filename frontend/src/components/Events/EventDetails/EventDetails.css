@@ -15,9 +15,10 @@
 }
 
 .event__details--1 {
+    display: flex;
+    align-items: flex-end;
     background-size: cover;
     background-position: center;
-    display: flex;
     overflow: hidden;
     background-image: url("../../../assets/event-card.jpg");
 }
@@ -99,7 +100,7 @@
     color: white;
     background-color: var(--accent-color-2);
     transition: 0.3s;
-    opacity: 1;
+    opacity: 0.9;
 }
 
 .event__details--alert {
