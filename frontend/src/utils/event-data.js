@@ -60,7 +60,7 @@ export function populateLocation(event) {
                     <div className='event__details--location'>
                         <p>{Venue.name}</p>
                         <p>{Venue.address}</p>
-                        <p>{Venue.city}, {Venue.state.toUpperCase()} {Venue.zip}</p>
+                        <p>{Venue.city}, {Venue.state?.toUpperCase()} {Venue.zip}</p>
                     </div>
                 )
             }
