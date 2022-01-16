@@ -127,7 +127,7 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
     const data = await res.json();
 
     if (published) {
-        dispatch(addPublishedEvent(eventId, data));
+        dispatch(addPublishedEvent(data));
     } else {
         dispatch(addDraftEvent(data));
     }
