@@ -32,8 +32,8 @@ function App() {
         {isLoaded && (
           <div id='main'>
             <Routes>
-              <Route path='/' element={<Navigate to='/events/categories/all' />} />
-              <Route path='/events/*' element={<EventsMain />} />
+              <Route path='/' element={<Navigate to='/categories/all/events' />} />
+              <Route path='/*' element={<EventsMain />} />
               <Route path='*' element={<Navigate to='/not-found' />} />
               <Route path='/dashboard/*' element={<UserDashboard />} />
               <Route path='/events/new' element={<EventCreate />} />

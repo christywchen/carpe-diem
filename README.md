@@ -1,25 +1,25 @@
 # Carpe Diem
-Featuring an 80's inspired aesthetic, Carpe Diem is an app for finding and sharing EDM events. 
+Featuring an 80's inspired aesthetic, Carpe Diem is an app for finding and sharing EDM events.
 
-Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com/), an innovative app that puts event ticketing and planning in the hands of anyone and everyone who wishes to share their own events. This app capitalizes on that ability for artists to create and share events in order with audiences.
+Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com/), an innovative app that puts event ticketing and planning in the hands of anyone and everyone who wishes to share their own events. This app capitalizes on that functionality to give artists the chance to connect directly with their audiences by creating and sharing their planned events.
 
 ![carpe-diem](https://user-images.githubusercontent.com/55429132/149492269-f0dc14d7-61f5-4fe7-b276-1ae0ee3685c0.png)
 
-Events can be created with the following special features: 
+Events can be created with the following special features:
 - **Draft or Published**: Drafted events can be saved and published later on.
 - **Secret Event**: Exact location details are revealed on the day of the event.
 - **Virtual Event**: Instead of providing a physical address, a stream link can be shared.
 - **Event Category**: Describes whether the event is a festival, concert, warehouse event, etc.
 - **Other Features**: Event date and time, image, description, location.
 
-Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for information about features and routes. 
+Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for information about features and routes.
 
 A live demo of this application can be found [here](https://carpe-diem-app.herokuapp.com/).
 
 # Implementation
 This app was built using **JavaScript** in conjunction with backend tools like **Node.js**, **Express.js**, **Sequelize**, and **PostgreSQL** for data management. The API routes were designed with RESTful architecture in mind and utilizes a services layer to facilitate communication between server and database. Other libraries used include **csurf**, **express-validator**, and **bcrypt.js**.
 
-The frontend uses **React** and **Redux** along with **React Router** for frontend routing. RESTful architecture also formed the basis for frontend route structure. The application's CSS was written from entirely scratch and uses no external libraries.
+The frontend uses **React** and **Redux** along with **React Router** for frontend routing. RESTful convention also formed the basis for frontend route structure. The application's HTML and CSS was written from entirely scratch and uses no external libraries.
 
 # Local Installation
 
@@ -69,7 +69,7 @@ npm install
 ```
 After installation completes, run the following to start the server and begin using the application.
 ```
-npm start 
+npm start
 ```
 
 # Future Features
