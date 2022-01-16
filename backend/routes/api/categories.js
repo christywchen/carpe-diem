@@ -12,4 +12,13 @@ router.get('/', asyncHandler(async (_req, res) => {
     res.json(categories);
 }));
 
+// GET /api/categories/:categoryId (get published events by category)
+router.get('/:categoryId/events', asyncHandler(async (req, res) => {
+    const categoryId = parseInt(req.params.categoryId, 10);
+    const events = await categoryService.getEventsByCategory(categoryId);
+
+    res.json(events);
+}));
+
+
 module.exports = router;
