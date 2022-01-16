@@ -11,8 +11,10 @@ function EventsPublished() {
     const navigate = useNavigate();
 
     const sessionUser = useSelector((state) => state.session.user);
-    const publishedEventsObj = useSelector((state) => state.event.published);
-    const publishedEvents = Object.values(publishedEventsObj);
+    const eventsObj = useSelector((state) => state.event.events);
+    const publishedIds = useSelector((state) => state.event.published.byId)
+
+    let events = Object.values(eventsObj);
 
     let userId;
     useEffect(() => {
@@ -24,6 +26,15 @@ function EventsPublished() {
             dispatch(getPublishedByUser(userId));
         }
     }, [dispatch]);
+
+    let publishedEvents;
+    if (publishedIds && events.length) {
+        // using publishedIds array, perform a lookup of events in eventsObj and return an array of the events
+        publishedEvents = publishedIds.map((id) => {
+            return eventsObj[id];
+        })
+    }
+
 
     return (
         <>

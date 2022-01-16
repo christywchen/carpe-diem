@@ -4,7 +4,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import EventForm from '../EventForm';
-import { getEvent } from '../../../store/event';
+import { getAllEvents } from '../../../store/event';
 
 import { getDateTime } from '../../../utils/date-time';
 
@@ -18,7 +18,7 @@ function EventEdit() {
     let formProps;
 
     useEffect(() => {
-        dispatch(getEvent(eventId));
+        dispatch(getAllEvents(eventId));
     }, [dispatch]);
 
     if (event) {

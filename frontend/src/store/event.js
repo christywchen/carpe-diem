@@ -128,6 +128,9 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
 
     if (published) {
         dispatch(addPublishedEvent(data));
+
+
+        console.log('dATAA', data)
     } else {
         dispatch(addDraftEvent(data));
     }
@@ -144,7 +147,7 @@ export const deleteEvent = (eventId, published) => async (dispatch) => {
 };
 
 // initial state
-const initialState = { events: {}, published: {}, drafts: {} }
+const initialState = { events: {}, published: { byId: [] }, drafts: {} }
 
 // event reducer
 const eventReducer = (state = initialState, action) => {
@@ -160,35 +163,28 @@ const eventReducer = (state = initialState, action) => {
             return newState;
         case LOAD_PUBLISHED_EVENTS:
             newState = { ...state };
-            newState.events = action.events.reduce((events, event) => {
-                events[event.id] = event;
-                return events;
-            }, {});
-            newState.published = action.events.reduce((published, event) => {
-                published[event.id] = event;
-                return published;
+            // console.log(action.events)
+            newState.published.byId = action.events.map((event) => {
+                return event.id;
             }, {});
             return newState;
         case LOAD_DRAFT_EVENTS:
             newState = { ...state };
-            newState.events = action.events.reduce((events, event) => {
-                events[event.id] = event;
-                return events;
-            }, {});
-            newState.drafts = action.events.reduce((drafts, event) => {
-                drafts[event.id] = event;
-                return drafts;
+            newState.drafts.byId = action.events.map((event) => {
+                return event.id;
             }, {});
             return newState;
         case ADD_PUBLISHED_EVENT:
             newState = { ...state };
-            newState.events = { ...newState.events, [action.newEvent.id]: action.newEvent };
-            newState.published = { ...newState.published, [action.newEvent.id]: action.newEvent };
+            console.log(action.newEvent.categoryId, action.newEvent.Category)
+            newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
+            // newState.events[action.newEvent.id].Category = action.newEvent.Category;
+            newState.published.byId.push(action.newEvent.id)
             return newState;
         case ADD_DRAFT_EVENT:
             newState = { ...state };
-            newState.events = { ...newState.events, [action.newEvent.id]: action.newEvent };
-            newState.drafts = { ...newState.drafts, [action.newEvent.id]: action.newEvent };
+            newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
+            newState.drafts.byId.push(action.newEvent.id)
             return newState;
         case REMOVE_PUBLISHED_EVENT:
             newState = { ...state };

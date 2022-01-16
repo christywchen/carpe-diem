@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getDraftsByUser } from '../../../store/event';
+import { getAllEvents, getDraftsByUser } from '../../../store/event';
 
 import EventsTable from '../EventsTable';
 
@@ -12,19 +12,29 @@ function EventsDrafts() {
     const navigate = useNavigate();
 
     const sessionUser = useSelector((state) => state.session.user);
-    const draftEventsObj = useSelector((state) => state.event.drafts);
-    const draftEvents = Object.values(draftEventsObj);
+    const eventsObj = useSelector((state) => state.event.events);
+    const draftIds = useSelector((state) => state.event.drafts.byId)
 
-    let userId;
+    let events = Object.values(eventsObj);
+
     useEffect(() => {
         if (!sessionUser) {
             navigate('/login');
         } else {
-            userId = sessionUser.id;
-            dispatch(getDraftsByUser(userId));
+            dispatch(getAllEvents(sessionUser.id));
+            dispatch(getDraftsByUser(sessionUser.id));
         }
     }, [dispatch]);
 
+    let draftEvents;
+    if (draftIds && events.length) {
+        // using draftIds array, perform a lookup of events in eventsObj and return an array of the events
+        draftEvents = draftIds.map((id) => {
+            return eventsObj[id];
+        })
+    }
+
+    console.log('the thing here,', draftEvents)
     return (
         <>
             <div className='events__dashboard--table'>

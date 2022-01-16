@@ -2,7 +2,7 @@ import { useEffect, } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getEvent } from '../../../store/event';
+import { getAllEvents, getPublishedByUser } from '../../../store/event';
 
 import './EventDetails.css'
 import { getDateShort } from '../../../utils/date-time';
@@ -11,18 +11,13 @@ import { populateDate, populateLocation } from '../../../utils/event-data';
 function EventDetails() {
     const { eventId } = useParams();
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-
-    const event = useSelector(state => {
-        if (state.event.events[eventId]) {
-            return state.event.events[eventId];
-        } else {
-            return null
-        }
-    });
+    const sessionUser = useSelector((state) => state.session.user);
+    const published = useSelector((state) => state.event.published);
+    const event = useSelector((state) => state.event.events[eventId]);
 
     useEffect(() => {
-        dispatch(getEvent(eventId));
+        dispatch(getPublishedByUser(sessionUser.id));
+        dispatch(getAllEvents(eventId));
     }, [dispatch]);
 
     const errorMsg = (
@@ -63,6 +58,7 @@ function EventDetails() {
             Category
         } = event;
 
+        console.log(categoryId, Category)
         const backgroundImage = { backgroundImage: `url("${event.imageUrl}")` }
         const shortDate = getDateShort(startTime);
         const dateInfo = populateDate(startTime, endTime);

@@ -26,9 +26,9 @@ function EventsList() {
     return (
         <div id='content'>
             <div className='events__container--items'>
-                {sortedByDate.map((event) =>
+                {/* {sortedByDate.map((event) =>
                     (<EventCard key={event.id} event={event} />)
-                )}
+                )} */}
             </div>
         </div>
     )
