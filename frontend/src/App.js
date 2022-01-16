@@ -6,7 +6,7 @@ import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import Navigation from './components/Navigation';
 import UserDashboard from './components/Dashboard/DashboardMain';
-import Events from './components/Events/EventsList'
+import EventsMain from './components/Events/EventsMain'
 import EventDetails from './components/Events/EventDetails';
 import EventCreate from './components/Events/EventCreate';
 import EventEdit from './components/Events/EventEdit';
@@ -32,8 +32,8 @@ function App() {
         {isLoaded && (
           <div id='main'>
             <Routes>
-              <Route path='/' element={<Navigate to='/events' />} />
-              <Route path='/events' element={<Events />} />
+              <Route path='/' element={<Navigate to='/events/categories/all' />} />
+              <Route path='/events/*' element={<EventsMain />} />
               <Route path='*' element={<Navigate to='/not-found' />} />
               <Route path='/dashboard/*' element={<UserDashboard />} />
               <Route path='/events/new' element={<EventCreate />} />

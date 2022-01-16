@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Route, Routes, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getAllEvents } from '../../../store/event';
@@ -8,32 +9,29 @@ import EventCard from '../EventCard';
 
 import './EventsList.css';
 
-function Events() {
+function EventsList() {
+    const { id } = useParams();
     const dispatch = useDispatch();
-    const eventsObj = useSelector((state) => state.event.events);
-    const events = Object.values(eventsObj)
+    const eventsObj = useSelector(state => state.event.events);
+    const events = Object.values(eventsObj);
 
+    // console.log(id)
     useEffect(() => {
-        dispatch(getAllEvents());
+        if (id === 'all') dispatch(getAllEvents());
     }, [dispatch]);
 
-    const sortedByDate = sortByDate(events)
+    const sortedByDate = sortByDate(events);
+    console.log(events)
 
     return (
-        <>
-            <div className='events__container--title'>
-                <h1>Upcoming Events</h1>
+        <div id='content'>
+            <div className='events__container--items'>
+                {sortedByDate.map((event) =>
+                    (<EventCard key={event.id} event={event} />)
+                )}
             </div>
-
-            <div id='content'>
-                <div className='events__container--items'>
-                    {sortedByDate.map((event) =>
-                        (<EventCard key={event.id} event={event} />)
-                    )}
-                </div>
-            </div>
-        </ >
+        </div>
     )
 }
 
-export default Events;
+export default EventsList;
