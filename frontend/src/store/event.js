@@ -144,7 +144,7 @@ export const deleteEvent = (eventId, published) => async (dispatch) => {
 };
 
 // initial state
-const initialState = { events: {}, published: { byId: [] }, drafts: {} }
+const initialState = { events: {}, published: { byId: {} }, drafts: {} }
 
 // event reducer
 const eventReducer = (state = initialState, action) => {
@@ -160,42 +160,42 @@ const eventReducer = (state = initialState, action) => {
             return newState;
         case LOAD_PUBLISHED_EVENTS:
             newState = { ...state };
-            newState.published.byId = action.events.map((event) => {
-                return event.id;
+            newState.published.byId = action.events.reduce((events, event) => {
+                events[event.id] = event.id;
+                return events;
             }, {});
             return newState;
         case LOAD_DRAFT_EVENTS:
             newState = { ...state };
-            newState.drafts.byId = action.events.map((event) => {
-                return event.id;
+            newState.drafts.byId = action.events.reduce((events, event) => {
+                events[event.id] = event.id;
+                return events;
             }, {});
             return newState;
         case ADD_PUBLISHED_EVENT:
             newState = { ...state };
             console.log(action.newEvent.categoryId, action.newEvent.Category)
             newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
-            newState.published.byId.push(action.newEvent.id)
+            newState.published.byId[action.newEvent.id] = action.newEvent.id;
             return newState;
         case ADD_DRAFT_EVENT:
             newState = { ...state };
             newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
-            newState.drafts.byId.push(action.newEvent.id)
+            newState.drafts.byId[action.newEvent.id] = action.newEvent.id;
             return newState;
         case REMOVE_PUBLISHED_EVENT:
             newState = { ...state };
             newState.events = { ...state.events };
-            newState.published = { ...state.published };
 
             delete newState.events[action.eventId];
-            delete newState.published[action.eventId];
+            delete newState.published.byId[action.eventId];
             return newState;
         case REMOVE_DRAFT_EVENT:
             newState = { ...state };
             newState.events = { ...state.events };
-            newState.drafts = { ...state.drafts };
 
             delete newState.events[action.eventId];
-            delete newState.drafts[action.eventId];
+            delete newState.drafts.byId[action.eventId];
             return newState;
         default:
             return state;

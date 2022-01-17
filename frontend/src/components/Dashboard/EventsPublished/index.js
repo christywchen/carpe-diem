@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getPublishedByUser } from '../../../store/event';
+import { getAllEvents, getPublishedByUser } from '../../../store/event';
 
 import EventsTable from '../EventsTable';
 
@@ -12,18 +12,20 @@ function EventsPublished() {
 
     const sessionUser = useSelector((state) => state.session.user);
     const eventsObj = useSelector((state) => state.event.events);
-    const publishedIds = useSelector((state) => state.event.published.byId)
+    const publishedIds = useSelector((state) => {
+        if (state.event.published.byId) return Object.keys(state.event.published.byId);
+        else return null;
+    });
 
-    let events = Object.values(eventsObj);
+    const events = Object.values(eventsObj);
 
-    let userId;
     useEffect(() => {
         if (!sessionUser) {
             navigate('/login');
         }
         else {
-            userId = sessionUser.id;
-            dispatch(getPublishedByUser(userId));
+            dispatch(getAllEvents());
+            dispatch(getPublishedByUser(sessionUser.id));
         }
     }, [dispatch]);
 
