@@ -25,10 +25,9 @@ function EventDetails() {
             <h1>Event Not Found</h1>
 
             <div id='content'>
-                <p>
+                <div className='error__content--none'>
                     Uh oh, this event doesn't exist yet. Perhaps you could be the one to make it happen? <Link className='text__link--colored' to='/events'>Continue browsing events.</Link>
-                </p>
-
+                </div>
             </div>
         </div>
     )

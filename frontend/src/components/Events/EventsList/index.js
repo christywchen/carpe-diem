@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getAllEvents, getPublishedByCat } from '../../../store/event';
@@ -38,9 +38,19 @@ function EventsList() {
         sortedByDate = sortByDate(events);
     }
 
+    console.log(sortedByDate)
+
+    sortedByDate = sortedByDate.filter((event) => {
+        return event.published === true;
+    });
+
     if (!sortedByDate.length) {
         return (
-            <>There's nothing here! Perhaps you could be the next to host an event?</>
+            <div id='content'>
+                <div className='error__content--none'>
+                    There's nothing here! Perhaps you could be the one to change that? <Link className='text__link--colored' to='/events/new'>Host your own event.</Link>
+                </div>
+            </div>
         )
     } else {
         return (

@@ -133,3 +133,7 @@ hr.table__divider {
     color: var(--accent-color-3-light);
     transition: 0.3s;
 }
+
+.error__content--none {
+    text-align: center;
+}
