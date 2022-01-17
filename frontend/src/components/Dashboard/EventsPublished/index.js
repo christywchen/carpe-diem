@@ -13,7 +13,7 @@ function EventsPublished() {
     const sessionUser = useSelector((state) => state.session.user);
     const eventsObj = useSelector((state) => state.event.events);
     const publishedIds = useSelector((state) => {
-        if (state.event.published.byId) return Object.keys(state.event.published.byId);
+        if (state.event.published.fromUser) return Object.keys(state.event.published.fromUser);
         else return null;
     });
 

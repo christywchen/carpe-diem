@@ -13,7 +13,7 @@ function EventsDrafts() {
     const sessionUser = useSelector((state) => state.session.user);
     const eventsObj = useSelector((state) => state.event.events);
     const draftIds = useSelector((state) => {
-        if (state.event.drafts.byId) return Object.keys(state.event.drafts.byId);
+        if (state.event.drafts.fromUser) return Object.keys(state.event.drafts.fromUser);
         else return null;
     });
 

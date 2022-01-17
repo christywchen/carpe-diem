@@ -33,7 +33,6 @@ function EventsList() {
     if (eventsByCat) {
         sortedByDate = sortByDate(eventsByCat);
     } else {
-        console.log(events)
         sortedByDate = sortByDate(events);
     }
 
