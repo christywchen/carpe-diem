@@ -159,21 +159,21 @@ const eventReducer = (state = initialState, action) => {
         case LOAD_PUBLISHED_EVENTS_BY_CAT:
             newState = { ...state };
             newState.published.byCat[action.catId] = action.events.reduce((events, event) => {
-                events[event.id] = event.id;
+                events[event.id] = event;
                 return events
             }, {});
             return newState;
         case LOAD_PUBLISHED_EVENTS:
             newState = { ...state };
             newState.published.byId = action.events.reduce((events, event) => {
-                events[event.id] = event.id;
+                events[event.id] = event;
                 return events;
             }, {});
             return newState;
         case LOAD_DRAFT_EVENTS:
             newState = { ...state };
             newState.drafts.byId = action.events.reduce((events, event) => {
-                events[event.id] = event.id;
+                events[event.id] = event;
                 return events;
             }, {});
             return newState;

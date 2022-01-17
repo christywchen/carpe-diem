@@ -12,13 +12,14 @@ import './EventsList.css';
 function EventsList() {
     const { catId } = useParams();
     const dispatch = useDispatch();
-    const eventsObj = useSelector((state) => state.event.events);
-    const eventsIdsByCat = useSelector((state) => {
-        if (state.event.published.byCat[catId]) return Object.keys(state.event.published.byCat[catId])
+    const events = useSelector((state) => {
+        if (state.event.events) return Object.values(state.event.events);
         else return null;
     });
-
-    const events = Object.values(eventsObj);
+    const eventsByCat = useSelector((state) => {
+        if (state.event.published.byCat[catId]) return Object.values(state.event.published.byCat[catId])
+        else return null;
+    });
 
     useEffect(() => {
         if (catId) {
@@ -29,16 +30,12 @@ function EventsList() {
 
 
     let sortedByDate;
-    if (eventsIdsByCat && events.length) {
-        const catEvents = eventsIdsByCat.map((id) => {
-            return eventsObj[id];
-        });
-        sortedByDate = sortByDate(catEvents);
+    if (eventsByCat) {
+        sortedByDate = sortByDate(eventsByCat);
     } else {
+        console.log(events)
         sortedByDate = sortByDate(events);
     }
-
-    console.log(sortedByDate)
 
     sortedByDate = sortedByDate.filter((event) => {
         return event.published === true;

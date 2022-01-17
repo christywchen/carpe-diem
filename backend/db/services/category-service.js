@@ -5,11 +5,13 @@ async function getAllCategories() {
     return await db.Category.findAll();
 }
 
-// GET EVENTS BY CATEGORY ID
+// GET PUBLISHED EVENTS BY CATEGORY ID
 async function getEventsByCategory(categoryId) {
     return await db.Event.findAll({
+        include: [db.Venue, db.Category, db.User],
         where: {
-            categoryId
+            categoryId,
+            published: true
         }
     });
 }
