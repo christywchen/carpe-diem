@@ -128,9 +128,6 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
 
     if (published) {
         dispatch(addPublishedEvent(data));
-
-
-        console.log('dATAA', data)
     } else {
         dispatch(addDraftEvent(data));
     }
@@ -163,7 +160,6 @@ const eventReducer = (state = initialState, action) => {
             return newState;
         case LOAD_PUBLISHED_EVENTS:
             newState = { ...state };
-            // console.log(action.events)
             newState.published.byId = action.events.map((event) => {
                 return event.id;
             }, {});
@@ -178,7 +174,6 @@ const eventReducer = (state = initialState, action) => {
             newState = { ...state };
             console.log(action.newEvent.categoryId, action.newEvent.Category)
             newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
-            // newState.events[action.newEvent.id].Category = action.newEvent.Category;
             newState.published.byId.push(action.newEvent.id)
             return newState;
         case ADD_DRAFT_EVENT:
