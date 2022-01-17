@@ -57,7 +57,6 @@ function EventDetails() {
             Category
         } = event;
 
-        console.log(categoryId, Category)
         const backgroundImage = { backgroundImage: `url("${event.imageUrl}")` }
         const shortDate = getDateShort(startTime);
         const dateInfo = populateDate(startTime, endTime);
