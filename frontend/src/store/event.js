@@ -1,12 +1,11 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_EVENTS = 'event/loadEvents';
+const LOAD_PUBLISHED_EVENTS_BY_CAT = 'event/loadPublishedEventsByCat';
 const LOAD_PUBLISHED_EVENTS = 'event/loadPublishedEvents';
 const LOAD_DRAFT_EVENTS = 'event/loadDraftEvents';
 const ADD_PUBLISHED_EVENT = 'event/addPublishedEvent';
 const ADD_DRAFT_EVENT = 'event/addDraftEvent';
-const EDIT_PUBLISHED_EVENT = 'event/editPublishedEvent';
-const EDIT_DRAFT_EVENT = 'event/editDraftEvent';
 const REMOVE_PUBLISHED_EVENT = 'event/removePublishedEvent';
 const REMOVE_DRAFT_EVENT = 'event/removeDraftEvent';
 
@@ -15,6 +14,14 @@ export const loadEvents = (events) => {
     return {
         type: LOAD_EVENTS,
         events
+    }
+};
+
+export const loadPublishedEventsByCat = (events, catId) => {
+    return {
+        type: LOAD_PUBLISHED_EVENTS_BY_CAT,
+        events,
+        catId
     }
 };
 
@@ -46,22 +53,6 @@ export const addDraftEvent = (newEvent) => {
     }
 };
 
-export const editPublishedEvent = (eventId, updatedEvent) => {
-    return {
-        type: EDIT_PUBLISHED_EVENT,
-        eventId,
-        updatedEvent
-    }
-};
-
-export const editDraftEvent = (eventId, updatedEvent) => {
-    return {
-        type: EDIT_DRAFT_EVENT,
-        eventId,
-        updatedEvent
-    }
-};
-
 export const removePublishedEvent = (eventId) => {
     return {
         type: REMOVE_PUBLISHED_EVENT,
@@ -84,11 +75,18 @@ export const getAllEvents = () => async (dispatch) => {
     dispatch(loadEvents(data));
 };
 
+export const getPublishedByCat = (catId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/categories/${catId}/events`);
+
+    const data = await res.json();
+    dispatch(loadPublishedEventsByCat(data, catId));
+};
+
+
 export const getPublishedByUser = (userId) => async (dispatch) => {
     const res = await csrfFetch(`/api/users/${userId}/events/published`);
 
     const data = await res.json();
-
     dispatch(loadPublishedEvents(data));
 };
 
@@ -144,7 +142,7 @@ export const deleteEvent = (eventId, published) => async (dispatch) => {
 };
 
 // initial state
-const initialState = { events: {}, published: { byId: {} }, drafts: {} }
+const initialState = { events: {}, published: { byId: {}, byCat: {} }, drafts: {} }
 
 // event reducer
 const eventReducer = (state = initialState, action) => {
@@ -156,6 +154,13 @@ const eventReducer = (state = initialState, action) => {
             newState.events = action.events.reduce((events, event) => {
                 events[event.id] = event;
                 return events;
+            }, {});
+            return newState;
+        case LOAD_PUBLISHED_EVENTS_BY_CAT:
+            newState = { ...state };
+            newState.published.byCat[action.catId] = action.events.reduce((events, event) => {
+                events[event.id] = event.id;
+                return events
             }, {});
             return newState;
         case LOAD_PUBLISHED_EVENTS:

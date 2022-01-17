@@ -5,14 +5,14 @@ function EventsSorter({ elements, resource }) {
         <>
             <div className='events__container--categories'>
                 <NavLink
-                    to={`${resource}/all/events`}
+                    to={`${resource}/all/events/all`}
                     className='events__container--category'
                 >
                     All
                 </NavLink>
                 {elements.map(element => (
                     <NavLink
-                        to={`/${resource}/${element.id}/events`}
+                        to={`/${resource}/${element.id}/events/all`}
                         key={element.id}
                         className='events__container--category'
                     >

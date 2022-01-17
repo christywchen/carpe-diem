@@ -26,7 +26,7 @@ function EventsMain() {
             </div>
 
             <Routes>
-                <Route path='categories/:id/events' element={<EventsList />} />
+                <Route path='categories/:catId/events/all' element={<EventsList />} />
             </Routes>
         </ >
     )
