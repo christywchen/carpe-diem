@@ -1,7 +1,6 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_EVENTS = 'event/loadEvents';
-const LOAD_PUBLISHED_EVENTS_BY_CAT = 'event/loadPublishedEventsByCat';
 const LOAD_PUBLISHED_EVENTS = 'event/loadPublishedEvents';
 const LOAD_DRAFT_EVENTS = 'event/loadDraftEvents';
 const ADD_PUBLISHED_EVENT = 'event/addPublishedEvent';
@@ -14,14 +13,6 @@ export const loadEvents = (events) => {
     return {
         type: LOAD_EVENTS,
         events
-    }
-};
-
-export const loadPublishedEventsByCat = (events, catId) => {
-    return {
-        type: LOAD_PUBLISHED_EVENTS_BY_CAT,
-        events,
-        catId
     }
 };
 
@@ -75,13 +66,6 @@ export const getAllEvents = () => async (dispatch) => {
     dispatch(loadEvents(data));
 };
 
-export const getPublishedByCat = (catId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/categories/${catId}/events`);
-
-    const data = await res.json();
-    dispatch(loadPublishedEventsByCat(data, catId));
-};
-
 export const getPublishedByUser = (userId) => async (dispatch) => {
     const res = await csrfFetch(`/api/users/${userId}/events/published`);
 
@@ -123,11 +107,9 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
 
     const data = await res.json();
 
-    if (published) {
-        dispatch(addPublishedEvent(data));
-    } else {
-        dispatch(addDraftEvent(data));
-    }
+    if (published) dispatch(addPublishedEvent(data));
+    else dispatch(addDraftEvent(data));
+
     return data;
 };
 
@@ -141,7 +123,7 @@ export const deleteEvent = (eventId, published) => async (dispatch) => {
 };
 
 // initial state
-const initialState = { events: {}, published: { fromUser: {}, byCat: {} }, drafts: { fromUser: {} } }
+const initialState = { events: {}, user: { drafts: {}, published: {} } }
 
 // event reducer
 const eventReducer = (state = initialState, action) => {
@@ -155,23 +137,16 @@ const eventReducer = (state = initialState, action) => {
                 return events;
             }, {});
             return newState;
-        case LOAD_PUBLISHED_EVENTS_BY_CAT:
-            newState = { ...state };
-            newState.published.byCat[action.catId] = action.events.reduce((events, event) => {
-                events[event.id] = event;
-                return events
-            }, {});
-            return newState;
         case LOAD_PUBLISHED_EVENTS:
             newState = { ...state };
-            newState.published.fromUser = action.events.reduce((events, event) => {
+            newState.user.published = action.events.reduce((events, event) => {
                 events[event.id] = event;
                 return events;
             }, {});
             return newState;
         case LOAD_DRAFT_EVENTS:
             newState = { ...state };
-            newState.drafts.fromUser = action.events.reduce((events, event) => {
+            newState.user.drafts = action.events.reduce((events, event) => {
                 events[event.id] = event;
                 return events;
             }, {});
@@ -179,26 +154,26 @@ const eventReducer = (state = initialState, action) => {
         case ADD_PUBLISHED_EVENT:
             newState = { ...state };
             newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
-            newState.published.fromUser[action.newEvent.id] = action.newEvent.id;
+            newState.user.published[action.newEvent.id] = action.newEvent.id;
             return newState;
         case ADD_DRAFT_EVENT:
             newState = { ...state };
             newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
-            newState.drafts.fromUser[action.newEvent.id] = action.newEvent.id;
+            newState.user.drafts[action.newEvent.id] = action.newEvent.id;
             return newState;
         case REMOVE_PUBLISHED_EVENT:
             newState = { ...state };
             newState.events = { ...state.events };
 
             delete newState.events[action.eventId];
-            delete newState.published.fromUser[action.eventId];
+            delete newState.user.published[action.eventId];
             return newState;
         case REMOVE_DRAFT_EVENT:
             newState = { ...state };
             newState.events = { ...state.events };
 
             delete newState.events[action.eventId];
-            delete newState.drafts.fromUser[action.eventId];
+            delete newState.user.drafts[action.eventId];
             return newState;
         default:
             return state;
