@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getAllEvents, getPublishedByCat } from '../../../store/event';
+import { getAllEvents } from '../../../store/event';
+import { getAllCategories, getPublishedByCat } from '../../../store/category';
 import { sortByDate } from '../../../utils/date-time';
 
 import EventCard from '../EventCard';
@@ -12,12 +13,12 @@ import './EventsList.css';
 function EventsList() {
     const { catId } = useParams();
     const dispatch = useDispatch();
-    const events = useSelector((state) => {
-        if (state.event.events) return Object.values(state.event.events);
+    const eventsObj = useSelector((state) => {
+        if (state.event.events) return state.event.events;
         else return null;
     });
-    const eventsByCat = useSelector((state) => {
-        if (state.event.published.byCat[catId]) return Object.values(state.event.published.byCat[catId])
+    const eventIdsByCat = useSelector((state) => {
+        if (state.category.events[catId]) return state.category.events[catId];
         else return null;
     });
 
@@ -30,16 +31,22 @@ function EventsList() {
 
 
     let sortedByDate;
-    if (eventsByCat) {
+    if (eventIdsByCat) {
+        const eventsByCat = eventIdsByCat.map((eventId) => {
+            return eventsObj[eventId];
+        });
         sortedByDate = sortByDate(eventsByCat);
     } else {
+        const events = Object.values(eventsObj);
         sortedByDate = sortByDate(events);
+        sortedByDate = sortedByDate.filter((event) => {
+            return event.published === true;
+        });
     }
 
-    sortedByDate = sortedByDate.filter((event) => {
-        return event.published === true;
-    });
+    console.log(sortedByDate)
 
+    // console.log(sortedByDate)
     if (!sortedByDate.length) {
         return (
             <div id='content'>
