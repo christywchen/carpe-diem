@@ -2,7 +2,7 @@ import { useEffect, } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getEvent } from '../../../store/event';
+import { getAllEvents, getPublishedByUser } from '../../../store/event';
 
 import './EventDetails.css'
 import { getDateShort } from '../../../utils/date-time';
@@ -11,18 +11,13 @@ import { populateDate, populateLocation } from '../../../utils/event-data';
 function EventDetails() {
     const { eventId } = useParams();
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-
-    const event = useSelector(state => {
-        if (state.event.events[eventId]) {
-            return state.event.events[eventId];
-        } else {
-            return null
-        }
-    });
+    const sessionUser = useSelector((state) => state.session.user);
+    const published = useSelector((state) => state.event.published);
+    const event = useSelector((state) => state.event.events[eventId]);
 
     useEffect(() => {
-        dispatch(getEvent(eventId));
+        dispatch(getPublishedByUser(sessionUser.id));
+        dispatch(getAllEvents(eventId));
     }, [dispatch]);
 
     const errorMsg = (
@@ -30,10 +25,9 @@ function EventDetails() {
             <h1>Event Not Found</h1>
 
             <div id='content'>
-                <p>
+                <div className='error__content--none'>
                     Uh oh, this event doesn't exist yet. Perhaps you could be the one to make it happen? <Link className='text__link--colored' to='/events'>Continue browsing events.</Link>
-                </p>
-
+                </div>
             </div>
         </div>
     )

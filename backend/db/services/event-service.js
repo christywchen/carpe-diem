@@ -1,13 +1,9 @@
 const db = require('../models');
 
 // GET ALL EVENTS (PUBLISHED)
-async function getAllPublishedEvents() {
+async function getAllEvents() {
     return await db.Event.findAll({
         include: [db.Venue, db.Category, db.User],
-        where: {
-            published: true
-        }
-
     });
 }
 
@@ -94,7 +90,7 @@ async function deleteEvent(event) {
 }
 
 module.exports = {
-    getAllPublishedEvents,
+    getAllEvents,
     getEvent,
     createEvent,
     updateEvent,

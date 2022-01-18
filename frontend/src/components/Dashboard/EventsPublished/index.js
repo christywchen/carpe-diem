@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getPublishedByUser } from '../../../store/event';
+import { getAllEvents, getPublishedByUser } from '../../../store/event';
 
 import EventsTable from '../EventsTable';
 
@@ -11,19 +11,32 @@ function EventsPublished() {
     const navigate = useNavigate();
 
     const sessionUser = useSelector((state) => state.session.user);
-    const publishedEventsObj = useSelector((state) => state.event.published);
-    const publishedEvents = Object.values(publishedEventsObj);
+    const eventsObj = useSelector((state) => state.event.events);
+    const publishedIds = useSelector((state) => {
+        if (state.event.published.fromUser) return Object.keys(state.event.published.fromUser);
+        else return null;
+    });
 
-    let userId;
+    const events = Object.values(eventsObj);
+
     useEffect(() => {
         if (!sessionUser) {
             navigate('/login');
         }
         else {
-            userId = sessionUser.id;
-            dispatch(getPublishedByUser(userId));
+            dispatch(getAllEvents());
+            dispatch(getPublishedByUser(sessionUser.id));
         }
     }, [dispatch]);
+
+    let publishedEvents;
+    if (publishedIds && events.length) {
+        // using publishedIds array, perform a lookup of events in eventsObj and return an array of the events
+        publishedEvents = publishedIds.map((id) => {
+            return eventsObj[id];
+        })
+    }
+
 
     return (
         <>

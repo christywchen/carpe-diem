@@ -51,7 +51,7 @@ const validateEvent = [
 
 // GET /api/events (get all published events)
 router.get('/', asyncHandler(async (_req, res) => {
-    const events = await eventService.getAllPublishedEvents();
+    const events = await eventService.getAllEvents();
 
     res.json(events);
 }));
@@ -81,6 +81,9 @@ router.patch('/:eventId', requireAuth, validateEvent, asyncHandler(async (req, r
 
     if (hostId === id) {
         const updatedEvent = await eventService.updateEvent(event, req.body);
+
+        await updatedEvent.reload();
+        console.log(updatedEvent.Category)
         res.json(updatedEvent);
     } else {
         const err = new Error('Forbidden');
