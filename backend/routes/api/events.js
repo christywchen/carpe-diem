@@ -105,7 +105,7 @@ router.delete('/:eventId', requireAuth, asyncHandler(async (req, res, next) => {
         await eventService.deleteEvent(event);
         res.json({ 'Success': 'Event deleted successfully' });
     } else {
-        const err = new Error('Forbidden');;
+        const err = new Error('Forbidden');
         err.status = 403;
         err.title = 'User is not authorized';
         err.errors = ['You do not have permission to access this resource.'];
