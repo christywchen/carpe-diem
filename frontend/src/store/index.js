@@ -5,12 +5,14 @@ import sessionReducer from './session';
 import eventReducer from './event';
 import categoryReducer from './category';
 import venueReducer from './venue';
+import registrationReducer from './registration';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     event: eventReducer,
     category: categoryReducer,
-    venue: venueReducer
+    venue: venueReducer,
+    registration: registrationReducer
 });
 
 let enhancer;
