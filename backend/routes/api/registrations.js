@@ -14,16 +14,8 @@ router.get('/users/:userId/events', asyncHandler(async (req, res) => {
     res.json(registrations);
 }));
 
-// GET /api/registrations/:registrationId (get a registration record)
-router.get('/:registrationId', asyncHandler(async (req, res) => {
-    const registrationId = parseInt(req.params.registrationId, 10);
-    const registration = await registrationService.getRegistration(registrationId);
-
-    res.json(registration);
-}));
-
-// POST /api/registrations/events/:eventId/users/:userId (register a user for an event)
-router.post('/events/:eventId/users/:userId', asyncHandler(async (req, res) => {
+// POST /api/registrations/users/:userId/events/:eventId (register a user for an event)
+router.post('/users/:userId/events/:eventId', asyncHandler(async (req, res) => {
     const { id } = req.user;
     const userId = parseInt(req.params.userId, 10);
     const eventId = parseInt(req.params.eventId, 10);
