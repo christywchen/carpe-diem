@@ -6,8 +6,8 @@ const registrationService = require('../../db/services/registration-service');
 
 const router = express.Router();
 
-// GET /api/registrations/users/:userId/events/all (get all registrations of a user)
-router.get('/users/:userId/events/all', asyncHandler(async (req, res) => {
+// GET /api/registrations/users/:userId/events (get all registrations of a user)
+router.get('/users/:userId/events', asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10);
     const registrations = await registrationService.getRegistrationsByUser(userId);
 

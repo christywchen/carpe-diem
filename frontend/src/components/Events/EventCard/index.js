@@ -1,10 +1,15 @@
+import { userDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { getRegistrations } from '../../../store/registration';
+import { getDateString } from '../../../utils/date-time';
 
 import './EventCard.css';
 
-import { getDateString } from '../../../utils/date-time';
 
 function EventCard({ event }) {
+    // const dispatch = useDispatch();
+    // const registeredEvents = useSelector(state => state.registration.user)
     const { id, name, startTime, description, categoryId, imageUrl, virtualEvent, Category, Venue } = event;
 
     const backgroundImage = { backgroundImage: `url("${imageUrl}")` }
@@ -19,6 +24,11 @@ function EventCard({ event }) {
     return (
         <>
             <div className='event__card--container'>
+                <button
+                    // onClick={ }
+                    className='event__card--registration'>
+                    <i className="fas fa-ticket-alt fa-md event__card--ticket"></i>
+                </button>
                 <Link to={`/events/${id}`}>
                     <div className='event__card--image event__card--image-default' style={imageUrl ? backgroundImage : null}>
                     </div>

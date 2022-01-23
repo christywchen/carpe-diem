@@ -1,14 +1,14 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_REGISTRATION = 'event/loadRegistration';
+const LOAD_REGISTRATIONS = 'event/loadRegistrations';
 const ADD_REGISTRATION = 'event/addRegistration';
 const REMOVE_REGISTRATION = 'event/removeRegistration';
 
 // action creators
-export const loadRegistration = (registration) => {
+export const loadRegistrations = (registrations) => {
     return {
-        type: LOAD_REGISTRATION,
-        registration
+        type: LOAD_REGISTRATIONS,
+        registrations
     }
 }
 
@@ -27,11 +27,11 @@ export const removeRegistration = (registrationId) => {
 }
 
 // thunk action creators
-export const getAllRegistrations = (userId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/registrations/${userId}/events/all`);
+export const getRegistrations = (userId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/registrations/users/${userId}/events`);
 
     const data = await res.json();
-    dispatch(loadRegistration(data));
+    dispatch(loadRegistrations(data));
 }
 
 // initial state
@@ -42,12 +42,13 @@ const registrationReducer = (state = initialState, action) => {
     let newState;
 
     switch (action.type) {
-        case LOAD_REGISTRATION:
+        case LOAD_REGISTRATIONS:
             newState = { ...state };
             newState.registrations = action.registrations.reduce((registrations, registration) => {
                 registrations[registration.id] = registration;
                 return registrations;
             }, {});
+            return newState;
         default:
             return state;
     }

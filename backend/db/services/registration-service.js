@@ -5,7 +5,14 @@ async function getRegistrationsByUser(userId) {
     return await db.RegisteredEvent.findAll({
         where: {
             userId
-        }
+        },
+        attributes: [
+            'id',
+            'userId',
+            'eventId',
+            'createdAt',
+            'updatedAt'
+        ]
     });
 }
 
