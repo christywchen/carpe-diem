@@ -20,7 +20,23 @@ async function getAllDraftEvents(userId) {
     });
 }
 
+async function getAllRegisteredEvents(userId) {
+    return await db.RegisteredEvent.findAll({
+        where: {
+            userId
+        },
+        attributes: [
+            'id',
+            'userId',
+            'eventId',
+            'createdAt',
+            'updatedAt'
+        ]
+    });
+}
+
 module.exports = {
     getAllPublishedEvents,
-    getAllDraftEvents
+    getAllDraftEvents,
+    getAllRegisteredEvents
 };

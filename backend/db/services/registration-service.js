@@ -1,21 +1,5 @@
 const db = require('../models');
 
-// GET ALL EVENT REGISTRATIONS BY USER
-async function getRegistrationsByUser(userId) {
-    return await db.RegisteredEvent.findAll({
-        where: {
-            userId
-        },
-        attributes: [
-            'id',
-            'userId',
-            'eventId',
-            'createdAt',
-            'updatedAt'
-        ]
-    });
-}
-
 // GET A USER'S EVENT REGISTRATION
 async function getRegistration(registrationId) {
     return await db.RegisteredEvent.findByPk(registrationId);
@@ -35,7 +19,6 @@ async function removeUserFromEvent(registration) {
 }
 
 module.exports = {
-    getRegistrationsByUser,
     getRegistration,
     addUserToEvent,
     removeUserFromEvent

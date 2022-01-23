@@ -28,7 +28,7 @@ export const removeRegistration = (registrationId) => {
 
 // thunk action creators
 export const getRegistrations = (userId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/registrations/users/${userId}/events`);
+    const res = await csrfFetch(`/api/users/${userId}/events/registered`);
 
     const data = await res.json();
     dispatch(loadRegistrations(data));
