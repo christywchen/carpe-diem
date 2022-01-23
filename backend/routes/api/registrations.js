@@ -6,16 +6,24 @@ const registrationService = require('../../db/services/registration-service');
 
 const router = express.Router();
 
-// GET /api/registrations/:userId/events/all (get all registrations of a user)
-router.get('/users/:userId/events/all', requireAuth, asyncHandler(async (req, res) => {
+// GET /api/registrations/users/:userId/events/all (get all registrations of a user)
+router.get('/users/:userId/events/all', asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10);
     const registrations = await registrationService.getRegistrationsByUser(userId);
 
     res.json(registrations);
 }));
 
+// GET /api/registrations/:registrationId (get a registration record)
+router.get('/:registrationId', asyncHandler(async (req, res) => {
+    const registrationId = parseInt(req.params.registrationId, 10);
+    const registration = await registrationService.getRegistration(registrationId);
+
+    res.json(registration);
+}));
+
 // POST /api/registrations/events/:eventId/users/:userId (register a user for an event)
-router.post('/events/:eventId/events/:eventId', requireAuth, asyncHandler(async (req, res) => {
+router.post('/events/:eventId/users/:userId', asyncHandler(async (req, res) => {
     const { id } = req.user;
     const userId = parseInt(req.params.userId, 10);
     const eventId = parseInt(req.params.eventId, 10);
