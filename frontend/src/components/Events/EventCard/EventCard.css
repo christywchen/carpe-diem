@@ -105,10 +105,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* color: var(--body-color); */
-    color: var(--accent-color-1);
+    color: var(--body-color);
     /* border: 1px solid var(--body-color); */
     border: none;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 100%;
+}
+
+.event__card--registered {
+    color: var(--accent-color-1);
 }

@@ -70,7 +70,7 @@ const registrationReducer = (state = initialState, action) => {
             return newState;
         case ADD_REGISTRATION:
             newState = { ...state };
-            newState.registrations = { ...state.registrations, [action.newRegistration.id]: action.newRegistration };
+            newState.registrations = { ...state.registrations, [action.newRegistration.eventId]: action.newRegistration };
             return newState;
         case REMOVE_REGISTRATION:
             newState = { ...state };

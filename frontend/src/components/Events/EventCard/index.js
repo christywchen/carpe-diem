@@ -1,32 +1,49 @@
-import { userDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getRegistrations } from '../../../store/registration';
+import { createRegistration, deleteRegistration, getRegistrations } from '../../../store/registration';
 import { getDateString } from '../../../utils/date-time';
 
 import './EventCard.css';
 
 
 function EventCard({ event }) {
-    // const dispatch = useDispatch();
-    // const registeredEvents = useSelector(state => state.registration.user)
     const { id, name, startTime, description, categoryId, imageUrl, virtualEvent, Category, Venue } = event;
+    const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user);
+    const eventRegistration = useSelector(state => state.registration.registrations[event.id])
 
     const backgroundImage = { backgroundImage: `url("${imageUrl}")` }
+    const [date, time] = getDateString(startTime);
+
+    useEffect(() => {
+        dispatch(getRegistrations(sessionUser.id))
+    }, [dispatch])
+
+    useEffect(() => { }, [eventRegistration])
 
     function getDescSummary(description) {
         if (description?.length < 75) return description;
         else return description?.slice(0, 80) + '...';
     }
 
-    const [date, time] = getDateString(startTime);
+    async function handleRegistration(e) {
+        if (eventRegistration) {
+            // de-register if registration exists for this event id
+            dispatch(deleteRegistration(sessionUser.id, event.id));
+        } else {
+            // register the user for the event
+            dispatch(createRegistration({ userId: sessionUser.id, eventId: event.id }));
+        }
+    }
 
     return (
         <>
             <div className='event__card--container'>
                 <button
-                    // onClick={ }
-                    className='event__card--registration'>
+                    onClick={handleRegistration}
+                    className={'event__card--registration ' + (eventRegistration ? 'event__card--registered' : '')}>
                     <i className="fas fa-ticket-alt fa-md event__card--ticket"></i>
                 </button>
                 <Link to={`/events/${id}`}>

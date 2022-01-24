@@ -3,18 +3,16 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getAllEvents } from '../../../store/event';
-import { getAllCategories, getPublishedByCat } from '../../../store/category';
+import { getPublishedByCat } from '../../../store/category';
 import { sortByDate } from '../../../utils/date-time';
 
 import EventCard from '../EventCard';
 
 import './EventsList.css';
-import { getRegistrations } from '../../../store/registration';
 
 function EventsList() {
     const { catId } = useParams();
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
     const eventsObj = useSelector((state) => {
         if (state.event.events) return state.event.events;
         else return null;
@@ -23,19 +21,11 @@ function EventsList() {
         if (state.category.events[catId]) return state.category.events[catId];
         else return null;
     });
-    const registeredEvents = useSelector((state) => {
-        if (state.registration.registrations) return state.registration.registrations;
-        else return null;
-    })
 
     useEffect(() => {
         if (catId) {
             dispatch(getAllEvents());
             if (catId !== 'all') dispatch(getPublishedByCat(catId));
-        }
-
-        if (sessionUser) {
-            dispatch(getRegistrations(sessionUser.id));
         }
     }, [dispatch, catId]);
 
