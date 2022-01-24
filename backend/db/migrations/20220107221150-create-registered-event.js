@@ -28,7 +28,11 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('now'),
       },
-    });
+    }).then(() => queryInterface.addConstraint('RegisteredEvents', {
+      fields: ['userId', 'eventId'],
+      type: 'unique',
+      name: 'uniqueRecord'
+    }));
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('RegisteredEvents');
