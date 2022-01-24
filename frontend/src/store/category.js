@@ -44,7 +44,6 @@ const categoryReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_CATEGORIES:
             newState = { ...state };
-            console.log('TEST', state.categories)
             newState.categories = action.categories.reduce((categories, category) => {
                 categories[category.id] = category;
                 return categories;

@@ -19,10 +19,10 @@ export const addRegistration = (newRegistration) => {
     }
 }
 
-export const removeRegistration = (registrationId) => {
+export const removeRegistration = (eventId) => {
     return {
         type: REMOVE_REGISTRATION,
-        registrationId
+        eventId
     }
 }
 
@@ -44,6 +44,15 @@ export const createRegistration = (newRegistration) => async (dispatch) => {
     dispatch(addRegistration(data));
     return data;
 }
+
+export const deleteRegistration = (userId, eventId) => async (dispatch) => {
+    await csrfFetch(`/api/registrations/events/${eventId}/users/${userId}`, {
+        method: 'DELETE'
+    });
+
+    dispatch(removeRegistration(eventId));
+}
+
 // initial state
 const initialState = { registrations: {} }
 
@@ -55,14 +64,17 @@ const registrationReducer = (state = initialState, action) => {
         case LOAD_REGISTRATIONS:
             newState = { ...state };
             newState.registrations = action.registrations.reduce((registrations, registration) => {
-                registrations[registration.id] = registration;
-                console.log('REGISTRRIOATNS', registrations)
+                registrations[registration.eventId] = registration;
                 return registrations;
             }, {});
             return newState;
         case ADD_REGISTRATION:
             newState = { ...state };
             newState.registrations = { ...state.registrations, [action.newRegistration.id]: action.newRegistration };
+            return newState;
+        case REMOVE_REGISTRATION:
+            newState = { ...state };
+            delete newState.registrations[action.eventId];
             return newState;
         default:
             return state;
