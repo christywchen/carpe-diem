@@ -6,10 +6,10 @@ async function getRegistration(registrationId) {
 }
 
 // CREATE A USER REGISTRATION FOR AN EVENT
-async function addUserToEvent(userId, eventId) {
+async function addUserToEvent(req) {
     return await db.RegisteredEvent.create({
-        userId,
-        eventId
+        userId: req.userId,
+        eventId: req.eventId
     });
 }
 

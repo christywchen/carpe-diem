@@ -34,6 +34,16 @@ export const getRegistrations = (userId) => async (dispatch) => {
     dispatch(loadRegistrations(data));
 }
 
+export const createRegistration = (newRegistration) => async (dispatch) => {
+    const res = await csrfFetch('/api/registrations', {
+        method: 'POST',
+        body: JSON.stringify(newRegistration)
+    });
+
+    const data = await res.json();
+    dispatch(addRegistration(data));
+    return data;
+}
 // initial state
 const initialState = { registrations: {} }
 
@@ -46,8 +56,13 @@ const registrationReducer = (state = initialState, action) => {
             newState = { ...state };
             newState.registrations = action.registrations.reduce((registrations, registration) => {
                 registrations[registration.id] = registration;
+                console.log('REGISTRRIOATNS', registrations)
                 return registrations;
             }, {});
+            return newState;
+        case ADD_REGISTRATION:
+            newState = { ...state };
+            newState.registrations = { ...state.registrations, [action.newRegistration.id]: action.newRegistration };
             return newState;
         default:
             return state;

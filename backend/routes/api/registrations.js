@@ -6,16 +6,14 @@ const registrationService = require('../../db/services/registration-service');
 
 const router = express.Router();
 
-// POST /api/registrations/users/:userId/events/:eventId (register a user for an event)
-router.post('/users/:userId/events/:eventId', asyncHandler(async (req, res) => {
+// POST /api/registrations (create event registration)
+router.post('/', requireAuth, asyncHandler(async (req, res) => {
     const { id } = req.user;
-    const userId = parseInt(req.params.userId, 10);
-    const eventId = parseInt(req.params.eventId, 10);
 
     let registration;
 
-    if (userId == id) {
-        registration = await registrationService.addUserToEvent(userId, eventId);
+    if (req.body.userId === id) {
+        registration = await registrationService.addUserToEvent(req.body);
         res.json(registration);
     } else {
         const err = new Error('Forbidden');

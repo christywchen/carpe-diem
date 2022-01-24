@@ -15,6 +15,7 @@ import * as sessionActions from './store/session';
 import * as eventActions from './store/event';
 import * as categoryActions from './store/category';
 import * as venueActions from './store/venue';
+import * as registrationActions from './store/registration';
 
 const store = configureStore();
 
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.eventActions = eventActions;
   window.categoryActions = categoryActions;
   window.venueActions = venueActions;
+  window.registrationActions = registrationActions;
 }
 
 function Root() {
