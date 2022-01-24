@@ -1,8 +1,17 @@
 const db = require('../models');
 
 // GET A USER'S EVENT REGISTRATION
-async function getRegistration(registrationId) {
-    return await db.RegisteredEvent.findByPk(registrationId);
+async function getRegistration(userId, eventId) {
+    const event = await db.RegisteredEvent.findOne({
+        where: {
+            userId,
+            eventId
+        }
+    });
+
+    console.log('EVENT', event)
+
+    return event;
 }
 
 // CREATE A USER REGISTRATION FOR AN EVENT

@@ -24,11 +24,16 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
     }
 }));
 
-// DESTROY /api/registrations/:registrationId (delete a registration)
-router.delete('/:registrationId', requireAuth, asyncHandler(async (req, res) => {
-    const registrationId = parseInt(req.params.registrationId, 10);
-    const registration = await registrationService.getRegistration(registrationId);
+// DESTROY /api/registrations/events/:eventId/users/:userId (delete a registration)
+router.delete('/events/:eventId/users/:userId', requireAuth, asyncHandler(async (req, res) => {
+    const { id } = req.user;
 
+    const userId = parseInt(req.params.userId, 10);
+    const eventId = parseInt(req.params.eventId, 10);
+
+    const registration = await registrationService.getRegistration(userId, eventId);
+
+    console.log(registration)
     if (userId === id) {
         await registrationService.removeUserFromEvent(registration);
         res.json({ 'Success': 'User event registration deleted successfully' });
