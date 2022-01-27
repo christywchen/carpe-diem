@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -17,11 +17,15 @@ function EventCard({ event }) {
     const backgroundImage = { backgroundImage: `url("${imageUrl}")` }
     const [date, time] = getDateString(startTime);
 
+    const [animateTicket, setAnimateTicket] = useState(false)
+
     useEffect(() => {
-        dispatch(getRegistrations(sessionUser.id))
+        if (sessionUser) dispatch(getRegistrations(sessionUser.id))
     }, [dispatch])
 
-    useEffect(() => { }, [eventRegistration])
+    useEffect(() => { }, [eventRegistration, animateTicket])
+
+    // useEffect(() => { }, [animateTicket])
 
     function getDescSummary(description) {
         if (description?.length < 75) return description;
@@ -31,9 +35,11 @@ function EventCard({ event }) {
     async function handleRegistration(e) {
         if (eventRegistration) {
             // de-register if registration exists for this event id
+            setAnimateTicket(false);
             dispatch(deleteRegistration(sessionUser.id, event.id));
         } else {
             // register the user for the event
+            setAnimateTicket(true);
             dispatch(createRegistration({ userId: sessionUser.id, eventId: event.id }));
         }
     }
@@ -41,12 +47,13 @@ function EventCard({ event }) {
     return (
         <>
             <div className='event__card--container'>
-                <button
+                {console.log(animateTicket === true)}
+                {sessionUser && (<button
                     onClick={handleRegistration}
-                    className={'event__card--registration ' + (eventRegistration ? 'event__card--registered' : '')}>
-                    <i className="fas fa-ticket-alt fa-md event__card--ticket"></i>
-                </button>
-                <Link to={`/events/${id}`}>
+                    className={'event__card--registration ' + (eventRegistration ? 'event__card--registered ' : '') + (animateTicket ? 'event__card--spin' : '')}>
+                    <i className="fas fa-ticket-alt event__card--ticket"></i>
+                </button>)}
+                < Link to={`/events/${id}`}>
                     <div className='event__card--image event__card--image-default' style={imageUrl ? backgroundImage : null}>
                     </div>
                 </Link>

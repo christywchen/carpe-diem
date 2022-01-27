@@ -106,7 +106,6 @@
     justify-content: center;
     align-items: center;
     color: var(--body-color);
-    /* border: 1px solid var(--body-color); */
     border: none;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 100%;
@@ -114,4 +113,20 @@
 
 .event__card--registered {
     color: var(--accent-color-1);
+    transition: 0.3s;
+}
+
+.event__card--spin {
+    animation-name: spin;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
 }
