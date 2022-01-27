@@ -18,6 +18,7 @@ function EventCard({ event }) {
     const [date, time] = getDateString(startTime);
 
     const [animateTicket, setAnimateTicket] = useState(false)
+    const [ticketToolTip, setTicketToolTip] = useState('')
 
     useEffect(() => {
         if (sessionUser) dispatch(getRegistrations(sessionUser.id))
@@ -49,6 +50,7 @@ function EventCard({ event }) {
             <div className='event__card--container'>
                 {console.log(animateTicket === true)}
                 {sessionUser && (<button
+                    title={eventRegistration ? '' : 'Click to RSVP'}
                     onClick={handleRegistration}
                     className={'event__card--registration ' + (eventRegistration ? 'event__card--registered ' : '') + (animateTicket ? 'event__card--spin' : '')}>
                     <i className="fas fa-ticket-alt event__card--ticket"></i>
