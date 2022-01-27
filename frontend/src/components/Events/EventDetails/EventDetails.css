@@ -1,7 +1,7 @@
 #event__details--grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 280px 2fr;
+    grid-template-rows: minmax(280px, max-content) 2fr;
     gap: 16px;
 }
 
@@ -100,6 +100,10 @@
     background-color: var(--accent-color-2);
     transition: 0.3s;
     opacity: 0.9;
+}
+
+.button__event--rsvp {
+    margin: 25px 0 0 0;
 }
 
 .event__details--alert {

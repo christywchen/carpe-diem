@@ -105,6 +105,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 1px;
     color: var(--body-color);
     border: none;
     background-color: rgba(0, 0, 0, 0.5);
