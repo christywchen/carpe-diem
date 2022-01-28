@@ -61,6 +61,8 @@ module.exports = (sequelize, DataTypes) => {
       through: 'RegisteredEvent',
       otherKey: 'eventId',
       foreignKey: 'userId',
+      onDelete: 'cascade',
+      hooks: true
     })
   };
 

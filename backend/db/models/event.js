@@ -73,7 +73,9 @@ module.exports = (sequelize, DataTypes) => {
     Event.belongsToMany(models.Artist, {
       through: 'HeadliningAct',
       otherKey: 'artistId',
-      foreignKey: 'eventId'
+      foreignKey: 'eventId',
+      onDelete: 'cascade',
+      hooks: true
     });
 
     Event.belongsToMany(models.Artist, {
