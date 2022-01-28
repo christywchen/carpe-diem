@@ -35,7 +35,6 @@ function EventRegistrations() {
             return eventsObj[eventId];
         });
         sortedByDate = sortByDate(eventRegistrations);
-        console.log(sortedByDate)
     }
 
     if (!sortedByDate.length) {

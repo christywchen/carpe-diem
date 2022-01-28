@@ -46,7 +46,6 @@ function EventCard({ event }) {
     return (
         <>
             <div className='event__card--container'>
-                {console.log(animateTicket === true)}
                 {sessionUser && (<button
                     title={eventRegistration ? 'Delete this Ticket' : 'Click to RSVP'}
                     onClick={handleClick}

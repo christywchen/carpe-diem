@@ -3,8 +3,18 @@ const asyncHandler = require('express-async-handler');
 
 const { requireAuth } = require('../../utils/auth');
 const registrationService = require('../../db/services/registration-service');
+const eventService = require('../../db/services/event-service');
 
 const router = express.Router();
+
+/// GET /api/registrations/events/:eventId
+router.get('/events/:eventId', asyncHandler(async (req, res) => {
+    const eventId = parseInt(req.params.eventId, 10);
+
+    const registrations = await registrationService.getRegistrations(eventId);
+
+    res.json(registrations)
+}));
 
 // POST /api/registrations (create event registration)
 router.post('/', requireAuth, asyncHandler(async (req, res) => {
@@ -33,7 +43,6 @@ router.delete('/events/:eventId/users/:userId', requireAuth, asyncHandler(async 
 
     const registration = await registrationService.getRegistration(userId, eventId);
 
-    console.log(registration)
     if (userId === id) {
         await registrationService.removeUserFromEvent(registration);
         res.json({ 'Success': 'User event registration deleted successfully' });

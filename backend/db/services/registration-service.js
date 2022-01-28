@@ -9,8 +9,6 @@ async function getRegistration(userId, eventId) {
         }
     });
 
-    console.log('EVENT', event)
-
     return event;
 }
 
