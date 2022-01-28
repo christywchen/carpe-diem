@@ -7,7 +7,7 @@ A live demo of this application can be found [here](https://carpe-diem-app.herok
 
 ![carpe-diem](https://user-images.githubusercontent.com/55429132/149492269-f0dc14d7-61f5-4fe7-b276-1ae0ee3685c0.png)
 
-Events can be created with the following special features:
+Events can be created with the following information:
 - **Draft or Published**: Drafted events can be saved and published later on.
 - **Secret Event**: Exact location details are revealed on the day of the event.
 - **Virtual Event**: Instead of providing a physical address, a stream link can be shared.
@@ -79,6 +79,7 @@ npm start
 
 - Genre tagging for events
 - Artist tagging for events
+- User profile and credential editing
 
 # Challenges
 
