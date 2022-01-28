@@ -26,14 +26,12 @@ function EventCard({ event }) {
 
     useEffect(() => { }, [eventRegistration, animateTicket])
 
-    // useEffect(() => { }, [animateTicket])
-
     function getDescSummary(description) {
         if (description?.length < 75) return description;
         else return description?.slice(0, 80) + '...';
     }
 
-    async function handleRegistration(e) {
+    async function handleClick(e) {
         if (eventRegistration) {
             // de-register if registration exists for this event id
             setAnimateTicket(false);
@@ -50,8 +48,8 @@ function EventCard({ event }) {
             <div className='event__card--container'>
                 {console.log(animateTicket === true)}
                 {sessionUser && (<button
-                    title={eventRegistration ? '' : 'Click to RSVP'}
-                    onClick={handleRegistration}
+                    title={eventRegistration ? 'Delete this Ticket' : 'Click to RSVP'}
+                    onClick={handleClick}
                     className={'event__card--registration ' + (eventRegistration ? 'event__card--registered ' : '') + (animateTicket ? 'event__card--spin' : '')}>
                     <i className="fas fa-ticket-alt event__card--ticket"></i>
                 </button>)}

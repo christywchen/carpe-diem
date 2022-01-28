@@ -1,7 +1,9 @@
 # Carpe Diem
 Featuring an 80's inspired aesthetic, Carpe Diem is an app for finding and sharing EDM events.
 
-Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com/), an innovative app that puts event ticketing and planning in the hands of anyone and everyone who wishes to share their own events. This app capitalizes on that functionality to give artists the chance to connect directly with their audiences by creating and sharing their planned events.
+Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com/), an innovative app that puts event ticketing and planning in the hands of anyone and everyone who wishes to share their own events. This app capitalizes on that functionality in order to give independent artists the chance to connect with audiences by sharing their upcoming events.
+
+A live demo of this application can be found [here](https://carpe-diem-app.herokuapp.com/).
 
 ![carpe-diem](https://user-images.githubusercontent.com/55429132/149492269-f0dc14d7-61f5-4fe7-b276-1ae0ee3685c0.png)
 
@@ -12,14 +14,15 @@ Events can be created with the following special features:
 - **Event Category**: Describes whether the event is a festival, concert, warehouse event, etc.
 - **Other Features**: Event date and time, image, description, location.
 
+Users can sort events by category while browsing and authenticated users have an additional option to register to attend an event by clicking the ticket icon on any given event card.
+
 Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for information about features and routes.
 
-A live demo of this application can be found [here](https://carpe-diem-app.herokuapp.com/).
 
 # Implementation
-This app was built using **JavaScript** in conjunction with backend tools like **Node.js**, **Express.js**, **Sequelize**, and **PostgreSQL** for data management. The API routes were designed with RESTful architecture in mind and utilizes a services layer to facilitate communication between server and database. Other libraries used include **csurf**, **express-validator**, and **bcrypt.js**.
+This app was built using **JavaScript** in conjunction with backend tools like **Node.js**, **Express.js**, **Sequelize.js**, and **PostgreSQL** for data management. The API routes were designed with RESTful architecture in mind and utilizes a services layer to facilitate communication between server and database. Other libraries used include **csurf**, **express-validator**, and **bcrypt.js**.
 
-The frontend uses **React** and **Redux** along with **React Router** for frontend routing. RESTful convention also formed the basis for frontend route structure. The application's HTML and CSS was written from entirely scratch and uses no external libraries.
+The frontend uses **React** and **Redux** along with **React Router** for frontend routing. RESTful convention also formed the basis for frontend route structure. The application's **HTML** and **CSS** was written from entirely scratch and uses no external libraries.
 
 # Local Installation
 
@@ -76,9 +79,6 @@ npm start
 
 - Genre tagging for events
 - Artist tagging for events
-- Liking events
-- Registering for events
-- Sort events list by tags
 
 # Challenges
 
@@ -88,22 +88,24 @@ In the backend, Sequelize validations had to be forgone in order to allow drafts
 
 On the React side of things, the solution was to create helper functions for the event form component. After receiving form data, the steps were as follows:
 
-**Step 1**: If the event input is being saved as a draft, forgo frontend and backend validations.
+**Step 1**. Check if the event is being saved as a draft or published event to determine course of action.
+- If the event input is being saved as a draft, forgo validations.
+- If the event input is being published, rely on frontend validations and validations at the API route level to check input data.
 
-**Step 2**: If the event input is being published, rely on frontend validations and validations at the API route level to check input data.
+**Step 2**. Check if the there is an eventId parameter by using the useParams() hook:
+- If eventId exists, event is already in the database, the action will be to update the record.
+- Otherwise, the action will be to create a record.
 
-**Step 3**: Check if the there is an eventId parameter by using the useParams() hook.
-
-**Step 4**: If an eventId exists, the action will be to update the record.
-
-**Step 5**: If an event does not exist, the action will be to create a new record.
-
-**Step 6**: For either case, first post or update the venue, if it exists, in the database.
+**Step 3**: Before creating or updating the event, create or update the associated event venue:
 - If the event already exists and the venue is being updated, no other steps need to be taken because the venue already has an associated venue foreign key.
 - If the event exists but does not have an associated venue, OR the event does not exist, get the venue id from the venue creation fetch response. This will be included in the fetch request for creating or updating an event.
 
-**Step 8**: Move forward with posting or update the event in the database.
+**Step 4**: Move forward with posting or updating the event in the database.
 
-**Step 9**: For published events, redirect the user to the event's details page. For draft events, redirect user to the drafts section of the dashboard.
+**Step 5**: Redirection after form submission:
+- For published events, redirect the user to the event's details page.
+- For draft events, redirect user to the drafts section of the dashboard.
 
-The application uses one form component for both creating and editing events. While many considerations had to be taken to ensure modularity, the result was a more flexible component that can easily accommodate for future changes.
+**Step 6**: After event creation, the update form will pre-populate event info and show a different set of buttons than in the create event form.
+
+The application uses one form component for both creating and updating events. While many considerations had to be taken to ensure modularity, the result is a more form flexible component that can easily accommodate for future changes.

@@ -6,6 +6,7 @@ import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import Navigation from './components/Navigation';
 import UserDashboard from './components/Dashboard/DashboardMain';
+import EventRegistrations from './components/Dashboard/EventRegistrations';
 import EventsMain from './components/Events/EventsMain'
 import EventDetails from './components/Events/EventDetails';
 import EventCreate from './components/Events/EventCreate';
@@ -35,7 +36,9 @@ function App() {
               <Route path='/' element={<Navigate to='/categories/all/events/all' />} />
               <Route path='/*' element={<EventsMain />} />
               <Route path='*' element={<Navigate to='/not-found' />} />
+              <Route path='/dashboard' element={<Navigate to='/dashboard/all' />} />
               <Route path='/dashboard/*' element={<UserDashboard />} />
+              <Route path='/dashboard/tickets' element={<EventRegistrations />} />
               <Route path='/events/new' element={<EventCreate />} />
               <Route path='/events/:eventId' element={<EventDetails />} />
               <Route path='/events/:eventId/edit' element={<EventEdit />} />

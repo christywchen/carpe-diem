@@ -74,6 +74,7 @@ const registrationReducer = (state = initialState, action) => {
             return newState;
         case REMOVE_REGISTRATION:
             newState = { ...state };
+            newState.registrations = { ...state.registrations }
             delete newState.registrations[action.eventId];
             return newState;
         default:

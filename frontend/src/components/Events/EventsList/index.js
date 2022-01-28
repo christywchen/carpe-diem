@@ -32,11 +32,13 @@ function EventsList() {
 
     let sortedByDate;
     if (eventIdsByCat) {
+        // if sorting events by category
         const eventsByCat = eventIdsByCat.map((eventId) => {
             return eventsObj[eventId];
         });
         sortedByDate = sortByDate(eventsByCat);
     } else {
+        // if viewing all events
         const events = Object.values(eventsObj);
         sortedByDate = sortByDate(events);
         sortedByDate = sortedByDate.filter((event) => {
