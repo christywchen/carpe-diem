@@ -67,7 +67,7 @@ function EventDetails() {
                 <div id='main__narrow'>
                     {!virtualEvent && (
                         <div className='event__details--alert'>
-                            This is an in-person event. Have fun, stay safe, and don't forget to take the necessary health precautions before attending!
+                            This is an in-person event. Have fun, stay safe, and remember to take the necessary health precautions before attending!
                         </div>
                     )}
                     < div id='event__details--grid'>

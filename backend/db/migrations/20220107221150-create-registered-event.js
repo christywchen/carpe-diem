@@ -11,12 +11,14 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         references: { model: 'Users' },
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
       },
       eventId: {
         type: Sequelize.INTEGER,
         references: { model: 'Events' },
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
@@ -28,7 +30,11 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('now'),
       },
-    });
+    }).then(() => queryInterface.addConstraint('RegisteredEvents', {
+      fields: ['userId', 'eventId'],
+      type: 'unique',
+      name: 'uniqueRecord'
+    }));
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('RegisteredEvents');

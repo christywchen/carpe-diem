@@ -1,7 +1,7 @@
 #event__details--grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 280px 2fr;
+    grid-template-rows: minmax(280px, max-content) 2fr;
     gap: 16px;
 }
 
@@ -102,11 +102,15 @@
     opacity: 0.9;
 }
 
+.button__event--rsvp {
+    margin: 25px 0 0 0;
+}
+
 .event__details--alert {
     margin: 0 0 32px 0;
     padding: 12px 14px;
     color: white;
-    font-size: 0.9em;
+    font-size: 0.85em;
     text-align: center;
     border-radius: 3px;
     border: 1px solid var(--accent-color-2);

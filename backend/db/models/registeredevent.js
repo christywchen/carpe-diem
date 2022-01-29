@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     eventId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      onDelete: 'CASCADE',
     },
   }, {});
   RegisteredEvent.associate = function (models) {

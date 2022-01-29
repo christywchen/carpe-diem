@@ -63,7 +63,15 @@ router.get('/:userId/events/drafts', requireAuth, asyncHandler(async (req, res, 
         err.errors = ['You do not have permission to access this resource.'];
         return next(err);
     }
-
 }));
+
+// GET /api/users/:userId/events/registered (get all registrations of a user)
+router.get('/:userId/events/registered', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+    const registrations = await userService.getAllRegisteredEvents(userId);
+
+    res.json(registrations);
+}));
+
 
 module.exports = router;

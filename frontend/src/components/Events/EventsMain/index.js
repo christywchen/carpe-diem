@@ -21,7 +21,7 @@ function EventsMain() {
     return (
         <>
             <div className='events__container--title'>
-                <h1>Upcoming Events</h1>
+                <h1>Find Your Next Event</h1>
                 <EventsSorter elements={categories} resource={'categories'} />
             </div>
 

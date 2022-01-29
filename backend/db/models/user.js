@@ -60,7 +60,9 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsToMany(models.Event, {
       through: 'RegisteredEvent',
       otherKey: 'eventId',
-      foreignKey: 'userId'
+      foreignKey: 'userId',
+      onDelete: 'cascade',
+      hooks: true
     })
   };
 
