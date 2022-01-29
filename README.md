@@ -3,12 +3,9 @@ Featuring an 80's inspired aesthetic, Carpe Diem is an app for finding and shari
 
 Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com/), an innovative app that puts event ticketing and planning in the hands of anyone and everyone who wishes to share their own events. This app capitalizes on that functionality in order to give independent artists the chance to connect with audiences by sharing their upcoming events.
 
-Users can also sort events by category while browsing and authenticated users have an can register to attend by clicking the ticket icon on any given event card.
-
 A live demo of this application can be found [here](https://carpe-diem-app.herokuapp.com/).
 
 ![carpe-diem-md](https://user-images.githubusercontent.com/55429132/151637455-607e8329-8bfd-4df5-92d0-746b2ead4fbb.png)
-
 
 Events can be created with the following information:
 - **Draft or Published**: Drafted events can be saved and published later on.
@@ -17,8 +14,9 @@ Events can be created with the following information:
 - **Event Category**: Describes whether the event is a festival, concert, warehouse event, etc.
 - **Other Features**: Event date and time, image, description, location.
 
-Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for information about features and routes.
+Users can sort events by category while browsing and authenticated users can also register to attend by clicking the ticket icon on any given event card.
 
+Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for information about features and routes.
 
 # Implementation
 This app was built using **JavaScript** in conjunction with backend tools like **Node.js**, **Express.js**, **Sequelize.js**, and **PostgreSQL** for data management. The API routes were designed with RESTful architecture in mind and utilizes a services layer to facilitate communication between server and database. Other libraries used include **csurf**, **express-validator**, and **bcrypt.js**.
