@@ -3,9 +3,12 @@ Featuring an 80's inspired aesthetic, Carpe Diem is an app for finding and shari
 
 Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com/), an innovative app that puts event ticketing and planning in the hands of anyone and everyone who wishes to share their own events. This app capitalizes on that functionality in order to give independent artists the chance to connect with audiences by sharing their upcoming events.
 
+Users can also sort events by category while browsing and authenticated users have an can register to attend by clicking the ticket icon on any given event card.
+
 A live demo of this application can be found [here](https://carpe-diem-app.herokuapp.com/).
 
-![carpe-diem](https://user-images.githubusercontent.com/55429132/149492269-f0dc14d7-61f5-4fe7-b276-1ae0ee3685c0.png)
+![carpe-diem-md](https://user-images.githubusercontent.com/55429132/151637455-607e8329-8bfd-4df5-92d0-746b2ead4fbb.png)
+
 
 Events can be created with the following information:
 - **Draft or Published**: Drafted events can be saved and published later on.
@@ -13,8 +16,6 @@ Events can be created with the following information:
 - **Virtual Event**: Instead of providing a physical address, a stream link can be shared.
 - **Event Category**: Describes whether the event is a festival, concert, warehouse event, etc.
 - **Other Features**: Event date and time, image, description, location.
-
-Users can sort events by category while browsing and authenticated users have an additional option to register to attend an event by clicking the ticket icon on any given event card.
 
 Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for information about features and routes.
 
@@ -79,7 +80,7 @@ npm start
 
 - Genre tagging for events
 - Artist tagging for events
-- User profile and credential editing
+- User profile and credential updating
 
 # Challenges
 
