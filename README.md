@@ -86,7 +86,9 @@ One technical challenges involved creating the drafting feature for events. Beca
 
 In the backend, Sequelize validations had to be forgone in order to allow drafts to have missing values for users to fill in later. This was made up for by using a more comprehensive set of checks performed by express-validator, which validates the data before sending it to the database.
 
-On the React side of things, the solution was to create helper functions for the event form component. After receiving form data, the steps were as follows:
+On the React side of things, the solution was to create helper functions for the event form component. The application uses one form component for both creating and updating events. While many considerations had to be taken to ensure modularity, the result is a more form flexible component that can easily accommodate for future changes.
+
+After receiving form data, the steps were as follows:
 
 **Step 1**. Check if the event is being saved as a draft or published event to determine course of action.
 - If the event input is being saved as a draft, forgo validations.
@@ -107,5 +109,3 @@ On the React side of things, the solution was to create helper functions for the
 - For draft events, redirect user to the drafts section of the dashboard.
 
 **Step 6**: After event creation, the update form will pre-populate event info and show a different set of buttons than in the create event form.
-
-The application uses one form component for both creating and updating events. While many considerations had to be taken to ensure modularity, the result is a more form flexible component that can easily accommodate for future changes.
