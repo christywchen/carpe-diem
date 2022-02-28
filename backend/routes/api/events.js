@@ -6,6 +6,8 @@ const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const eventService = require('../../db/services/event-service');
 
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
+
 const router = express.Router();
 
 // validate events
@@ -65,22 +67,27 @@ router.get('/:eventId', asyncHandler(async (req, res) => {
 }));
 
 // POST /api/events (create event)
-router.post('/', requireAuth, validateEvent, asyncHandler(async (req, res) => {
+router.post('/', requireAuth, validateEvent, singleMulterUpload("image"), asyncHandler(async (req, res) => {
     const { id } = req.user;
-    const event = await eventService.createEvent(id, req.body);
+
+    const imageUrl = await singlePublicFileUpload(req.file);
+
+    const event = await eventService.createEvent(id, imageUrl, req.body);
 
     res.json(event);
 }));
 
 // PATCH /api/events/:eventId (update an event)
-router.patch('/:eventId', requireAuth, validateEvent, asyncHandler(async (req, res, next) => {
+router.patch('/:eventId', requireAuth, validateEvent, singleMulterUpload("image"), asyncHandler(async (req, res, next) => {
     const { id } = req.user;
     const eventId = parseInt(req.params.eventId, 10);
     const event = await eventService.getEvent(eventId);
     const hostId = event.hostId;
 
+    const imageUrl = await singlePublicFileUpload(req.file);
+
     if (hostId === id) {
-        const updatedEvent = await eventService.updateEvent(event, req.body);
+        const updatedEvent = await eventService.updateEvent(event, imageUrl, req.body);
 
         await updatedEvent.reload();
         res.json(updatedEvent);

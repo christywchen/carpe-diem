@@ -18,7 +18,7 @@ async function getEvent(eventId) {
 }
 
 // CREATE AN EVENT
-async function createEvent(userId, requestBody) {
+async function createEvent(userId, imageUrl, requestBody) {
     const {
         name,
         startTime,
@@ -28,7 +28,6 @@ async function createEvent(userId, requestBody) {
         secretLocation,
         virtualEvent,
         eventUrl,
-        imageUrl,
         published,
         venueId,
         categoryId
@@ -52,7 +51,7 @@ async function createEvent(userId, requestBody) {
 }
 
 // UPDATE AN EVENT
-async function updateEvent(event, requestBody) {
+async function updateEvent(event, imageUrl, requestBody) {
     const {
         name,
         startTime,
@@ -62,7 +61,6 @@ async function updateEvent(event, requestBody) {
         secretLocation,
         virtualEvent,
         eventUrl,
-        imageUrl,
         published,
         venueId,
         categoryId
