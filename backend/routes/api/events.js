@@ -12,9 +12,6 @@ const router = express.Router();
 
 // validate events
 const validateEvent = [
-    check('published')
-        .exists()
-        .withMessage('Event needs a status of published: true or false.'),
     check('name')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
@@ -70,7 +67,10 @@ router.get('/:eventId', asyncHandler(async (req, res) => {
 router.post('/', requireAuth, validateEvent, singleMulterUpload("image"), asyncHandler(async (req, res) => {
     const { id } = req.user;
 
-    const imageUrl = await singlePublicFileUpload(req.file);
+    let imageUrl;
+    if (req.file) {
+        imageUrl = await singlePublicFileUpload(req.file);
+    }
 
     const event = await eventService.createEvent(id, imageUrl, req.body);
 
@@ -84,7 +84,10 @@ router.patch('/:eventId', requireAuth, validateEvent, singleMulterUpload("image"
     const event = await eventService.getEvent(eventId);
     const hostId = event.hostId;
 
-    const imageUrl = await singlePublicFileUpload(req.file);
+    let imageUrl;
+    if (req.file) {
+        imageUrl = await singlePublicFileUpload(req.file);
+    }
 
     if (hostId === id) {
         const updatedEvent = await eventService.updateEvent(event, imageUrl, req.body);

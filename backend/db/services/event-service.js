@@ -25,13 +25,14 @@ async function createEvent(userId, imageUrl, requestBody) {
         endTime,
         description,
         capacity,
-        secretLocation,
-        virtualEvent,
         eventUrl,
-        published,
         venueId,
         categoryId
     } = requestBody;
+
+    const secretLocation = requestBody.secretLocation === 'true' ? true : false;
+    const virtualEvent = requestBody.virtualEvent === 'true' ? true : false;
+    const published = requestBody.published === 'true' ? true : false;
 
     return await db.Event.create({
         name,
@@ -52,19 +53,21 @@ async function createEvent(userId, imageUrl, requestBody) {
 
 // UPDATE AN EVENT
 async function updateEvent(event, imageUrl, requestBody) {
+    console.log(requestBody, 'tesdlfkjsldfkjsdlfkjsdlfk')
     const {
         name,
         startTime,
         endTime,
         description,
         capacity,
-        secretLocation,
-        virtualEvent,
         eventUrl,
-        published,
         venueId,
         categoryId
     } = requestBody;
+
+    const secretLocation = requestBody.secretLocation === 'true' ? true : false;
+    const virtualEvent = requestBody.virtualEvent === 'true' ? true : false;
+    const published = requestBody.published === 'true' ? true : false;
 
     return await event.update({
         name,

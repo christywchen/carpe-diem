@@ -91,10 +91,7 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
     const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, imageUrl } = newEvent;
     const formData = new FormData();
 
-    console.log(name)
-
-
-    formData.append('name', name);
+    if (name) formData.append('name', name);
     if (startTime) formData.append('startTime', startTime);
     if (endTime) formData.append('endTime', endTime);
     if (description) formData.append('description', description);
@@ -107,7 +104,10 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
 
     formData.append('published', published);
 
-    console.log(await formData.getAll())
+    for (var key of formData.entries()) {
+        console.log(key[0] + ', ' + key[1])
+        console.log(typeof key[1])
+    }
 
     const res = await csrfFetch('/api/events', {
         method: 'POST',
