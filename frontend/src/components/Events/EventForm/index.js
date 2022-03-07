@@ -27,7 +27,7 @@ function EventForm({ formProps, formType }) {
     const [virtualEvent, setVirtualEvent] = useState((formProps?.virtualEvent === true || formProps?.virtualEvent === false) ? formProps?.virtualEvent : 'empty');
     const [secretLocation, setSecretLocation] = useState(formProps?.secretLocation || false);
     const [eventUrl, setEventUrl] = useState(formProps?.eventUrl || '');
-    const [imageUrl, setImageUrl] = useState(formProps?.imageUrl || '');
+    const [imageUrl, setImageUrl] = useState(formProps?.imageUrl || null);
     const [categoryId, setCategoryId] = useState(formProps?.categoryId || '');
     const [published, setPublished] = useState(formProps?.published || true);
 
@@ -57,6 +57,11 @@ function EventForm({ formProps, formType }) {
     useEffect(() => { }, [validateEvent, validateVenue, minEndTime, virtualEvent]);
 
     /* HELPER FUNCTIONS */
+    async function handleFile(e) {
+        const file = e.target.files[0];
+        if (file) setImageUrl(file);
+    }
+
     async function createRecord() {
         let venueId;
 
@@ -388,12 +393,13 @@ function EventForm({ formProps, formType }) {
                                 Event Image URL
                             </label>
                         </div>
-                        <input
+                        <input type="file" onChange={handleFile} />
+                        {/* <input
                             name='image'
                             type='text'
                             value={imageUrl}
                             onChange={(e) => setImageUrl(e.target.value)}
-                        />
+                        /> */}
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>

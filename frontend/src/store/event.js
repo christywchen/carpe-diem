@@ -88,9 +88,33 @@ export const getEvent = (eventId) => async (dispatch) => {
 };
 
 export const createEvent = (newEvent, published) => async (dispatch) => {
+    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, imageUrl } = newEvent;
+    const formData = new FormData();
+
+    console.log(name)
+
+
+    formData.append('name', name);
+    if (startTime) formData.append('startTime', startTime);
+    if (endTime) formData.append('endTime', endTime);
+    if (description) formData.append('description', description);
+    if (capacity) formData.append('capacity', capacity);
+    if (virtualEvent !== null) formData.append('virtualEvent', virtualEvent);
+    if (secretLocation !== null) formData.append('secretLocation', secretLocation);
+    if (eventUrl) formData.append('eventUrl', eventUrl);
+    if (categoryId) formData.append('categoryId', categoryId);
+    if (imageUrl) formData.append('imageUrl', imageUrl);
+
+    formData.append('published', published);
+
+    console.log(await formData.getAll())
+
     const res = await csrfFetch('/api/events', {
         method: 'POST',
-        body: JSON.stringify(newEvent)
+        headers: {
+            "Content-Type": "multipart/form-data"
+        },
+        body: formData
     });
 
     const data = await res.json();
@@ -100,9 +124,28 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
 };
 
 export const updateEvent = (eventId, updatedEvent, published) => async (dispatch) => {
+    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, imageUrl } = updatedEvent;
+    const formData = new FormData();
+
+    if (name) formData.append('name', name);
+    if (startTime) formData.append('startTime', startTime);
+    if (endTime) formData.append('endTime', endTime);
+    if (description) formData.append('description', description);
+    if (capacity) formData.append('capacity', capacity);
+    if (virtualEvent !== null) formData.append('virtualEvent', virtualEvent);
+    if (secretLocation !== null) formData.append('secretLocation', secretLocation);
+    if (eventUrl) formData.append('eventUrl', eventUrl);
+    if (categoryId) formData.append('categoryId', categoryId);
+    if (imageUrl) formData.append('imageUrl', imageUrl);
+
+    formData.append('published', published);
+
     const res = await csrfFetch(`/api/events/${eventId}`, {
         method: 'PATCH',
-        body: JSON.stringify(updatedEvent)
+        headers: {
+            "Content-Type": "multipart/form-data"
+        },
+        body: formData
     });
 
     const data = await res.json();

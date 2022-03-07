@@ -11,10 +11,15 @@ export async function csrfFetch(url, options = {}) {
     // set the XSRF-TOKEN on the header in the options object
     // to the extracted value of the XSRF-TOKEN cookie
     // and set header to 'application/json'
-    if (options.method.toUpperCase() !== 'GET') {
-        options.headers['Content-Type'] =
-            options.headers['Content-Type'] || 'application/json';
-        options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
+    // remove content-type header if file is being uploaded
+    if (options.method.toUpperCase() !== "GET") {
+        if (options.headers["Content-Type"] === "multipart/form-data") {
+            delete options.headers["Content-Type"];
+        } else {
+            options.headers["Content-Type"] =
+                options.headers["Content-Type"] || "application/json";
+        }
+        options.headers["XSRF-Token"] = Cookies.get("XSRF-TOKEN");
     }
 
     // call the default window's fetch with the url and options passed in
