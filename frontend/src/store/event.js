@@ -88,7 +88,7 @@ export const getEvent = (eventId) => async (dispatch) => {
 };
 
 export const createEvent = (newEvent, published) => async (dispatch) => {
-    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, imageUrl, image } = newEvent;
+    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, image, imageName } = newEvent;
     const formData = new FormData();
 
     if (name) formData.append('name', name);
@@ -100,8 +100,8 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
     if (secretLocation !== null) formData.append('secretLocation', secretLocation);
     if (eventUrl) formData.append('eventUrl', eventUrl);
     if (categoryId) formData.append('categoryId', categoryId);
-    if (imageUrl) formData.append('imageUrl', imageUrl);
     if (image) formData.append('image', image);
+    if (imageName) formData.append('imageName', imageName);
 
     formData.append('published', published);
 
@@ -125,7 +125,7 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
 };
 
 export const updateEvent = (eventId, updatedEvent, published) => async (dispatch) => {
-    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, imageUrl } = updatedEvent;
+    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, image, imageName } = updatedEvent;
     const formData = new FormData();
 
     if (name) formData.append('name', name);
@@ -137,7 +137,8 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
     if (secretLocation !== null) formData.append('secretLocation', secretLocation);
     if (eventUrl) formData.append('eventUrl', eventUrl);
     if (categoryId) formData.append('categoryId', categoryId);
-    if (imageUrl) formData.append('imageUrl', imageUrl);
+    if (image) formData.append('image', image);
+    if (imageName) formData.append('imageName', imageName);
 
     formData.append('published', published);
 

@@ -27,7 +27,6 @@ function EventForm({ formProps, formType }) {
     const [virtualEvent, setVirtualEvent] = useState((formProps?.virtualEvent === true || formProps?.virtualEvent === false) ? formProps?.virtualEvent : 'empty');
     const [secretLocation, setSecretLocation] = useState(formProps?.secretLocation || false);
     const [eventUrl, setEventUrl] = useState(formProps?.eventUrl || '');
-    const [imageUrl, setImageUrl] = useState(formProps?.imageUrl || null);
     const [categoryId, setCategoryId] = useState(formProps?.categoryId || '');
     const [published, setPublished] = useState(formProps?.published || true);
 
@@ -42,8 +41,9 @@ function EventForm({ formProps, formType }) {
     const [minStartTime, setMinStartTime] = useState(getDateTime());
     const [minEndTime, setMinEndTime] = useState(startTime || getDateTime());
 
-
     const [image, setImage] = useState(null);
+    const [imageName, setimageName] = useState(null);
+    const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'Choose an image.');
 
     /* HOOKS */
     useEffect(() => {
@@ -64,7 +64,8 @@ function EventForm({ formProps, formType }) {
         const file = e.target.files[0];
         if (file) setImage(file);
 
-        console.log(file)
+        setUploadPrompt(file.name);
+        setimageName(file.name);
     }
 
     async function createRecord() {
@@ -99,7 +100,8 @@ function EventForm({ formProps, formType }) {
             venueId: venueId ? +venueId : null,
             categoryId: categoryId ? +categoryId : null,
             published: published,
-            image: image ? image : null
+            image: image ? image : null,
+            imageName: imageName ? imageName : null
         }
 
         const eventRecord = await dispatch(createEvent(event, published));
@@ -144,7 +146,9 @@ function EventForm({ formProps, formType }) {
             // imageUrl: imageUrl ? imageUrl : null,
             venueId: +venueId,
             categoryId: categoryId ? +categoryId : null,
-            published: published
+            published: published,
+            image: image ? image : null,
+            imageName: imageName ? imageName : null
         }
 
         dispatch(updateEvent(eventId, event, published));
@@ -400,6 +404,7 @@ function EventForm({ formProps, formType }) {
                             </label>
                         </div>
                         <input type="file" onChange={handleFile} />
+                        {uploadPrompt}
                         {/* <input
                             name='image'
                             type='text'

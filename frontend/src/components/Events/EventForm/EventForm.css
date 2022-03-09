@@ -116,3 +116,7 @@
 .form__submit--error {
     color: var(--accent-color-2);
 }
+
+.event__form--section input[type="file"] {
+    color: transparent;
+}
