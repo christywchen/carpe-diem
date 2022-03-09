@@ -24,7 +24,8 @@ async function createEvent(userId, imageUrl, requestBody) {
         capacity,
         eventUrl,
         venueId,
-        categoryId
+        categoryId,
+        imageName
     } = requestBody;
 
     const secretLocation = requestBody.secretLocation === 'true' ? true : false;
@@ -41,6 +42,7 @@ async function createEvent(userId, imageUrl, requestBody) {
         virtualEvent,
         eventUrl,
         imageUrl,
+        imageName,
         published,
         hostId: userId,
         venueId,
@@ -50,7 +52,6 @@ async function createEvent(userId, imageUrl, requestBody) {
 
 // UPDATE AN EVENT
 async function updateEvent(event, imageUrl, requestBody) {
-    console.log(requestBody, 'tesdlfkjsldfkjsdlfkjsdlfk')
     const {
         name,
         startTime,
@@ -59,7 +60,8 @@ async function updateEvent(event, imageUrl, requestBody) {
         capacity,
         eventUrl,
         venueId,
-        categoryId
+        categoryId,
+        imageName
     } = requestBody;
 
     const secretLocation = requestBody.secretLocation === 'true' ? true : false;
@@ -76,6 +78,7 @@ async function updateEvent(event, imageUrl, requestBody) {
         virtualEvent,
         eventUrl,
         imageUrl,
+        imageName,
         published,
         venueId,
         categoryId

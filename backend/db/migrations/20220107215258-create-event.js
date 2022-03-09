@@ -37,6 +37,9 @@ module.exports = {
       imageUrl: {
         type: Sequelize.TEXT
       },
+      imageName: {
+        type: Sequelize.TEXT
+      },
       published: {
         allowNull: false,
         type: Sequelize.BOOLEAN
