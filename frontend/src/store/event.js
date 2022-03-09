@@ -88,7 +88,7 @@ export const getEvent = (eventId) => async (dispatch) => {
 };
 
 export const createEvent = (newEvent, published) => async (dispatch) => {
-    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, imageUrl } = newEvent;
+    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, imageUrl, image } = newEvent;
     const formData = new FormData();
 
     if (name) formData.append('name', name);
@@ -101,6 +101,7 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
     if (eventUrl) formData.append('eventUrl', eventUrl);
     if (categoryId) formData.append('categoryId', categoryId);
     if (imageUrl) formData.append('imageUrl', imageUrl);
+    if (image) formData.append('image', image);
 
     formData.append('published', published);
 

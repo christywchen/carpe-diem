@@ -42,6 +42,9 @@ function EventForm({ formProps, formType }) {
     const [minStartTime, setMinStartTime] = useState(getDateTime());
     const [minEndTime, setMinEndTime] = useState(startTime || getDateTime());
 
+
+    const [image, setImage] = useState(null);
+
     /* HOOKS */
     useEffect(() => {
         dispatch(getAllCategories());
@@ -59,7 +62,9 @@ function EventForm({ formProps, formType }) {
     /* HELPER FUNCTIONS */
     async function handleFile(e) {
         const file = e.target.files[0];
-        if (file) setImageUrl(file);
+        if (file) setImage(file);
+
+        console.log(file)
     }
 
     async function createRecord() {
@@ -90,10 +95,11 @@ function EventForm({ formProps, formType }) {
             secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
-            imageUrl: imageUrl ? imageUrl : null,
+            // imageUrl: imageUrl ? imageUrl : null,
             venueId: venueId ? +venueId : null,
             categoryId: categoryId ? +categoryId : null,
-            published: published
+            published: published,
+            image: image ? image : null
         }
 
         const eventRecord = await dispatch(createEvent(event, published));
@@ -135,7 +141,7 @@ function EventForm({ formProps, formType }) {
             secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
-            imageUrl: imageUrl ? imageUrl : null,
+            // imageUrl: imageUrl ? imageUrl : null,
             venueId: +venueId,
             categoryId: categoryId ? +categoryId : null,
             published: published

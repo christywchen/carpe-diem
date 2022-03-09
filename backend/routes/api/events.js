@@ -67,6 +67,9 @@ router.get('/:eventId', asyncHandler(async (req, res) => {
 router.post('/', requireAuth, validateEvent, singleMulterUpload("image"), asyncHandler(async (req, res) => {
     const { id } = req.user;
 
+    console.log(req.file, 'REQ FILE')
+    console.log('TEEEEEST')
+
     let imageUrl;
     if (req.file) {
         imageUrl = await singlePublicFileUpload(req.file);

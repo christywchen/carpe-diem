@@ -11,9 +11,6 @@ async function getAllEvents() {
 async function getEvent(eventId) {
     return await db.Event.findByPk(eventId, {
         include: [db.Venue, db.Category, db.User],
-        where: {
-            published: true
-        }
     });
 }
 
