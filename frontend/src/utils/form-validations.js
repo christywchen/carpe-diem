@@ -1,12 +1,16 @@
-export function validateImage(image) {
-    if (image.type === 'image/png' || image.type === 'image/jpg' || image.type === 'image/png') {
-        console.log('ACCEPTABLE')
+export function validateImage(type) {
+    console.log(type !== 'image/png', type !== 'image/jpg', type !== 'image/jpeg')
+    if (type !== 'image/png' && type !== 'image/jpg' && type !== 'image/jpeg') {
+        console.log('not one of these')
+        return false;
+    } else {
+        return true;
     }
 }
 
 export function validateEventForm({ validationItems }) {
     const { name, startTime, endTime, description, categoryId, virtualEvent, capacity,
-        venueName, venueAddress, venueCity, venueState, venueZip } = validationItems;
+        venueName, venueAddress, venueCity, venueState, venueZip, image } = validationItems;
 
     const eventErrors = {};
     let venueErrors = {};

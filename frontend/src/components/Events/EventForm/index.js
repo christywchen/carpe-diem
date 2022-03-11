@@ -43,7 +43,8 @@ function EventForm({ formProps, formType }) {
 
     const [image, setImage] = useState(null);
     const [imageName, setimageName] = useState(null);
-    const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'Choose an image (PNG, JPG, JPEG, GIF).');
+    const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'Upload an image (PNG, JPG, JPEG).');
+    const [validImage, setValidImage] = useState(true);
 
     /* HOOKS */
     useEffect(() => {
@@ -62,10 +63,15 @@ function EventForm({ formProps, formType }) {
     /* HELPER FUNCTIONS */
     async function handleFile(e) {
         const file = e.target.files[0];
-        if (file) setImage(file);
-
-        setUploadPrompt(file.name);
-        setimageName(file.name);
+        if (file) {
+            setImage(file);
+            setUploadPrompt(file.name);
+            setimageName(file.name);
+            setValidImage(validateImage(file.type));
+            console.log(validImage, file.type)
+        } else {
+            setValidImage(true);
+        }
     }
 
     async function createRecord() {
@@ -161,10 +167,9 @@ function EventForm({ formProps, formType }) {
         // otherwise, clear the validation errors
         const validationItems = {
             name, startTime, endTime, description, categoryId, virtualEvent, capacity,
-            venueName, venueAddress, venueCity, venueState, venueZip
+            venueName, venueAddress, venueCity, venueState, venueZip, image
         };
 
-        validateImage(image)
         const errors = validateEventForm({ validationItems });
         let [eventErrors, venueErrors] = errors;
 
@@ -219,7 +224,6 @@ function EventForm({ formProps, formType }) {
     if (virtualEvent) {
         getLocationInfo = (
             <>
-
                 <div className='event__form--venue-container'>
                     <div className='event__form--section-venue'>
                         <div className='event__form--title'>
@@ -406,6 +410,9 @@ function EventForm({ formProps, formType }) {
                         </div>
                         <input type="file" onChange={handleFile} />
                         {uploadPrompt}
+                        {!validImage && (
+                            <div className='form__submit--error'>Image type must be one of the accepted formats.</div>
+                        )}
                         {/* <input
                             name='image'
                             type='text'
