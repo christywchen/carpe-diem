@@ -42,7 +42,7 @@ function EventForm({ formProps, formType }) {
     const [minEndTime, setMinEndTime] = useState(startTime || getDateTime());
 
     const [image, setImage] = useState(null);
-    const [imageName, setimageName] = useState(null);
+    const [imageName, setImageName] = useState(formProps?.imageName || null);
     const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'Upload an image (PNG, JPG, JPEG).');
     const [validImage, setValidImage] = useState(true);
 
@@ -66,12 +66,19 @@ function EventForm({ formProps, formType }) {
         if (file) {
             setImage(file);
             setUploadPrompt(file.name);
-            setimageName(file.name);
+            setImageName(file.name);
             setValidImage(validateImage(file.type));
-            console.log(validImage, file.type)
         } else {
             setValidImage(true);
         }
+    }
+
+    async function handleRemoveFile(e) {
+        console.log('remove file')
+        setImage(null);
+        setUploadPrompt('Upload an image (PNG, JPG, JPEG).');
+        setValidImage(true);
+        setImageName(null);
     }
 
     async function createRecord() {
@@ -409,7 +416,7 @@ function EventForm({ formProps, formType }) {
                             </label>
                         </div>
                         <input type="file" onChange={handleFile} />
-                        {uploadPrompt}
+                        {uploadPrompt} {imageName && (<i className="fa-solid fa-x" onClick={handleRemoveFile}></i>)}
                         {!validImage && (
                             <div className='form__submit--error'>Image type must be one of the accepted formats.</div>
                         )}
