@@ -77,8 +77,8 @@ async function updateEvent(event, imageUrl, requestBody) {
         secretLocation,
         virtualEvent,
         eventUrl,
-        imageUrl,
-        imageName,
+        imageUrl: imageName === 'null' ? null : imageUrl,
+        imageName: imageName === 'null' ? null : imageName,
         published,
         venueId,
         categoryId

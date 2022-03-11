@@ -137,9 +137,9 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
     if (secretLocation !== null) formData.append('secretLocation', secretLocation);
     if (eventUrl) formData.append('eventUrl', eventUrl);
     if (categoryId) formData.append('categoryId', categoryId);
-    if (image) formData.append('image', image);
-    if (imageName) formData.append('imageName', imageName);
 
+    formData.append('image', image);
+    formData.append('imageName', imageName);
     formData.append('published', published);
 
     const res = await csrfFetch(`/api/events/${eventId}`, {

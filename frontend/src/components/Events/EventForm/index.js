@@ -74,7 +74,7 @@ function EventForm({ formProps, formType }) {
     }
 
     async function handleRemoveFile(e) {
-        console.log('remove file')
+
         setImage(null);
         setUploadPrompt('Upload an image (PNG, JPG, JPEG).');
         setValidImage(true);
@@ -109,7 +109,6 @@ function EventForm({ formProps, formType }) {
             secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
-            // imageUrl: imageUrl ? imageUrl : null,
             venueId: venueId ? +venueId : null,
             categoryId: categoryId ? +categoryId : null,
             published: published,
@@ -156,7 +155,6 @@ function EventForm({ formProps, formType }) {
             secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
-            // imageUrl: imageUrl ? imageUrl : null,
             venueId: +venueId,
             categoryId: categoryId ? +categoryId : null,
             published: published,
@@ -190,6 +188,10 @@ function EventForm({ formProps, formType }) {
     /* HANDLE SUBMISSION */
     async function handleSubmit(e) {
         e.preventDefault();
+
+        if (validImage === false) {
+
+        }
 
         if (published) {
             const errors = runValidations();
@@ -420,12 +422,6 @@ function EventForm({ formProps, formType }) {
                         {!validImage && (
                             <div className='form__submit--error'>Image type must be one of the accepted formats.</div>
                         )}
-                        {/* <input
-                            name='image'
-                            type='text'
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                        /> */}
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>
