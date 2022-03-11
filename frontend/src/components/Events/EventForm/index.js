@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllCategories } from "../../../store/category";
 import { createVenue, updateVenue } from "../../../store/venue";
 import { createEvent, updateEvent } from "../../../store/event";
-import { validateEventForm } from '../../../utils/form-validations';
+import { validateEventForm, validateImage } from '../../../utils/form-validations';
 
 import { getDateTime } from "../../../utils/date-time";
 
@@ -43,7 +43,7 @@ function EventForm({ formProps, formType }) {
 
     const [image, setImage] = useState(null);
     const [imageName, setimageName] = useState(null);
-    const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'Choose an image.');
+    const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'Choose an image (PNG, JPG, JPEG, GIF).');
 
     /* HOOKS */
     useEffect(() => {
@@ -164,6 +164,7 @@ function EventForm({ formProps, formType }) {
             venueName, venueAddress, venueCity, venueState, venueZip
         };
 
+        validateImage(image)
         const errors = validateEventForm({ validationItems });
         let [eventErrors, venueErrors] = errors;
 

@@ -1,3 +1,8 @@
+export function validateImage(image) {
+    if (image.type === 'image/png' || image.type === 'image/jpg' || image.type === 'image/png') {
+        console.log('ACCEPTABLE')
+    }
+}
 
 export function validateEventForm({ validationItems }) {
     const { name, startTime, endTime, description, categoryId, virtualEvent, capacity,
