@@ -189,12 +189,10 @@ function EventForm({ formProps, formType }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (validImage === false) {
-
-        }
+        let errors = {};
 
         if (published) {
-            const errors = runValidations();
+            errors = runValidations();
 
             const [eventErrors, venueErrors] = errors;
 
@@ -205,6 +203,11 @@ function EventForm({ formProps, formType }) {
                 Object.keys(venueErrors).length) {
                 return;
             }
+        }
+
+        if (!validImage) {
+            errors.image = 'Image type must be one of the accepted formats';
+            return;
         }
 
         setValidateEvent({});
@@ -534,7 +537,7 @@ function EventForm({ formProps, formType }) {
                     </div>
                     {virtualEvent === true || virtualEvent === false ? getLocationInfo : null}
 
-                    {Object.keys(validateEvent).length > 0 || Object.keys(validateVenue).length > 0 ? (
+                    {Object.keys(validateEvent).length > 0 || Object.keys(validateVenue).length > 0 || !validImage ? (
                         <div className='event__form--errors'>Something seems to be missing. Check above to see what went wrong.</div>
                     ) : null}
                     <div className='event__form--submit'>
