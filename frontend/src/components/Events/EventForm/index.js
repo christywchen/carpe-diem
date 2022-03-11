@@ -43,7 +43,7 @@ function EventForm({ formProps, formType }) {
 
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState(formProps?.imageName || null);
-    const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'Upload an image (PNG, JPG, JPEG).');
+    const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'No file selected.');
     const [validImage, setValidImage] = useState(true);
 
     /* HOOKS */
@@ -76,7 +76,7 @@ function EventForm({ formProps, formType }) {
     async function handleRemoveFile(e) {
 
         setImage(null);
-        setUploadPrompt('Upload an image (PNG, JPG, JPEG).');
+        setUploadPrompt('No file selected.');
         setValidImage(true);
         setImageName(null);
     }
@@ -419,12 +419,17 @@ function EventForm({ formProps, formType }) {
                             <label htmlFor='image'>
                                 Event Image URL
                             </label>
+                            {!validImage && (
+                                <span className='form__submit--error'>Image type must be one of the accepted formats.</span>
+                            )}
+                        </div>
+                        <div className='event__form--description'>
+                            <p>
+                                Upload an PNG, JPG, or JPEG image.
+                            </p>
                         </div>
                         <input type="file" onChange={handleFile} />
                         {uploadPrompt} {imageName && (<i className="fa-solid fa-x" onClick={handleRemoveFile}></i>)}
-                        {!validImage && (
-                            <div className='form__submit--error'>Image type must be one of the accepted formats.</div>
-                        )}
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>

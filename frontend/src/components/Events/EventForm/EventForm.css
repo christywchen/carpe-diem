@@ -119,4 +119,5 @@
 
 .event__form--section input[type="file"] {
     color: transparent;
+    width: 108px;
 }
