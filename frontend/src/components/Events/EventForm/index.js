@@ -62,8 +62,10 @@ function EventForm({ formProps, formType }) {
 
     /* HELPER FUNCTIONS */
     async function handleFile(e) {
+        console.log('handling file')
         const file = e.target.files[0];
         if (file) {
+            console.log(file)
             setImage(file);
             setUploadPrompt(file.name);
             setImageName(file.name);
@@ -74,7 +76,6 @@ function EventForm({ formProps, formType }) {
     }
 
     async function handleRemoveFile(e) {
-
         setImage(null);
         setUploadPrompt('No file selected.');
         setValidImage(true);
@@ -416,9 +417,7 @@ function EventForm({ formProps, formType }) {
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>
-                            <label htmlFor='image'>
-                                Event Image URL
-                            </label>
+                            Event Image URL
                             {!validImage && (
                                 <span className='form__submit--error'>Image type must be one of the accepted formats.</span>
                             )}
@@ -428,8 +427,16 @@ function EventForm({ formProps, formType }) {
                                 Upload an PNG, JPG, or JPEG image.
                             </p>
                         </div>
-                        <input type="file" onChange={handleFile} />
-                        {uploadPrompt} {imageName && (<i className="fa-solid fa-x" onClick={handleRemoveFile}></i>)}
+                        <div className='event__form--upload'>
+                            <label htmlFor='file' className='event__form--upload-inp'>
+                                <input id='file' type="file" onChange={handleFile} />
+                                Choose a File
+                            </label>
+                            <div className='event__form--upload-prompt'>
+                                {uploadPrompt} {imageName && (<i className="fa-solid fa-s fa-xmark event__form--upload-icon" onClick={handleRemoveFile}></i>)}
+                            </div>
+
+                        </div>
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>
