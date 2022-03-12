@@ -62,10 +62,8 @@ function EventForm({ formProps, formType }) {
 
     /* HELPER FUNCTIONS */
     async function handleFile(e) {
-        console.log('handling file')
         const file = e.target.files[0];
         if (file) {
-            console.log(file)
             setImage(file);
             setUploadPrompt(file.name);
             setImageName(file.name);
@@ -417,7 +415,7 @@ function EventForm({ formProps, formType }) {
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>
-                            Event Image URL
+                            Event Image
                             {!validImage && (
                                 <span className='form__submit--error'>Image type must be one of the accepted formats.</span>
                             )}
