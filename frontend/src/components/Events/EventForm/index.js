@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllCategories } from "../../../store/category";
 import { createVenue, updateVenue } from "../../../store/venue";
 import { createEvent, updateEvent } from "../../../store/event";
-import { validateEventForm } from '../../../utils/form-validations';
+import { validateEventForm, validateImage } from '../../../utils/form-validations';
 
 import { getDateTime } from "../../../utils/date-time";
 
@@ -27,7 +27,6 @@ function EventForm({ formProps, formType }) {
     const [virtualEvent, setVirtualEvent] = useState((formProps?.virtualEvent === true || formProps?.virtualEvent === false) ? formProps?.virtualEvent : 'empty');
     const [secretLocation, setSecretLocation] = useState(formProps?.secretLocation || false);
     const [eventUrl, setEventUrl] = useState(formProps?.eventUrl || '');
-    const [imageUrl, setImageUrl] = useState(formProps?.imageUrl || '');
     const [categoryId, setCategoryId] = useState(formProps?.categoryId || '');
     const [published, setPublished] = useState(formProps?.published || true);
 
@@ -41,6 +40,11 @@ function EventForm({ formProps, formType }) {
 
     const [minStartTime, setMinStartTime] = useState(getDateTime());
     const [minEndTime, setMinEndTime] = useState(startTime || getDateTime());
+
+    const [image, setImage] = useState(null);
+    const [imageName, setImageName] = useState(formProps?.imageName || null);
+    const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'No file selected.');
+    const [validImage, setValidImage] = useState(true);
 
     /* HOOKS */
     useEffect(() => {
@@ -57,6 +61,25 @@ function EventForm({ formProps, formType }) {
     useEffect(() => { }, [validateEvent, validateVenue, minEndTime, virtualEvent]);
 
     /* HELPER FUNCTIONS */
+    async function handleFile(e) {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
+            setUploadPrompt(file.name);
+            setImageName(file.name);
+            setValidImage(validateImage(file.type));
+        } else {
+            setValidImage(true);
+        }
+    }
+
+    async function handleRemoveFile(e) {
+        setImage(null);
+        setUploadPrompt('No file selected.');
+        setValidImage(true);
+        setImageName(null);
+    }
+
     async function createRecord() {
         let venueId;
 
@@ -85,10 +108,11 @@ function EventForm({ formProps, formType }) {
             secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
-            imageUrl: imageUrl ? imageUrl : null,
             venueId: venueId ? +venueId : null,
             categoryId: categoryId ? +categoryId : null,
-            published: published
+            published: published,
+            image: image ? image : null,
+            imageName: imageName ? imageName : null
         }
 
         const eventRecord = await dispatch(createEvent(event, published));
@@ -130,10 +154,11 @@ function EventForm({ formProps, formType }) {
             secretLocation: secretLocation === true || secretLocation === false ? secretLocation : null,
             virtualEvent: virtualEvent === true || virtualEvent === false ? virtualEvent : null,
             eventUrl: eventUrl ? eventUrl : null,
-            imageUrl: imageUrl ? imageUrl : null,
             venueId: +venueId,
             categoryId: categoryId ? +categoryId : null,
-            published: published
+            published: published,
+            image: image ? image : null,
+            imageName: imageName ? imageName : null
         }
 
         dispatch(updateEvent(eventId, event, published));
@@ -146,7 +171,7 @@ function EventForm({ formProps, formType }) {
         // otherwise, clear the validation errors
         const validationItems = {
             name, startTime, endTime, description, categoryId, virtualEvent, capacity,
-            venueName, venueAddress, venueCity, venueState, venueZip
+            venueName, venueAddress, venueCity, venueState, venueZip, image
         };
 
         const errors = validateEventForm({ validationItems });
@@ -163,8 +188,10 @@ function EventForm({ formProps, formType }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
+        let errors = {};
+
         if (published) {
-            const errors = runValidations();
+            errors = runValidations();
 
             const [eventErrors, venueErrors] = errors;
 
@@ -175,6 +202,11 @@ function EventForm({ formProps, formType }) {
                 Object.keys(venueErrors).length) {
                 return;
             }
+        }
+
+        if (!validImage) {
+            errors.image = 'Image type must be one of the accepted formats';
+            return;
         }
 
         setValidateEvent({});
@@ -203,7 +235,6 @@ function EventForm({ formProps, formType }) {
     if (virtualEvent) {
         getLocationInfo = (
             <>
-
                 <div className='event__form--venue-container'>
                     <div className='event__form--section-venue'>
                         <div className='event__form--title'>
@@ -384,31 +415,40 @@ function EventForm({ formProps, formType }) {
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>
-                            <label htmlFor='image'>
-                                Event Image URL
-                            </label>
-                        </div>
-                        <input
-                            name='image'
-                            type='text'
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                        />
-                    </div>
-                    <div className='event__form--section'>
-                        <div className='event__form--title'>
-                            <label htmlFor='description'>
-                                Description*
-                            </label>
-                            {'description' in validateEvent && (
-                                <div className='form__submit--error'>{validateEvent.description}</div>
+                            Event Image
+                            {!validImage && (
+                                <span className='form__submit--error'>Image type must be one of the accepted formats.</span>
                             )}
                         </div>
-                        <textarea
-                            name='description'
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
+                        <div className='event__form--description'>
+                            <p>
+                                Upload an PNG, JPG, or JPEG image.
+                            </p>
+                        </div>
+                        <div className='event__form--upload'>
+                            <label htmlFor='file' className='event__form--upload-inp'>
+                                <input id='file' type="file" onChange={handleFile} />
+                                Choose a File
+                            </label>
+                            <div className='event__form--upload-prompt'>
+                                {uploadPrompt} {imageName && (<i className="fa-solid fa-s fa-xmark event__form--upload-icon" onClick={handleRemoveFile}></i>)}
+                            </div>
+                        </div>
+                        <div className='event__form--section'>
+                            <div className='event__form--title'>
+                                <label htmlFor='description'>
+                                    Description*
+                                </label>
+                                {'description' in validateEvent && (
+                                    <div className='form__submit--error'>{validateEvent.description}</div>
+                                )}
+                            </div>
+                            <textarea
+                                name='description'
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>
@@ -506,7 +546,7 @@ function EventForm({ formProps, formType }) {
                     </div>
                     {virtualEvent === true || virtualEvent === false ? getLocationInfo : null}
 
-                    {Object.keys(validateEvent).length > 0 || Object.keys(validateVenue).length > 0 ? (
+                    {Object.keys(validateEvent).length > 0 || Object.keys(validateVenue).length > 0 || !validImage ? (
                         <div className='event__form--errors'>Something seems to be missing. Check above to see what went wrong.</div>
                     ) : null}
                     <div className='event__form--submit'>

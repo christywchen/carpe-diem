@@ -11,28 +11,26 @@ async function getAllEvents() {
 async function getEvent(eventId) {
     return await db.Event.findByPk(eventId, {
         include: [db.Venue, db.Category, db.User],
-        where: {
-            published: true
-        }
     });
 }
 
 // CREATE AN EVENT
-async function createEvent(userId, requestBody) {
+async function createEvent(userId, imageUrl, requestBody) {
     const {
         name,
         startTime,
         endTime,
         description,
         capacity,
-        secretLocation,
-        virtualEvent,
         eventUrl,
-        imageUrl,
-        published,
         venueId,
-        categoryId
+        categoryId,
+        imageName
     } = requestBody;
+
+    const secretLocation = requestBody.secretLocation === 'true' ? true : false;
+    const virtualEvent = requestBody.virtualEvent === 'true' ? true : false;
+    const published = requestBody.published === 'true' ? true : false;
 
     return await db.Event.create({
         name,
@@ -44,6 +42,7 @@ async function createEvent(userId, requestBody) {
         virtualEvent,
         eventUrl,
         imageUrl,
+        imageName,
         published,
         hostId: userId,
         venueId,
@@ -52,21 +51,22 @@ async function createEvent(userId, requestBody) {
 }
 
 // UPDATE AN EVENT
-async function updateEvent(event, requestBody) {
+async function updateEvent(event, imageUrl, requestBody) {
     const {
         name,
         startTime,
         endTime,
         description,
         capacity,
-        secretLocation,
-        virtualEvent,
         eventUrl,
-        imageUrl,
-        published,
         venueId,
-        categoryId
+        categoryId,
+        imageName
     } = requestBody;
+
+    const secretLocation = requestBody.secretLocation === 'true' ? true : false;
+    const virtualEvent = requestBody.virtualEvent === 'true' ? true : false;
+    const published = requestBody.published === 'true' ? true : false;
 
     return await event.update({
         name,
@@ -77,7 +77,8 @@ async function updateEvent(event, requestBody) {
         secretLocation,
         virtualEvent,
         eventUrl,
-        imageUrl,
+        imageUrl: imageName === 'null' ? null : imageUrl,
+        imageName: imageName === 'null' ? null : imageName,
         published,
         venueId,
         categoryId

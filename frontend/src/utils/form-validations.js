@@ -1,7 +1,14 @@
+export function validateImage(type) {
+    if (type !== 'image/png' && type !== 'image/jpg' && type !== 'image/jpeg') {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 export function validateEventForm({ validationItems }) {
     const { name, startTime, endTime, description, categoryId, virtualEvent, capacity,
-        venueName, venueAddress, venueCity, venueState, venueZip } = validationItems;
+        venueName, venueAddress, venueCity, venueState, venueZip, image } = validationItems;
 
     const eventErrors = {};
     let venueErrors = {};

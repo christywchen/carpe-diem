@@ -39,6 +39,7 @@ function EventEdit() {
             secretLocation: event.secretLocation,
             eventUrl: event.eventUrl,
             imageUrl: event.imageUrl,
+            imageName: event.imageName,
             categoryId: event.categoryId,
             published: event.published,
 
