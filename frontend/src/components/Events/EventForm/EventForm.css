@@ -26,12 +26,6 @@
     font-style: italic;
 }
 
-/* .event__form--description {
-    margin-left: auto;
-    font-size: 0.8em;
-    font-style: italic;
-} */
-
 .event__form--content input[type="text"],
 .event__form--content textarea {
     width: 100%;

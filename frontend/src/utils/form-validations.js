@@ -1,6 +1,5 @@
 export function validateImage(type) {
     if (type !== 'image/png' && type !== 'image/jpg' && type !== 'image/jpeg') {
-        console.log('not one of these')
         return false;
     } else {
         return true;

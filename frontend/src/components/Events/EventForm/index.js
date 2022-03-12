@@ -433,23 +433,22 @@ function EventForm({ formProps, formType }) {
                             <div className='event__form--upload-prompt'>
                                 {uploadPrompt} {imageName && (<i className="fa-solid fa-s fa-xmark event__form--upload-icon" onClick={handleRemoveFile}></i>)}
                             </div>
-
                         </div>
-                    </div>
-                    <div className='event__form--section'>
-                        <div className='event__form--title'>
-                            <label htmlFor='description'>
-                                Description*
-                            </label>
-                            {'description' in validateEvent && (
-                                <div className='form__submit--error'>{validateEvent.description}</div>
-                            )}
+                        <div className='event__form--section'>
+                            <div className='event__form--title'>
+                                <label htmlFor='description'>
+                                    Description*
+                                </label>
+                                {'description' in validateEvent && (
+                                    <div className='form__submit--error'>{validateEvent.description}</div>
+                                )}
+                            </div>
+                            <textarea
+                                name='description'
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
                         </div>
-                        <textarea
-                            name='description'
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
                     </div>
                     <div className='event__form--section'>
                         <div className='event__form--title'>

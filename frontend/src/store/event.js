@@ -105,11 +105,6 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
 
     formData.append('published', published);
 
-    for (var key of formData.entries()) {
-        console.log(key[0] + ', ' + key[1])
-        console.log(typeof key[1])
-    }
-
     const res = await csrfFetch('/api/events', {
         method: 'POST',
         headers: {
