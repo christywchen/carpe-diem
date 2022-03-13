@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { check } = require('express-validator');
+const { body, check } = require('express-validator');
 
 const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -13,38 +13,43 @@ const router = express.Router();
 // validate events
 const validateEvent = [
     check('name')
-        .if((value, { req }) => req.body.published)
+        .if((value, { req }) => req.body.published === 'true')
         .exists({ checkFalsy: true })
         .withMessage('Please provide an event name.')
         .isLength({ max: 50 })
         .withMessage('Maximum event name length is 50 characters.'),
     check('startTime')
-        .if((value, { req }) => req.body.published)
+        .if((value, { req }) => req.body.published === 'true')
         .exists({ checkFalsy: true })
         .withMessage('Choose a start time for your event.'),
     check('endTime')
-        .if((value, { req }) => req.body.published)
+        .if((value, { req }) => req.body.published === 'true')
         .exists({ checkFalsy: true })
         .withMessage('Choose a end time for the event.'),
     check('description')
-        .if((value, { req }) => req.body.published)
+        .if((value, { req }) => req.body.published === 'true')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a description about the event.'),
-    check('capacity')
-        .if((value, { req }) => req.body.published)
-        .if((value, { req }) => !req.body.virtualEvent)
-        .exists({ checkFalsy: true })
-        .isNumeric()
-        .withMessage('Please provide a number for the event\'s maximum capacity.'),
-    check('venueId')
-        .if((value, { req }) => req.body.published)
-        .if((value, { req }) => !req.body.virtualEvent)
-        .notEmpty()
-        .withMessage('Physical events require a venue location.'),
     check('categoryId')
-        .if((value, { req }) => req.body.published)
+        .if((value, { req }) => req.body.published !== 'false')
         .notEmpty()
         .withMessage('Events require a category.'),
+    check('virtualEvent')
+        .if((value, { req }) => req.body.published === 'true')
+        .exists({ checkFalsy: true })
+        .withMessage('Please denote if the event is virtual or physical.'),
+    check('venueId')
+        .if((value, { req }) => req.body.published === 'true')
+        .if((value, { req }) => req.body.virtualEvent === 'false')
+        .notEmpty()
+        .withMessage('Physical events require a venue location.'),
+    check('capacity')
+        .if((value, { req }) => req.body.published === 'true')
+        .if((value, { req }) => req.body.virtualEvent === 'false')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a capacity for the event.')
+        .isFloat({ min: 1 })
+        .withMessage('Please provide a valid number for the event\'s maximum capacity.'),
     handleValidationErrors
 ]
 
@@ -64,8 +69,10 @@ router.get('/:eventId', asyncHandler(async (req, res) => {
 }));
 
 // POST /api/events (create event)
-router.post('/', requireAuth, validateEvent, singleMulterUpload("image"), asyncHandler(async (req, res) => {
+router.post('/', requireAuth, singleMulterUpload("image"), validateEvent, asyncHandler(async (req, res) => {
     const { id } = req.user;
+
+    console.log('TESSSSSSSSSSt', req.body.published === 'true')
 
     let imageUrl;
     if (req.file) {
@@ -78,7 +85,7 @@ router.post('/', requireAuth, validateEvent, singleMulterUpload("image"), asyncH
 }));
 
 // PATCH /api/events/:eventId (update an event)
-router.patch('/:eventId', requireAuth, validateEvent, singleMulterUpload("image"), asyncHandler(async (req, res, next) => {
+router.patch('/:eventId', requireAuth, singleMulterUpload("image"), validateEvent, asyncHandler(async (req, res, next) => {
     const { id } = req.user;
     const eventId = parseInt(req.params.eventId, 10);
     const event = await eventService.getEvent(eventId);

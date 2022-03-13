@@ -88,7 +88,20 @@ export const getEvent = (eventId) => async (dispatch) => {
 };
 
 export const createEvent = (newEvent, published) => async (dispatch) => {
-    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, image, imageName } = newEvent;
+    const {
+        name,
+        startTime,
+        endTime,
+        description,
+        capacity,
+        virtualEvent,
+        secretLocation,
+        eventUrl,
+        venueId,
+        categoryId,
+        image,
+        imageName
+    } = newEvent;
     const formData = new FormData();
 
     if (name) formData.append('name', name);
@@ -99,6 +112,7 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
     if (virtualEvent !== null) formData.append('virtualEvent', virtualEvent);
     if (secretLocation !== null) formData.append('secretLocation', secretLocation);
     if (eventUrl) formData.append('eventUrl', eventUrl);
+    if (venueId) formData.append('venueId', venueId);
     if (categoryId) formData.append('categoryId', categoryId);
     if (image) formData.append('image', image);
     if (imageName) formData.append('imageName', imageName);
@@ -120,7 +134,20 @@ export const createEvent = (newEvent, published) => async (dispatch) => {
 };
 
 export const updateEvent = (eventId, updatedEvent, published) => async (dispatch) => {
-    const { name, startTime, endTime, description, capacity, virtualEvent, secretLocation, eventUrl, categoryId, published, image, imageName } = updatedEvent;
+    const {
+        name,
+        startTime,
+        endTime,
+        description,
+        capacity,
+        virtualEvent,
+        secretLocation,
+        eventUrl,
+        venueId,
+        categoryId,
+        image,
+        imageName
+    } = updatedEvent;
     const formData = new FormData();
 
     if (name) formData.append('name', name);
@@ -131,6 +158,7 @@ export const updateEvent = (eventId, updatedEvent, published) => async (dispatch
     if (virtualEvent !== null) formData.append('virtualEvent', virtualEvent);
     if (secretLocation !== null) formData.append('secretLocation', secretLocation);
     if (eventUrl) formData.append('eventUrl', eventUrl);
+    if (venueId) formData.append('venueId', venueId);
     if (categoryId) formData.append('categoryId', categoryId);
 
     formData.append('image', image);
