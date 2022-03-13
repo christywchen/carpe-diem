@@ -34,7 +34,8 @@ export function validateEventForm({ validationItems }) {
             venueZip
         );
 
-        if (!capacity) eventErrors.capacity = 'Attendee capacity is required.';
+        if (!capacity) eventErrors.capacity = 'Event capacity is required.';
+        else if (capacity <= 0) eventErrors.capacity = 'Event capacity cannot be less than 1.'
     }
 
 
@@ -52,7 +53,6 @@ export function validateVenueForm(venueName, venueAddress, venueCity, venueState
 
     if (!venueAddress.length) errors.venueAddress = 'Venue address is required.';
     else if (venueAddress.length > 100) errors.venueAddress = 'Maximum character length is 100.';
-
 
     if (!venueCity.length) errors.venueCity = 'Venue city is required.';
     else if (venueCity.length > 50) errors.venueCity = 'Maximum character length is 50.'

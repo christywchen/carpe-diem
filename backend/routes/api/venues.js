@@ -38,8 +38,9 @@ const validateVenues = [
     check('zip')
         .if((value, { req }) => req.body.published)
         .exists({ checkFalsy: true })
+        .withMessage('Please provide a zip code')
         .matches(/^\d{5}(?:[-\s]?\d{4})?$/)
-        .withMessage('Please provide a valid zip code'),
+        .withMessage('Zip code must be a valid 5 digit number.'),
     handleValidationErrors
 ]
 
