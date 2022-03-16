@@ -422,7 +422,7 @@ function EventForm({ formProps, formType }) {
                         </div>
                         <div className='event__form--description'>
                             <p>
-                                Upload an PNG, JPG, or JPEG image.
+                                Upload a PNG, JPG, or JPEG.
                             </p>
                         </div>
                         <div className='event__form--upload'>
