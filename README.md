@@ -5,7 +5,7 @@ Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com
 
 A live demo of this application can be found [here](https://carpe-diem-app.herokuapp.com/).
 
-![carpe-diem](https://user-images.githubusercontent.com/55429132/158728479-5a970323-4b17-4ef6-9b3c-b4b90318ec26.jpg)
+![carpe-diem](https://user-images.githubusercontent.com/55429132/158729176-60c66f79-da20-4902-80d8-351fa72ba980.jpg)
 
 Events can be created with the following information:
 - **Draft or Published**: Drafted events can be saved and published later on.
@@ -91,7 +91,7 @@ On the React side of things, the solution was to create helper functions for the
 After receiving form data, the steps were as follows:
 
 **Step 1**. Check if the event is being saved as a draft or published event to determine course of action.
-- If the event input is being saved as a draft, forgo validations.
+- If the event input is being saved as a draft, forgo field required validations and only check for character length.
 - If the event input is being published, rely on frontend validations and validations at the API route level to check input data.
 
 **Step 2**. Check if the there is an eventId parameter by using the useParams() hook:
