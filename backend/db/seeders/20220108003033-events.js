@@ -10,20 +10,6 @@ module.exports = {
       */
     return queryInterface.bulkInsert('Events', [
       {
-        name: 'Understated LA',
-        startTime: '2022-01-22 19:00:00',
-        endTime: '2022-01-23 04:00:00',
-        imageUrl: 'https://carpe-diem-app.herokuapp.com/event-images/01-understated-la.jpg',
-        imageName: '01-understated-la.jpg',
-        description: 'A gathering of local artists and friends.',
-        capacity: 700,
-        secretLocation: true,
-        published: true,
-        virtualEvent: false,
-        hostId: 1,
-        venueId: 1,
-        categoryId: 4
-      }, {
         name: 'Daft Punk & Friends Night',
         startTime: '2022-01-20 20:00:00',
         endTime: '2022-01-21 00:00:00',
