@@ -30,9 +30,12 @@ function EventsPublished() {
     let publishedEvents;
     if (publishedIds && events.length) {
         // using publishedIds array, perform a lookup of events in eventsObj and return an array of the events
-        publishedEvents = publishedIds.map((id) => {
-            return eventsObj[id];
-        })
+        publishedEvents = publishedIds.reduce((events, eventId) => {
+            if (eventsObj[eventId]) {
+                events.push(eventsObj[eventId]);
+            }
+            return events;
+        }, []);
     }
 
 

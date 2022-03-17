@@ -207,7 +207,6 @@ const eventReducer = (state = initialState, action) => {
             return newState;
         case LOAD_PUBLISHED_EVENTS:
             newState = { ...state };
-            console.log('action evnets', action.events)
             newState.userEvents.publishedIds = action.events.reduce((events, event) => {
                 events[event.id] = event.id;
                 return events;
