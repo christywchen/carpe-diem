@@ -5,7 +5,7 @@ Carpe Diem takes its inspiration from in [Eventbrite](https://www.eventbrite.com
 
 A live demo of this application can be found [here](https://carpe-diem-app.herokuapp.com/).
 
-![carpe-diem-md](https://user-images.githubusercontent.com/55429132/151637455-607e8329-8bfd-4df5-92d0-746b2ead4fbb.png)
+![carpe-diem](https://user-images.githubusercontent.com/55429132/158728479-5a970323-4b17-4ef6-9b3c-b4b90318ec26.jpg)
 
 Events can be created with the following information:
 - **Draft or Published**: Drafted events can be saved and published later on.
