@@ -52,6 +52,7 @@ async function createEvent(userId, imageUrl, requestBody) {
 
 // UPDATE AN EVENT
 async function updateEvent(event, imageUrl, requestBody) {
+    console.log('event tiiiiime', requestBody.startTime)
     const {
         name,
         startTime,
@@ -70,8 +71,8 @@ async function updateEvent(event, imageUrl, requestBody) {
 
     return await event.update({
         name,
-        startTime,
-        endTime,
+        startTime: startTime === undefined ? null : startTime,
+        endTime: endTime === undefined ? null : endTime,
         description,
         capacity,
         secretLocation,
