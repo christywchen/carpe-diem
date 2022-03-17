@@ -20,7 +20,7 @@ function EventsTable({ events }) {
                 </thead>
 
                 <tbody>
-                    {console.log(sortedByDate)}
+                    {/* {console.log(sortedByDate)} */}
                     {events.length && sortedByDate.map(({ name, id, published, startTime }) => (
                         <tr className='table__tr--record' key={id}>
                             <td className='table__td--attrib'>
