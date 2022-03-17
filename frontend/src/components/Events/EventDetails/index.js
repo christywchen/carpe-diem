@@ -16,7 +16,7 @@ function EventDetails() {
     const event = useSelector((state) => state.event.events[eventId]);
 
     useEffect(() => {
-        dispatch(getPublishedByUser(sessionUser.id));
+        if (sessionUser) dispatch(getPublishedByUser(sessionUser.id));
         dispatch(getAllEvents(eventId));
     }, [dispatch]);
 
