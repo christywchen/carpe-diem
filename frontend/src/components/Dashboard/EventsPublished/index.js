@@ -12,12 +12,10 @@ function EventsPublished() {
 
     const sessionUser = useSelector((state) => state.session.user);
     const eventsObj = useSelector((state) => state.event.events);
-    const publishedIds = useSelector((state) => {
-        if (state.event.user.published) return Object.keys(state.event.user.published);
-        else return null;
-    });
+    const publishedIdsObj = useSelector((state) => state.event.userEvents.publishedIds);
 
     const events = Object.values(eventsObj);
+    const publishedIds = Object.values(publishedIdsObj);
 
     useEffect(() => {
         if (!sessionUser) {
@@ -32,9 +30,12 @@ function EventsPublished() {
     let publishedEvents;
     if (publishedIds && events.length) {
         // using publishedIds array, perform a lookup of events in eventsObj and return an array of the events
-        publishedEvents = publishedIds.map((id) => {
-            return eventsObj[id];
-        })
+        publishedEvents = publishedIds.reduce((events, eventId) => {
+            if (eventsObj[eventId]) {
+                events.push(eventsObj[eventId]);
+            }
+            return events;
+        }, []);
     }
 
 

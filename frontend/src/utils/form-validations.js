@@ -6,22 +6,22 @@ export function validateImage(type) {
     }
 }
 
-export function validateEventForm({ validationItems }) {
+export function validateEventForm({ validationItems }, published) {
     const { name, startTime, endTime, description, categoryId, virtualEvent, capacity,
         venueName, venueAddress, venueCity, venueState, venueZip, image } = validationItems;
 
     const eventErrors = {};
     let venueErrors = {};
 
-    if (!name) eventErrors.name = 'Include a name for your event.';
+    if (!name && published) eventErrors.name = 'Include a name for your event.';
     else if (name.length > 50) eventErrors.name = 'Maximum character length is 50.';
 
-    if (!startTime.length) eventErrors.startTime = 'Please enter a start time.';
-    if (!endTime.length) eventErrors.endTime = 'Please enter an end time.';
-    if (!description) eventErrors.description = 'Provide a short description about your event.';
-    if (!categoryId) eventErrors.categoryId = 'Tell us what type of event you\'re hosting.'
+    if (!startTime.length && published) eventErrors.startTime = 'Please enter a start time.';
+    if (!endTime.length && published) eventErrors.endTime = 'Please enter an end time.';
+    if (!description && published) eventErrors.description = 'Provide a short description about your event.';
+    if (!categoryId && published) eventErrors.categoryId = 'Tell us what type of event you\'re hosting.'
 
-    if (virtualEvent === 'empty') {
+    if (virtualEvent === 'empty' && published) {
         eventErrors.virtualEvent = 'Tell us whether your event is virtual or in-person.';
     }
 
@@ -31,34 +31,35 @@ export function validateEventForm({ validationItems }) {
             venueAddress,
             venueCity,
             venueState,
-            venueZip
+            venueZip,
+            published
         );
 
-        if (!capacity) eventErrors.capacity = 'Event capacity is required.';
-        else if (capacity <= 0) eventErrors.capacity = 'Event capacity cannot be less than 1.'
+        if (!capacity && published) eventErrors.capacity = 'Event capacity is required.';
+        else if (capacity <= 0 && published) eventErrors.capacity = 'Event capacity cannot be less than 1.'
     }
 
 
     return [eventErrors, venueErrors];
 }
 
-export function validateVenueForm(venueName, venueAddress, venueCity, venueState, venueZip) {
+export function validateVenueForm(venueName, venueAddress, venueCity, venueState, venueZip, published) {
     const errors = {};
     const zipString = /^\d{5}(?:[-\s]?\d{4})?$/;
     const stateString = /^[a-zA-Z]{2}$/;
     const venueStr = String(venueZip);
 
-    if (!venueName) errors.venueName = 'Venue name is required.';
+    if (!venueName && published) errors.venueName = 'Venue name is required.';
     else if (venueName.length > 50) errors.venueName = 'Maximum character length is 50.';
 
-    if (!venueAddress.length) errors.venueAddress = 'Venue address is required.';
+    if (!venueAddress.length && published) errors.venueAddress = 'Venue address is required.';
     else if (venueAddress.length > 100) errors.venueAddress = 'Maximum character length is 100.';
 
-    if (!venueCity.length) errors.venueCity = 'Venue city is required.';
+    if (!venueCity.length && published) errors.venueCity = 'Venue city is required.';
     else if (venueCity.length > 50) errors.venueCity = 'Maximum character length is 50.'
 
-    if (!stateString.test(venueState)) errors.venueState = 'Provide a two-letter state abbreviation.';
-    if (!zipString.test(venueStr)) errors.venueZip = 'Must be a standard postal code.'
+    if (!stateString.test(venueState) && published) errors.venueState = 'Provide a two-letter state abbreviation.';
+    if (!zipString.test(venueStr) && published) errors.venueZip = 'Must be a standard postal code.'
 
     return errors;
 }

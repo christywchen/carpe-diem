@@ -167,14 +167,15 @@ function EventForm({ formProps, formType }) {
     }
 
     function runValidations() {
-        // run validations if user chooses to publish the event
-        // otherwise, clear the validation errors
+        // this function will set up the variables needed to run validations
+        // validateEventForm helper will run all validations if user chooses to publish the event
+        // otherwise, helper will only validations related to character length limit
         const validationItems = {
             name, startTime, endTime, description, categoryId, virtualEvent, capacity,
             venueName, venueAddress, venueCity, venueState, venueZip, image
         };
 
-        const errors = validateEventForm({ validationItems });
+        const errors = validateEventForm({ validationItems }, published);
         let [eventErrors, venueErrors] = errors;
 
         if (virtualEvent === true) {
@@ -190,19 +191,19 @@ function EventForm({ formProps, formType }) {
 
         let errors = {};
 
-        if (published) {
-            errors = runValidations();
+        // if (published) {
+        errors = runValidations();
 
-            const [eventErrors, venueErrors] = errors;
+        const [eventErrors, venueErrors] = errors;
 
-            setValidateEvent(eventErrors)
-            setValidateVenue(venueErrors)
+        setValidateEvent(eventErrors)
+        setValidateVenue(venueErrors)
 
-            if (Object.keys(eventErrors).length ||
-                Object.keys(venueErrors).length) {
-                return;
-            }
+        if (Object.keys(eventErrors).length ||
+            Object.keys(venueErrors).length) {
+            return;
         }
+        // }
 
         if (!validImage) {
             errors.image = 'Image type must be one of the accepted formats';
