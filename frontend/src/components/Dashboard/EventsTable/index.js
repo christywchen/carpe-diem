@@ -20,6 +20,7 @@ function EventsTable({ events }) {
                 </thead>
 
                 <tbody>
+                    {console.log(sortedByDate, 'sorted by date')}
                     {sortedByDate.map(({ name, id, published, startTime }) => (
                         <tr className='table__tr--record' key={id}>
                             <td className='table__td--attrib'>
@@ -29,7 +30,7 @@ function EventsTable({ events }) {
                                 }
                             </td>
                             <td className='table__td--attrib table__td--event-name'>
-                                {published === true ?
+                                {name && published === true ?
                                     (<Link to={`/events/${id}`}>{name}</Link>) :
                                     (<>{name}</ >)
                                 }

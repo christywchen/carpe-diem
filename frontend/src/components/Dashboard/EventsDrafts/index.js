@@ -30,11 +30,14 @@ function EventsDrafts() {
     console.log(draftIds, 'draft ids', eventsObj)
     if (draftIds && events.length) {
         // using draftIds array, perform a lookup of events in eventsObj and return an array of the events
-        draftEvents = draftIds.map((id) => {
-            if (eventsObj[id]) {
-                return eventsObj[id];
+        draftEvents = draftIds.reduce((events, eventId) => {
+            if (eventsObj[eventId]) {
+                events.push(eventsObj[eventId]);
             }
-        });
+            return events;
+        }, []);
+
+        console.log('draft events', draftEvents)
     }
 
     return (
