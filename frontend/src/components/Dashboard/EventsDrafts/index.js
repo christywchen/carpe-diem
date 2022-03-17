@@ -12,10 +12,7 @@ function EventsDrafts() {
 
     const sessionUser = useSelector((state) => state.session.user);
     const eventsObj = useSelector((state) => state.event.events);
-    const draftIds = useSelector((state) => {
-        if (state.event.user.drafts) return Object.keys(state.event.user.drafts);
-        else return null;
-    });
+    const draftIds = useSelector((state) => state.event.userEvents.draftIds);
 
     const events = Object.values(eventsObj);
 
@@ -23,12 +20,13 @@ function EventsDrafts() {
         if (!sessionUser) {
             navigate('/login');
         } else {
-            dispatch(getAllEvents());
             dispatch(getDraftsByUser(sessionUser.id));
+            dispatch(getAllEvents());
         }
     }, [dispatch]);
 
     let draftEvents;
+    console.log(draftIds, 'draft ids')
     if (draftIds && events.length) {
         // using draftIds array, perform a lookup of events in eventsObj and return an array of the events
         draftEvents = draftIds.map((id) => {
