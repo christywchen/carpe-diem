@@ -12,9 +12,10 @@ function EventsDrafts() {
 
     const sessionUser = useSelector((state) => state.session.user);
     const eventsObj = useSelector((state) => state.event.events);
-    const draftIds = useSelector((state) => state.event.userEvents.draftIds);
+    const draftIdsObj = useSelector((state) => state.event.userEvents.draftIds);
 
     const events = Object.values(eventsObj);
+    const draftIds = Object.values(draftIdsObj);
 
     useEffect(() => {
         if (!sessionUser) {

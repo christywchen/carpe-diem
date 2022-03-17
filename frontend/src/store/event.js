@@ -191,7 +191,7 @@ export const deleteEvent = (eventId, published) => async (dispatch) => {
 };
 
 // initial state
-const initialState = { events: {}, userEvents: { draftIds: [], publishedIds: [] } }
+const initialState = { events: {}, userEvents: { draftIds: {}, publishedIds: {} } }
 
 // event reducer
 const eventReducer = (state = initialState, action) => {
@@ -208,35 +208,43 @@ const eventReducer = (state = initialState, action) => {
         case LOAD_PUBLISHED_EVENTS:
             newState = { ...state };
             console.log('action evnets', action.events)
-            newState.userEvents.publishedIds = action.events.map((event) => event.id);
+            newState.userEvents.publishedIds = action.events.reduce((events, event) => {
+                events[event.id] = event.id;
+                return events;
+            }, {});
             return newState;
         case LOAD_DRAFT_EVENTS:
             newState = { ...state };
-            newState.userEvents.draftIds = action.events.map((event) => event.id);
+            newState.userEvents.draftIds = action.events.reduce((events, event) => {
+                events[event.id] = event.id;
+                return events;
+            }, {});
             return newState;
         case ADD_PUBLISHED_EVENT:
             newState = { ...state };
             newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
-            newState.userEvents.publishedIds.push(action.newEvent.id);
+            newState.userEvents.publishedIds[action.newEvent.id] = action.newEvent.id;
             return newState;
         case ADD_DRAFT_EVENT:
             newState = { ...state };
             newState.events = { ...state.events, [action.newEvent.id]: action.newEvent };
-            newState.userEvents.publishedIds.push(action.newEvent.id);
+            newState.userEvents.draftIds[action.newEvent.id] = action.newEvent.id;
             return newState;
         case REMOVE_PUBLISHED_EVENT:
             newState = { ...state };
             newState.events = { ...state.events };
-
             delete newState.events[action.eventId];
-            delete newState.user.published[action.eventId];
+
+            delete newState.userEvents.publishedIds[action.eventId];
             return newState;
         case REMOVE_DRAFT_EVENT:
             newState = { ...state };
             newState.events = { ...state.events };
 
             delete newState.events[action.eventId];
-            delete newState.user.drafts[action.eventId];
+            delete newState.userEvents.draftIds[action.eventId];
+
+
             return newState;
         default:
             return state;
