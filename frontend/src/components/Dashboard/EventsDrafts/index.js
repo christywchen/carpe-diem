@@ -28,10 +28,12 @@ function EventsDrafts() {
 
     let draftEvents;
     console.log(draftIds, 'draft ids', eventsObj)
-    if (draftIds && events.length > 1) {
+    if (draftIds && events.length) {
         // using draftIds array, perform a lookup of events in eventsObj and return an array of the events
         draftEvents = draftIds.map((id) => {
-            return eventsObj[id];
+            if (eventsObj[id]) {
+                return eventsObj[id];
+            }
         });
     }
 
