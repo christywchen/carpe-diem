@@ -52,7 +52,6 @@ async function createEvent(userId, imageUrl, requestBody) {
 
 // UPDATE AN EVENT
 async function updateEvent(event, imageUrl, requestBody) {
-    console.log('event tiiiiime', requestBody.startTime)
     const {
         name,
         startTime,

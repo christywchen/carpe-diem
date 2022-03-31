@@ -46,7 +46,6 @@ function EventForm({ formProps, formType }) {
     const [uploadPrompt, setUploadPrompt] = useState(formProps?.imageName || 'No file selected.');
     const [validImage, setValidImage] = useState(true);
 
-    console.log(typeof startTime)
     /* HOOKS */
     useEffect(() => {
         dispatch(getAllCategories());
