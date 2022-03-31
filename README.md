@@ -13,7 +13,7 @@ Events can be created with the following information:
 - **Virtual Event**: Instead of providing a physical address, a stream link can be shared.
 - **Event Category**: Describes whether the event is a festival, concert, warehouse event, etc.
 - **Other Features**: Event date and time, image, description, location.
-- **Event Image**: Image uplaoding from local files.
+- **Event Image**: Image uploading from local files.
 
 Users can sort events by category while browsing and authenticated users can also register to attend by clicking the ticket icon on any given event card.
 
