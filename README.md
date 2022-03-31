@@ -13,6 +13,7 @@ Events can be created with the following information:
 - **Virtual Event**: Instead of providing a physical address, a stream link can be shared.
 - **Event Category**: Describes whether the event is a festival, concert, warehouse event, etc.
 - **Other Features**: Event date and time, image, description, location.
+- **Event Image**: Image uplaoding from local files.
 
 Users can sort events by category while browsing and authenticated users can also register to attend by clicking the ticket icon on any given event card.
 
@@ -21,7 +22,9 @@ Visit the [wiki](https://github.com/christywchen/carpe-diem/wiki) for informatio
 # Implementation
 This app was built using **JavaScript** in conjunction with backend tools like **Node.js**, **Express.js**, **Sequelize.js**, and **PostgreSQL** for data management. The API routes were designed with RESTful architecture in mind and utilizes a services layer to facilitate communication between server and database. Other libraries used include **csurf**, **express-validator**, and **bcrypt.js**.
 
-The frontend uses **React** and **Redux** along with **React Router** for frontend routing. RESTful convention also formed the basis for frontend route structure. The application's **HTML** and **CSS** was written from entirely scratch and uses no external libraries.
+The frontend uses **React** and **Redux** along with **React Router** for frontend routing. RESTful convention also formed the basis for frontend route structure. The application's **HTML** and **CSS** were written from entirely scratch and uses no external libraries.
+
+Image uploading is powered by **AWS S3**.
 
 # Local Installation
 
